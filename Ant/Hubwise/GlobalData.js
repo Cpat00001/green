@@ -24,7 +24,7 @@ import chart from '../../css/fin_chart.png';
             </Row>
 
             <Row style={{marginBottom:'20px'}}>
-                <Col span={10} xs={24} sm={24} md={10} lg={10} xl={10} >
+                <Col span={10} xs={24} sm={24} md={24} lg={10} xl={10} >
                     <Row>
                         <Col span={24} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}} className="Glob2">
                             <h2>Total Assets on Platform</h2>
@@ -68,7 +68,7 @@ import chart from '../../css/fin_chart.png';
 
                 </Col>
                 
-                <Col span={14} xs={24} md={14}style={{backgroundColor:'pink'}} className="Glob3">
+                <Col span={14} xs={24} sm={24} md={24} lg={14} xl={14}style={{backgroundColor:'pink'}} className="Glob3">
                     <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
                 </Col>
             </Row>
@@ -79,18 +79,18 @@ import chart from '../../css/fin_chart.png';
                 <Col span={20} offset={2} xs={20} sm={20} md={20} lg={20}><h5 className="Glob1">31 May 2018 to 20 may 2019 for Hubwise</h5></Col>
             </Row>
             <Row style={{marginBottom:'100px'}}>
-                <Col span={8} xs={22}style={{backgroundColor:'powderblue'}}>
+                <Col span={8} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}}>
                     <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
                 </Col>
-                <Col span={8} xs={22}style={{backgroundColor:'pink'}}>
+                <Col span={8} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'pink'}}>
                     <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
                 </Col>
-                <Col span={8} xs={22}style={{backgroundColor:'powderblue'}}>
+                <Col span={8} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}}>
                     <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
                 </Col>
             </Row>
         </Col>
-        <Col span={6}></Col>   
+        <Col span={6}></Col>     
       </div>
     )
   }

@@ -3,9 +3,11 @@ import { Row, Col, Icon } from 'antd';
 import 'antd/dist/antd.css';
 import '../../css/andtCharts.css';
 import chart from '../../css/fin_chart.png';
+import GlobalChart1 from './GlobalChart/GlobalChart1';
+// import Example from './GlobalChart/GlobalChart1';
 
 
- class GlobalData extends Component {
+class GlobalData extends Component {
   render() {
     return (
       <div>
@@ -31,26 +33,26 @@ import chart from '../../css/fin_chart.png';
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={12} xs={24}>
+                        <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <span><p>some text here</p></span>
                         </Col>
-                        <Col span={12} xs={24}>
+                        <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <h2>£100,437,852.67</h2>
                         </Col>   
                     </Row>
                     <Row>
-                        <Col span={12} xs={24}>
+                        <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <span><p>some text here</p></span>
                         </Col>
-                        <Col span={12} xs={24}>
+                        <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <h3>£99,577,312.47</h3>
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={12} xs={24}>
+                        <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <p>some text here</p>
                         </Col>
-                        <Col span={12} xs={24}>
+                        <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <h4>£99,577,312.47</h4>
                         </Col> 
                     </Row>
@@ -79,14 +81,14 @@ import chart from '../../css/fin_chart.png';
                 <Col span={20} offset={2} xs={20} sm={20} md={20} lg={20}><h5 className="Glob1">31 May 2018 to 20 may 2019 for Hubwise</h5></Col>
             </Row>
             <Row style={{marginBottom:'100px'}}>
-                <Col span={8} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}}>
+                <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'powderblue'}}>
                     <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
                 </Col>
-                <Col span={8} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'pink'}}>
+                <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'pink'}}>
                     <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
                 </Col>
-                <Col span={8} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}}>
-                    <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
+                <Col span={8}  xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'powderblue'}}>
+                    <GlobalChart1 />
                 </Col>
             </Row>
         </Col>

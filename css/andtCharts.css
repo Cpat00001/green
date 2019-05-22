@@ -1,0 +1,26 @@
+.row1{
+
+    background-color: rgb(228, 225, 225);
+    min-height:400px
+}
+.row2{
+    background-color:rgb(137, 136, 202);
+    min-height:300px
+}
+.Glob1{
+    float:left;
+}
+.Glob2{
+    width:100%;
+}
+.Glob3{
+    width:50%;
+    padding:10px;
+}
+.Glob4{
+    float:left;
+}
+/* ######### icons ############ */
+.icon1{
+    font-size: 40px;
+}

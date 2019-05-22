@@ -1,0 +1,156 @@
+.class1{
+    background-image: linear-gradient(to right,rgb(91, 9, 186),rgb(76, 122, 223));
+    min-height:120px;
+    width:100%;
+    /* background-image: url("/css/app-bg.jpg");  */
+    /* background-image: url("/css/Picture1.jpg"); */
+    z-index:1;
+}
+.logo{
+    background-color: transparent;
+    height:100%;
+    z-index:2;
+}
+.clock{
+    color: rgba(255, 255, 255, 0.8);
+    font-size:13px
+}
+.class2{
+    background-color:rgb(106, 52, 138);
+    text-align:center;
+    width:100%;
+    height:auto;
+}
+.icon{
+    font-size:20px;
+    color:white;
+    padding:10px;
+    text-align:center;
+}
+.icon2{
+    font-size:40px;
+    color:white;
+    padding:10px
+}
+.class3{
+    color:white;
+    text-align:left;
+    margin-left:5px;
+    font-size: 1.3em;
+    line-height:1.4em;
+
+}
+.class4{
+    color:white;
+    text-align:right;
+}
+.class5{
+    text-shadow: 0px 1px 3px;
+    font-weight:400;
+    background-color: grey;
+    width:100%; 
+    color: white;
+    padding:5px;
+}
+.a{
+    color: white;
+}
+.a:hover{
+    color:blue
+}
+/* ################# dropDown menu ########## */
+.dropdownMenu.anticon{
+    background-color:rgb(106, 52, 138);
+    min-height:200px;
+}
+.dropdownMenu2{
+    background-color: rgb(35, 160, 108);
+    min-height: 200px;
+}
+.class2dropDownMenu2{
+    background-color:rgb(35, 160, 108);
+    text-align:center;
+    width:100%;
+    height:auto;
+}
+.class2dropDownMenu3{
+    background-color:rgb(226, 172, 8);
+    text-align:center;
+    width:100%;
+    height:auto;
+}
+.spanText{
+    /* margin-left: 2%; */
+    color: rgba(255,255,255,0.65);
+    margin-left:3%;
+}
+.icon3{
+    color: rgba(255,255,255,0.65);
+    font-size:20px;
+    float:left;
+    margin-left:20%;
+}
+.spanText:hover{
+    color: rgba(255,255,255,1.00);
+    font-weight: bold;
+}
+.icon3:hover{
+    color: rgba(255,255,255,1.00);
+    font-weight: bold;
+}
+.icon4{
+    color: rgba(255,255,255,0.65);
+    font-size:20px;
+    /* float:center; */
+    margin-left:1%;
+}
+.icon5{
+    font-size: 30px;
+    color: #007bff;
+}
+#headerimg{
+    z-index:-1;
+}
+
+/* ##### AntTest3 */
+.at3card{
+    background-color:#FAFAFA;
+    padding:10px;
+    border-radius:3px;
+    box-shadow:0px 0px 0px 1px;
+    padding:10px;
+    border:1px solid rgb(207, 205, 205);
+    text-align:left;
+    width:100%;
+    font-size: 1.3em;
+    line-height:1.4em;
+}
+.left{
+    text-align:'left';
+    width:100%;
+}
+
+/* ####### footer ######## */
+.footer{
+    background-color:#acacac;
+    margin-bottom: 0px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #303030;
+    text-shadow:0px 1px #C7C7C7;
+    padding:10px;
+}
+.anticon{
+    /* .anticon svg { display: none; }  */
+    /* display: none;  */
+}
+/* investor page tooltip */
+.tooltip{
+    background-color: rgb(114, 114, 114);
+    color:white;
+    font-size:15px;
+    border-radius: 5px;
+
+}

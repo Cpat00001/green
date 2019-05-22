@@ -4,7 +4,9 @@ import 'antd/dist/antd.css';
 import '../../css/andtCharts.css';
 import chart from '../../css/fin_chart.png';
 import GlobalChart1 from './GlobalChart/GlobalChart1';
-// import Example from './GlobalChart/GlobalChart1';
+import GlobalChart2 from './GlobalChart/GlobalChart2';
+import GlobalChart3 from './GlobalChart/GlobalChart3';
+import GlobalChart4 from './GlobalChart/GlobalChart4';
 
 
 class GlobalData extends Component {
@@ -70,8 +72,8 @@ class GlobalData extends Component {
 
                 </Col>
                 
-                <Col span={14} xs={24} sm={24} md={24} lg={14} xl={14}style={{backgroundColor:'pink'}} className="Glob3">
-                    <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
+                <Col span={14} xs={24} sm={24} md={24} lg={14} xl={14}style={{backgroundColor:'rgb(227, 230, 234)'}} className="Glob3">
+                    <GlobalChart4/>
                 </Col>
             </Row>
 
@@ -80,14 +82,14 @@ class GlobalData extends Component {
                 <Col span={2} xs={2} sm={2} md={2} lg={2}><Icon type="clock-circle" className="icon1"/></Col>
                 <Col span={20} offset={2} xs={20} sm={20} md={20} lg={20}><h5 className="Glob1">31 May 2018 to 20 may 2019 for Hubwise</h5></Col>
             </Row>
-            <Row style={{marginBottom:'100px'}}>
-                <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'powderblue'}}>
-                    <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
+            <Row style={{marginBottom:'100px'}} gutter={16}>
+                <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 234)'}}>
+                    <GlobalChart2 />
                 </Col>
-                <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'pink'}}>
-                    <img src={chart} alt="Chart" id='imgchart' style={{width:'100%', maxWidth:'500px'}} />
+                <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 244)'}}>
+                    <GlobalChart3/>
                 </Col>
-                <Col span={8}  xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'powderblue'}}>
+                <Col span={8}  xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 234)'}}>
                     <GlobalChart1 />
                 </Col>
             </Row>

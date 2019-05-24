@@ -2,15 +2,65 @@ import React, { Component } from 'react';
 import { Row, Col, Icon } from 'antd';
 import 'antd/dist/antd.css';
 import '../../css/andtCharts.css';
-import chart from '../../css/fin_chart.png';
 import GlobalChart1 from './GlobalChart/GlobalChart1';
 import GlobalChart2 from './GlobalChart/GlobalChart2';
 import GlobalChart3 from './GlobalChart/GlobalChart3';
 import GlobalChart4 from './GlobalChart/GlobalChart4';
-
+import axios from 'axios';
 
 class GlobalData extends Component {
-  render() {
+
+    state = {
+
+        // totalMarketValue: []
+        data:[]
+    }
+
+    componentDidMount(){
+  
+    axios.get('/Data/GlobalChart1Data.json')
+    // .then(res => this.setState({totalMarketValue: res.totalMarketValue}))
+    .then(res => this.setState({data: res.data}));
+    }
+
+    render() {
+
+    let {data} = this.state;
+    console.log(data)
+    console.log(typeof data)
+
+    
+    //get current month
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    let date = new Date();
+    let result = months[date.getMonth()];
+    console.log("name of month:" ,result)
+
+        // find an object in array
+    let ra = data.filter(month => month.name === 'May')
+    // console.log("result from ra", ra)
+    // console.log("type of ra", typeof ra)
+    // console.log("result ra.name",ra.name)
+    const A = ra[0];
+    // console.log(A)
+    // console.log("typeof ra[0]:", typeof A)
+    // const AN = A.name;
+    if( typeof A === "object" ){
+        if(A.hasOwnProperty("name")){
+            console.log("result of A.name:",A.name)
+            let newValue = A.name;
+            if( result == A.name ){
+                console.log("Ready to GO")
+                var totalAssets = A.totalMarketValue;
+                var period = A.name;
+            }
+        }else{
+            console.log("no value from A.name")
+        }
+    }else{
+        console.log("type of A is not an aobject")
+    }
+   
     return (
       <div>
         <Col span={12} offset={6}>
@@ -21,7 +71,7 @@ class GlobalData extends Component {
                             <Icon type="camera" className="icon1" />
                         </Col>
                         <Col span={22} xs={20} style={{float:'left'}}>
-                            <h4 className="Glob1">Hubwise - May 2019</h4>
+                            <h4 className="Glob1">Hubwise - {period} 2019</h4>
                         </Col>
                     </Row>
                 </Col>
@@ -31,7 +81,7 @@ class GlobalData extends Component {
                 <Col span={10} xs={24} sm={24} md={24} lg={10} xl={10} >
                     <Row>
                         <Col span={24} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}} className="Glob2">
-                            <h2>Total Assets on Platform</h2>
+                            <h2>Total Assets on Platform ({period})</h2>
                         </Col>
                     </Row>
                     <Row>
@@ -39,7 +89,7 @@ class GlobalData extends Component {
                             <span><p>some text here</p></span>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <h2>£100,437,852.67</h2>
+                            <h2>£ {totalAssets}</h2>
                         </Col>   
                     </Row>
                     <Row>
@@ -47,7 +97,7 @@ class GlobalData extends Component {
                             <span><p>some text here</p></span>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <h3>£99,577,312.47</h3>
+                            <h3>£99,577,312.47 *</h3>
                         </Col>
                     </Row>
                     <Row>
@@ -73,6 +123,7 @@ class GlobalData extends Component {
                 </Col>
                 
                 <Col span={14} xs={24} sm={24} md={24} lg={14} xl={14}style={{backgroundColor:'rgb(227, 230, 234)'}} className="Glob3">
+                    <h3>Products on Platform</h3>
                     <GlobalChart4/>
                 </Col>
             </Row>
@@ -84,12 +135,15 @@ class GlobalData extends Component {
             </Row>
             <Row style={{marginBottom:'100px'}} gutter={16}>
                 <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 234)'}}>
+                    <h3 className="Glob1">Total Stocks</h3>
                     <GlobalChart2 />
                 </Col>
                 <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 244)'}}>
+                <h3 className="Glob1">Total cash</h3>
                     <GlobalChart3/>
                 </Col>
                 <Col span={8}  xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 234)'}}>
+                    <h3 className="Glob1" >Market value and fees</h3>
                     <GlobalChart1 />
                 </Col>
             </Row>

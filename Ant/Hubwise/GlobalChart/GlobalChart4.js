@@ -24,7 +24,7 @@ render() {
   console.log(data)
     return (
       <div className="col-sm-12">
-          <div id="ParentParent" style={{maxWidth:'500px',height:'300px'}}>
+          <div id="ParentParent" style={{maxWidth:'500px',height:'400px'}}>
             <div id="parent" style={{width:'100%',height:'300px'}}>
                 <ResponsiveContainer width='100%' height='100%'>  
                   <BarChart
@@ -42,8 +42,8 @@ render() {
                       <Legend />
                       <Bar dataKey="GIA" fill="#8884d8" />
                       <Bar dataKey="ISA" fill="#82ca9d" />
-                      <Bar dataKey="SIP" fill="#82ca9d" />
-                      <Bar dataKey="Other" fill="#82ca9d" />
+                      <Bar dataKey="SIP" fill="#9147c6" />
+                      <Bar dataKey="Other" fill="#666468" />
                   </BarChart>
                 </ResponsiveContainer>
             </div>

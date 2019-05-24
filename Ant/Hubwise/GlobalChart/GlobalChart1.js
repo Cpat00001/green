@@ -24,12 +24,12 @@ render() {
   console.log(data)
     return (
       <div className="col-sm-12">
-          <div id="ParentParent" style={{maxWidth:'500px',height:'300px'}}>
-            <div id="parent" style={{width:'100%',height:'300px'}}>
-                <ResponsiveContainer width='100%' height='100%'>  
+          <div id="ParentParent" style={{maxWidth:'500px',height:'447px'}}>
+            <div id="parent" style={{width:'100%',height:'100%'}}>
+                <ResponsiveContainer width='100%' height='90%'>  
                   <BarChart
                       width={500}
-                      height={300}
+                      height={400}
                       data={data}
                       margin={{
                       top: 20, right: 30, left: 20, bottom: 5,
@@ -39,15 +39,18 @@ render() {
                       <XAxis dataKey="name" />
                       <YAxis />
                       <Tooltip />
-                      <Legend />
+                      <Legend verticalAlign='top' style={{marginTop:"40px"}}/>
                       <Bar dataKey="totalFees" stackId="a" fill="#8884d8" />
                       <Bar dataKey="totalMarketValue" stackId="a" fill="#82ca9d" />
+                      
                   </BarChart>
                 </ResponsiveContainer>
             </div>
           </div>
       </div>
-      
+
+
+
     );
 }
 }

@@ -39,7 +39,7 @@ render() {
                       <XAxis dataKey="name" />
                       <YAxis />
                       <Tooltip />
-                      <Legend verticalAlign='top' style={{marginTop:"40px"}}/>
+                      <Legend layout='vertical'verticalAlign='bottom' wrapperStyle={{paddingTop:"35px", width:'auto'}}/>
                       <Bar dataKey="totalFees" stackId="a" fill="#8884d8" />
                       <Bar dataKey="totalMarketValue" stackId="a" fill="#82ca9d" />
                       

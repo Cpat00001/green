@@ -13,7 +13,8 @@ class GlobalData extends Component {
     state = {
 
         // totalMarketValue: []
-        data:[]
+        data:[],
+        data2:[]
     }
 
     componentDidMount(){
@@ -21,13 +22,17 @@ class GlobalData extends Component {
     axios.get('/Data/GlobalChart1Data.json')
     // .then(res => this.setState({totalMarketValue: res.totalMarketValue}))
     .then(res => this.setState({data: res.data}));
+
+    //call data from GlobalChart3Cash.json
+    axios.get('/Data/GlobalChart3Cash.json')
+    .then(res => this.setState({data2: res.data}) )
     }
 
     render() {
 
     let {data} = this.state;
-    console.log(data)
-    console.log(typeof data)
+    // console.log(data)
+    // console.log(typeof data)
 
     
     //get current month
@@ -47,10 +52,10 @@ class GlobalData extends Component {
     // const AN = A.name;
     if( typeof A === "object" ){
         if(A.hasOwnProperty("name")){
-            console.log("result of A.name:",A.name)
+            // console.log("result of A.name:",A.name)
             let newValue = A.name;
             if( result == A.name ){
-                console.log("Ready to GO")
+                // console.log("Ready to GO")
                 var totalAssets = A.totalMarketValue;
                 var period = A.name;
             }
@@ -58,9 +63,31 @@ class GlobalData extends Component {
             console.log("no value from A.name")
         }
     }else{
-        console.log("type of A is not an aobject")
+        console.log("type of A is not an object")
     }
-   
+
+    //data2 from GlobalChart3Cash.json
+    const {data2} = this.state;
+    console.log(data2);
+    console.log(typeof data2)
+    const AC = data2.filter(month => month.name === result)
+    console.log('object for cash:', AC)
+    const OC = AC[0];
+    console.log("rzekomy object AC:", OC)
+    
+    if( typeof OC === "object"){
+        if(OC.hasOwnProperty("name")){
+            console.log("Cash ready to GO");
+            var totalCash = (OC.totalCashIn) - (OC.totalCashOut)
+            console.log("obliczenia gotowki:", totalCash);
+            console.log("typ obliczen gotowki:", typeof totalCash)
+        }else{
+            console.log("cannot calculate GOTOWKI")
+        }
+    }else{
+        console.log('AC IS NOT AN OBJECT')
+    }
+
     return (
       <div>
         <Col span={12} offset={6}>
@@ -81,12 +108,12 @@ class GlobalData extends Component {
                 <Col span={10} xs={24} sm={24} md={24} lg={10} xl={10} >
                     <Row>
                         <Col span={24} xs={24} sm={24} md={24} lg={24} xl={24} style={{backgroundColor:'powderblue'}} className="Glob2">
-                            <h2>Total Assets on Platform ({period})</h2>
+                            <h2>Total Assets on Platform</h2>
                         </Col>
                     </Row>
                     <Row>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <span><p>some text here</p></span>
+                            <span><p>Market Value</p></span>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <h2>£ {totalAssets}</h2>
@@ -94,10 +121,10 @@ class GlobalData extends Component {
                     </Row>
                     <Row>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <span><p>some text here</p></span>
+                            <span><p>Total Cash</p></span>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <h3>£99,577,312.47 *</h3>
+                            <h3>£ {totalCash}*</h3>
                         </Col>
                     </Row>
                     <Row>

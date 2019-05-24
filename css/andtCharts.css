@@ -19,6 +19,11 @@
 .Glob4{
     float:left;
 }
+.txt{
+    color:#2e3d4f !important;;
+    font-size: 1.2em;
+
+}
 /* ######### icons ############ */
 .icon1{
     font-size: 40px;

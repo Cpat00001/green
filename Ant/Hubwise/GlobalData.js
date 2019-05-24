@@ -14,7 +14,8 @@ class GlobalData extends Component {
 
         // totalMarketValue: []
         data:[],
-        data2:[]
+        data2:[],
+        data3:[]
     }
 
     componentDidMount(){
@@ -26,6 +27,10 @@ class GlobalData extends Component {
     //call data from GlobalChart3Cash.json
     axios.get('/Data/GlobalChart3Cash.json')
     .then(res => this.setState({data2: res.data}) )
+
+    //call data from /Data/GlobalChart2Stocks.json'
+    axios.get('/Data/GlobalChart2Stocks.json')
+    .then(res => this.setState({data3: res.data}))
     }
 
     render() {
@@ -40,9 +45,29 @@ class GlobalData extends Component {
     let date = new Date();
     let result = months[date.getMonth()];
     console.log("name of month:" ,result)
+    let MOY = date.getFullYear()
+    let DOM = date.getDate()
+    let currentDate = `${DOM}${' '}${result}${' '}${MOY}`;
+
+    //get data of first object in array
+    let FO = data[0];
+    console.log("first object from array:", FO)
+
+        if(typeof FO === "object"){
+            if(FO.hasOwnProperty("name")){
+                
+                var NOM = FO.name;
+                console.log("name of montf from previous year : ", NOM)
+            }
+        }
+
+
+    //get previous year of current one
+    const PrevYear = MOY - 1;
+    console.log(typeof PrevYear, " prevYear is: ",PrevYear)
 
         // find an object in array
-    let ra = data.filter(month => month.name === 'May')
+    let ra = data.filter(month => month.name === result)
     // console.log("result from ra", ra)
     // console.log("type of ra", typeof ra)
     // console.log("result ra.name",ra.name)
@@ -68,24 +93,42 @@ class GlobalData extends Component {
 
     //data2 from GlobalChart3Cash.json
     const {data2} = this.state;
-    console.log(data2);
-    console.log(typeof data2)
+    // console.log(data2);
+    // console.log(typeof data2)
     const AC = data2.filter(month => month.name === result)
-    console.log('object for cash:', AC)
+    // console.log('object for cash:', AC)
     const OC = AC[0];
-    console.log("rzekomy object AC:", OC)
+    // console.log("rzekomy object AC:", OC)
     
     if( typeof OC === "object"){
         if(OC.hasOwnProperty("name")){
-            console.log("Cash ready to GO");
+            // console.log("Cash ready to GO");
             var totalCash = (OC.totalCashIn) - (OC.totalCashOut)
-            console.log("obliczenia gotowki:", totalCash);
-            console.log("typ obliczen gotowki:", typeof totalCash)
+            // console.log("obliczenia gotowki:", totalCash);
+            // console.log("typ obliczen gotowki:", typeof totalCash)
         }else{
             console.log("cannot calculate GOTOWKI")
         }
     }else{
         console.log('AC IS NOT AN OBJECT')
+    }
+
+    //call data from /Data/GlobalChart2Stocks.json'
+    const {data3} = this.state;
+    // console.log("stocks:",data3)
+
+    const AS = data3.filter(month => month.name === result);
+    // console.log(AS);
+    const OS = AS[0];
+    // console.log('result from stock object:', OS)
+
+    if(typeof OS === "object"){
+        if(OS.hasOwnProperty("name")){
+            // console.log("STOCK READY TO GO")
+            var totalStock = (OS.totalStockIn)-(OS.totalStockOut)
+            // console.log(totalStock);
+            // console.log("type of caluclation for mstocks:",typeof totalStock)
+        }
     }
 
     return (
@@ -98,7 +141,7 @@ class GlobalData extends Component {
                             <Icon type="camera" className="icon1" />
                         </Col>
                         <Col span={22} xs={20} style={{float:'left'}}>
-                            <h4 className="Glob1">Hubwise - {period} 2019</h4>
+                            <h4 className="Glob1">Hubwise - {period}{MOY}</h4>
                         </Col>
                     </Row>
                 </Col>
@@ -113,7 +156,7 @@ class GlobalData extends Component {
                     </Row>
                     <Row>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <span><p>Market Value</p></span>
+                            <span><p className="txt">Market Value</p></span>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <h2>£ {totalAssets}</h2>
@@ -121,7 +164,7 @@ class GlobalData extends Component {
                     </Row>
                     <Row>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <span><p>Total Cash</p></span>
+                            <span><p className="txt">Total Cash</p></span>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
                             <h3>£ {totalCash}*</h3>
@@ -129,10 +172,10 @@ class GlobalData extends Component {
                     </Row>
                     <Row>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <p>some text here</p>
+                            <p className="txt">Total Stock</p>
                         </Col>
                         <Col span={12} xs={24} sm={24} md={24} lg={10} xl={10}>
-                            <h4>£99,577,312.47</h4>
+                            <h4> stocks: {totalStock}</h4>
                         </Col> 
                     </Row>
                     <Col>
@@ -158,7 +201,7 @@ class GlobalData extends Component {
 
             <Row style={{marginBottom:'20px'}} gutter={16}>
                 <Col span={2} xs={2} sm={2} md={2} lg={2}><Icon type="clock-circle" className="icon1"/></Col>
-                <Col span={20} offset={2} xs={20} sm={20} md={20} lg={20}><h5 className="Glob1">31 May 2018 to 20 may 2019 for Hubwise</h5></Col>
+                <Col span={20} xs={20} sm={20} md={20} lg={20}><h5 className="Glob1">Data from {NOM}{' '}{PrevYear} to {currentDate} </h5></Col>
             </Row>
             <Row style={{marginBottom:'100px'}} gutter={16}>
                 <Col span={8} xs={24} sm={24} md={24} lg={8} xl={8} style={{backgroundColor:'rgb(227, 230, 234)'}}>

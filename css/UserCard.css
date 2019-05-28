@@ -9,7 +9,8 @@
 .content1{
     min-height:1000px;
     height: 100%;
-    background-color:'powderBlue';
+    background-color:'orange';
+    margin:1%;
 }
 .cont1div1{
     background-color:rgb(204, 193, 195);
@@ -27,7 +28,7 @@
     min-height:100px;
     padding:10px;
     margin: 2%;
-    border-radius: 3px;
+    border-radius: 5px;
     border-color:white;
 }
 .cont1div3{
@@ -36,20 +37,39 @@
     min-height:200px;
     padding:10px;
     margin: 2%;
-    border-radius: 3px;
+    border-radius: 5px;
     border-color:white;
-
+   
 }
 .icon1{
     font-size:'40px';
     float:left;
     padding:10px;
     
-} 
+}
+.icon2{
+
+background-color:rgb(192, 181, 183);
+border:1px solid white;
+width:100px;
+height:30px;
+color:black;
+float:left;
+margin-top:-15px;
+margin-left:-15px;
+border-radius: 5px;
+}
 .text1{
     font-size: 1.3em;
     float:left;
     padding:10px;
+}
+.button1{
+    background-color:#1472ff;
+    color:white;
+    padding:10px;;
+    float:right;
+    margin:2%;
 }
 
 

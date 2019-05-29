@@ -19,7 +19,7 @@
 .content1{
     min-height:1000px;
     height: 100%;
-    background-color:'orange';
+    background-color:white;
     margin:1%;
 }
 .cont1div1{
@@ -63,7 +63,7 @@
     padding:10px;
     
 }
-.icon2{
+.icon2UC{
 
 background-color:rgb(192, 181, 183);
 border:1px solid white;

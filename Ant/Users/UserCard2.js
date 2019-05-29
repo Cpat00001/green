@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Layout, Icon, Button, Menu } from 'antd';
 import '../../css/UserCard.css';
+import AntTests from '../AntTests';
+
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -13,6 +15,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
         return (
             <div>
+                {/* <AntTests/> */}
                 <Layout>
                     <Header className='header'>
                         <Col xs={{span:6, offset:0}} sm={{span:6, offset:2}} md={{span:6, offset:2}} lg={{span:6, offset:2}} xl={{span:6, offset:6}}>
@@ -41,9 +44,9 @@ const { Header, Footer, Sider, Content } = Layout;
                         <Row gutter={4}>
                             {/* <Col span={6}>left</Col> */}
                                 <Row>
-                                    <Col span={6} xs={{span:22, offset:2}} sm={{span:22, offset:2}} md={{span:22, offset:2}} lg={{span:20, offset:2}}  xl={{span:6, offset:6}} >
+                                    <Col xs={{span:22, offset:2}} sm={{span:22, offset:2}} md={{span:22, offset:2}} lg={{span:20, offset:2}}  xl={{span:6, offset:8}} >
                                         <Row>
-                                            <Col span={20} xs={20} sm={20} md={20} >
+                                            <Col span={24} xs={24} sm={24} md={24} >
                                                 <Row>
                                                     <Col>
                                                         <Icon type="global" className="icon1" />
@@ -55,7 +58,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col xs={20} sm={20} md={20}  className="cont1div1">
+                                            <Col xs={24} sm={24} md={24}  className="cont1div1">
                                                 <Row>
                                                     <Col span={12} xs={12} sm={12} md={12}>
                                                     <h5 className='floatLeft'>Total Market Value</h5>
@@ -82,7 +85,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col span={20} xs={20} sm={20} md={20}  className="cont1div2" >
+                                            <Col span={24} xs={24} sm={24} md={24}  className="cont1div2" >
                                             <Col xs={2} sm={2} md={2} >
                                                 <Icon type="download" style={{fontSize:'24px'}}/>
                                             </Col>
@@ -90,10 +93,10 @@ const { Header, Footer, Sider, Content } = Layout;
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col span={20} xs={20} sm={20} md={20}  className="cont1div3">
+                                            <Col span={24} xs={24} sm={24} md={24}  className="cont1div3">
                                             <Col span={2} xs={2} sm={2} md={2} style={{clear:'both'}}>
-                                                <div className="icon2">
-                                                    <div style={{marginTop:'-5px',marginLeft:'-5px'}}><span><Icon type="user" style={{fontSize:'20px',verticalAlign:'top'}}/></span></div>
+                                                <div className="icon2UC">
+                                                    <div style={{marginTop:'2px',marginLeft:'-5px'}}><span><Icon type="user" style={{fontSize:'20px',verticalAlign:'top'}}/></span></div>
                                                 </div>  
                                             </Col>
                                                     <Row>
@@ -132,13 +135,13 @@ const { Header, Footer, Sider, Content } = Layout;
                                         </Row>
                                     </Col>
                                     {/* <Col span={6} xs={{span:22, offset:0}} sm={{span:22,offset:0}} md={{span:22,offset:0}} lg={{span:22, offset:0}} xl={{span:6, offset:0}} > */}
-                                    <Col xs={{ span:22,offset:4}} sm={{ span:22,offset:4}} md={{ span:22,offset:4}} lg={{span:22,offset:0}} xl={{span:6, offset:0}} className='content1'>
-                                        <Row>
+                                    <Col xs={{ span:24,offset:4}} sm={{ span:24,offset:4}} md={{ span:24,offset:4}} lg={{span:24,offset:0}} xl={{span:6, offset:0}} className='content1'>
+                                        <Row style={{float:'left', width:'100%'}}>
                                             <Col xs={{span:10, offset:14}} sm={{span:10, offset:10}} md={{span:10, offset:10}}>
                                                 <Button type="primary" icon="usergroup-delete" size='large'className="button1">View on behalf of dynamic User</Button>
                                             </Col>
                                         
-                                            <Col xs={{ span:22,offset:2}} sm={{ span:22,offset:2}} md={{ span:22,offset:2}} lg={{span:20}} className='content1'>
+                                            <Col xs={{ span:22,offset:2}} sm={{ span:22,offset:2}} md={{ span:22,offset:0}} lg={{span:20, offset:0}} xl={{span:20, offset:0}} className='content1'>
                                                 <Row>
                                                     <Col xs={{offset:2}} sm={{offset:2}} md={{offset:2}}>
                                                         <Icon type="code-sandbox" className='icon1'/>

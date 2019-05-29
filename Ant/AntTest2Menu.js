@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'; 
 import {Row, Col, Icon, Avatar, Button, Tooltip } from 'antd'
 import 'antd/dist/antd.css';
 import '../css/andt.css';
@@ -33,7 +34,9 @@ import '../css/andt.css';
                   <Icon type="code-sandbox" className="icon3"/>
                 </div>
                 <div style={{textAlign:'left'}}>
-                  <span className="spanText">My Clients Campaign</span>
+                  <Link to='/Ant/Users/UserCard2'>
+                  <span className="spanText">Dashboard/Manage</span>
+                  </Link>
                 </div>
               </Col>
             </Col>

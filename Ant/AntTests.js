@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Row, Col, Icon, Avatar } from 'antd'
 import 'antd/dist/antd.css';
 import '../css/andt.css';
+import AntTest1 from './AntTest1';
 import AntTest2 from './AntTest2';
 import AntTest3 from './AntTest3';
 import AntTest4 from './AntTest4';
@@ -21,12 +22,10 @@ import {getContacts} from '../actions/ContactActions';
       <div>
         <Row>
           {/* first menu navbar */}
-          <Col span={12}  className="class1">
-           {/* <div >
-             <img src={headerimg} alt="header"  style={{width:'100%',height:'100%'}} />
-            </div> */}
-            {/* <img src={require("./css/app-bg.jpg")}></img> */}
-            {/* <Col span={20} offset={2}> */}
+
+          <AntTest1 />
+
+          {/* <Col span={12}  className="class1">
             <Col span={16} offset={4}>
             <Row>
               <Col span={2} xs={2} sm={2} md={2} lg={1} offset={2} className="logo">
@@ -66,10 +65,10 @@ import {getContacts} from '../actions/ContactActions';
               <Col span={2}></Col>
             </Row>
         </Col>    
-        </Col>
+        </Col> */}
 
         {/* second menu navbar */}
-        
+          
           <AntTest2 />
           <AntTest3 />
           <AntTest4 />

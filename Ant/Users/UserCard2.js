@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Layout, Icon, Button, Menu } from 'antd';
 import '../../css/UserCard.css';
-import AntTests from '../AntTests';
+import AntTest1 from '../AntTest1';
 
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -15,7 +15,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
         return (
             <div>
-                {/* <AntTests/> */}
+                <AntTest1/>
                 <Layout>
                     <Header className='header'>
                         <Col xs={{span:6, offset:0}} sm={{span:6, offset:2}} md={{span:6, offset:2}} lg={{span:6, offset:2}} xl={{span:6, offset:6}}>
@@ -40,11 +40,11 @@ const { Header, Footer, Sider, Content } = Layout;
                             </Menu>        
                         </Col>
                     </Header>
-                    <Content className='content'>
+                    <Content className='content' xs={{span:22, offset:2}} sm={{span:22, offset:2}} md={{span:22, offset:2}} lg={{span:20, offset:2}}  xl={{span:6, offset:6}}>
                         <Row gutter={4}>
                             {/* <Col span={6}>left</Col> */}
                                 <Row>
-                                    <Col xs={{span:22, offset:2}} sm={{span:22, offset:2}} md={{span:22, offset:2}} lg={{span:20, offset:2}}  xl={{span:6, offset:8}} >
+                                    <Col xs={{span:22, offset:2}} sm={{span:22, offset:2}} md={{span:22, offset:2}} lg={{span:20, offset:2}}  xl={{span:6, offset:6}} >
                                         <Row>
                                             <Col span={24} xs={24} sm={24} md={24} >
                                                 <Row>

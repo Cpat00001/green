@@ -6,6 +6,7 @@ import AntTest2Menu from './AntTest2Menu';
 import AntTest2Menu2 from './AntTest2Menu2';
 import AntTest2Menu3 from './AntTest2Menu3';
 
+
 const SubMenu = Menu.SubMenu;
 
  class AntTest2 extends Component {
@@ -44,7 +45,12 @@ const SubMenu = Menu.SubMenu;
    
   render() {
 
-    const {handleClick1, handleClick2, handleClick3 } = this.state;  
+    const {handleClick1, handleClick2, handleClick3 } = this.state;
+    const id = this.props;
+    console.log(id)
+    const {contacts} = this.props;
+    console.log(contacts)
+    
 
     return (
       <div>
@@ -83,4 +89,6 @@ const SubMenu = Menu.SubMenu;
     )
   }
 }
+
+
 export default AntTest2;

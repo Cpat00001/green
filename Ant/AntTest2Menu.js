@@ -3,9 +3,14 @@ import {Link} from 'react-router-dom';
 import {Row, Col, Icon, Avatar, Button, Tooltip } from 'antd'
 import 'antd/dist/antd.css';
 import '../css/andt.css';
+import PropTypes from 'prop-types'; 
+import {connect} from 'react-redux';
+import {get_contact} from '../actions/DetailsActions';
+
 
  class AntTest2Menu extends Component {
 
+  
   // state = {
 
   //   handleClick1: false,
@@ -16,9 +21,19 @@ import '../css/andt.css';
   //   console.log('CLICKED 1ST ICON')
   //}
 
+  
+
   render() {
 
+    
+    // const {id} = this.props.match.params;
+    // console.log('ID PODANAE Z AntTest2Menu',id)
 
+    const {contacts} = this.props;
+    console.log(contacts);
+    const {id} = this.props;
+    console.log('ID podane z AntTest2Menu',id)
+  
     return (
       <div>
             
@@ -34,7 +49,8 @@ import '../css/andt.css';
                   <Icon type="code-sandbox" className="icon3"/>
                 </div>
                 <div style={{textAlign:'left'}}>
-                  <Link to='/Ant/Users/UserCard2'>
+                  <Link to={`/Ant/Users/UserCard2/${id}`} >
+                  {/* <Link to='/Ant/Users/UserCard2'> */}
                   <span className="spanText">Dashboard/Manage</span>
                   </Link>
                 </div>
@@ -109,4 +125,12 @@ import '../css/andt.css';
     )
   }
 }
-export default AntTest2Menu;
+
+const mapStateToProps = state =>({
+  contact: state.contact.contacts,
+})
+
+export default connect(
+  mapStateToProps,
+  {get_contact}
+) (AntTest2Menu);

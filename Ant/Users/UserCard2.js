@@ -2,16 +2,36 @@ import React, { Component } from 'react';
 import { Row, Col, Layout, Icon, Button, Menu } from 'antd';
 import '../../css/UserCard.css';
 import AntTest1 from '../AntTest1';
+import {connect} from "react-redux";
+import PropTypes from 'prop-types'; 
+import {getContacts, more_details} from '../../actions/ContactActions';
+import {getProducts} from '../../actions/ProductActions';
+import Product2 from '../../Product2';
 
 
 const { Header, Footer, Sider, Content } = Layout;
 
  class UserCard2 extends Component {
 
+    // componentDidMount(){
+    //     this.props.more_details();
+    // }
+
     
     render() {
 
-        const {id} = this.props.match.params;
+        // const {id} = this.props.match.params;
+        const {id} = this.props;
+        console.log('ID podane z UserCard2',id)
+        const {contacts} = this.props;
+        console.log('UserCard2 contacts:', contacts)
+        console.log('usercard2 town',contacts[0].town)
+        const city = contacts[0].city;
+        const town = contacts[0].town;
+        const mobile = contacts[0].mobile;
+        console.log('Mobile from UserCard2', mobile)
+        const {products} = this.props;
+        console.log(products)
 
         return (
             <div>
@@ -64,7 +84,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                                     <h5 className='floatLeft'>Total Market Value</h5>
                                                     </Col>
                                                     <Col span={12} xs={12} sm={12} md={12}>
-                                                        <h5>£ 1234.00</h5>
+                                                        <h5>£ {contacts[0].contribution}</h5>
                                                     </Col>
                                                 </Row>
                                                 <Row>
@@ -104,7 +124,12 @@ const { Header, Footer, Sider, Content } = Layout;
                                                             <div><Icon type="home" style={{fontSize:'20px'}}/></div>
                                                         </Col>
                                                         <Col span={20} className='cont1div3MarginTop'>
-                                                            <div><span style={{float:'left'}}><p>10 Someplace, Test, Somewhere, TE123ST</p></span></div>
+                                                            {city ? (<div><span style={{float:'left'}}><p>City: {contacts[0].city}</p></span></div>)
+                                                            :
+                                                            <div><span style={{float:'left'}}><p>City: {contacts[0].town}</p></span></div>
+                                                            }
+                                                            
+                                                            
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -120,7 +145,8 @@ const { Header, Footer, Sider, Content } = Layout;
                                                             <Icon type="mobile" style={{fontSize:'20px'}}/>
                                                         </Col>
                                                         <Col span={20}>
-                                                            <div><span style={{float:'left'}}><p>555-555-555</p></span></div>
+                                                            {/* <div><span style={{float:'left'}}><p>555-555-555</p></span></div> */}
+                                                            <div><span style={{float:'left'}}><p>{mobile ? (<p>{mobile}</p>): <p>No mobile submitted</p>}</p></span></div>
                                                         </Col>
                                                     </Row>
                                                     <Row>
@@ -128,7 +154,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                                             <Icon type="mail" style={{fontSize:'20px'}}/>
                                                         </Col>
                                                         <Col span={20}>
-                                                            <div><span style={{float:'left'}}><p>dynamic.email.insert.here</p></span></div>
+                                                            <div><span style={{float:'left'}}><p>{contacts[0].email}</p></span></div>
                                                         </Col>
                                                     </Row>    
                                             </Col>
@@ -150,7 +176,21 @@ const { Header, Footer, Sider, Content } = Layout;
                                                         <h2 className="text1">Applications</h2>
                                                     </Col>
                                                     <Col xs={{ span:22,offset:2}} sm={{ span:22,offset:2}} md={{ span:22,offset:2}} lg={{span:22,offset:2}}>
-                                                        <div className='content1' style={{backgroundColor:'rgb(170, 175, 183)'}}>col2</div>
+                                                        <div className='content1' style={{backgroundColor:'rgb(170, 175, 183)'}}>
+
+                                                            {contacts[0].products.map((product,index) => 
+                                                                
+                                                                <Product2 
+                                                                key={index}
+                                                                name={product.name}
+                                                                value={product.value}
+                                                                />
+
+                                                            )}
+
+
+
+                                                        </div>
                                                     </Col>
                                                 </Row>
                                             </Col>
@@ -178,4 +218,15 @@ const { Header, Footer, Sider, Content } = Layout;
         )
     }
 }
-export default UserCard2;
+const mapStateToProps = state =>({
+    contacts: state.contact.contacts,
+    products: state.product.portfolio
+    // more_details: PropTypes.func.isRequired,
+})
+
+export default connect(
+
+    mapStateToProps,
+    {getContacts,more_details,getProducts }
+
+) (UserCard2);

@@ -73,7 +73,7 @@ state= {
 
   render() {
       const {email,city,contribution,id,contact} = this.props;
-      //console.log(this.props)
+      // console.log(this.props)
       const {showInvestorDetails, showPopUp, showDeleteInfo, showTachoInfo, showChartInfo,showAntInfo} = this.state
 
       const {text} = "Go to starting point"

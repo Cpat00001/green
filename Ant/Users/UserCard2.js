@@ -42,8 +42,33 @@ const { Header, Footer, Sider, Content } = Layout;
         const mobile = cont[0].mobile;
         //console.log('Mobile from UserCard2', mobile)
         const {products} = this.props;
-        //console.log(products)
+        console.log(products)
 
+        //total cash >> remaining amount after shopping
+        const contribut = cont[0].contribution;
+        console.log(contribut);
+
+        var shopping = cont[0].products;
+        console.log('SHOPPING',shopping)
+
+        // const spent = cont[0].products.map(value => products.value);
+        // console.log(spent)
+        const spent = cont[0].products.forEach(function(product,index){
+            console.log(product.value,index)
+        })
+
+        if(shopping){
+
+            const spent2 = shopping.reduce((spent2,product) => spent2 + parseFloat(product.value.toString()),0);
+            console.log('result for spent2', spent2)
+
+            const remain = (contribut - spent2);
+            //const remain2 = remain.toFixed(2)
+            var remain2 = remain.toFixed(2)
+            console.log(remain2)
+        };
+        console.log('value of remain2 out of function scope', remain2)
+      
         return (
             <div>
                 <AntTest1/>
@@ -103,7 +128,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                                             <h5 className='floatLeft'>Total Cash</h5>
                                                     </Col>
                                                     <Col span={12} xs={12} sm={12} md={12}>
-                                                            <h6>£ 123.45</h6>
+                                                            <h6>£ {remain2}</h6>
                                                     </Col>
                                                 </Row>
                                                 <Row style={{marginTop:'50px'}}>
@@ -198,9 +223,6 @@ const { Header, Footer, Sider, Content } = Layout;
                                                                 />
 
                                                             )}
-
-
-
                                                         </div>
                                                     </Col>
                                                 </Row>

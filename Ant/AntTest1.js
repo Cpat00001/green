@@ -10,7 +10,7 @@ import {getContacts} from '../actions/ContactActions';
     render() {
 
         const {contacts} = this.props;
-        console.log(contacts)
+        //console.log(contacts)
 
         return (
             <div>

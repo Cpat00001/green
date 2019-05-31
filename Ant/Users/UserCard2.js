@@ -25,13 +25,24 @@ const { Header, Footer, Sider, Content } = Layout;
         console.log('ID podane z UserCard2',id)
         const {contacts} = this.props;
         console.log('UserCard2 contacts:', contacts)
-        console.log('usercard2 town',contacts[0].town)
-        const city = contacts[0].city;
-        const town = contacts[0].town;
-        const mobile = contacts[0].mobile;
-        console.log('Mobile from UserCard2', mobile)
+
+
+        if(id){
+            
+            var cont = contacts.filter(contact => (contact.id === id))
+            console.log('filtered contact',cont)
+        }
+        console.log('Cont out of function scope',cont)
+
+
+        //console.log('usercard2 town',cont[0].town)
+        const city = cont[0].city;
+       // console.log('city from cont out of scope', city)
+        const town = cont[0].town;
+        const mobile = cont[0].mobile;
+        //console.log('Mobile from UserCard2', mobile)
         const {products} = this.props;
-        console.log(products)
+        //console.log(products)
 
         return (
             <div>
@@ -84,7 +95,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                                     <h5 className='floatLeft'>Total Market Value</h5>
                                                     </Col>
                                                     <Col span={12} xs={12} sm={12} md={12}>
-                                                        <h5>£ {contacts[0].contribution}</h5>
+                                                        <h5>£ {cont[0].contribution}</h5>
                                                     </Col>
                                                 </Row>
                                                 <Row>
@@ -124,9 +135,9 @@ const { Header, Footer, Sider, Content } = Layout;
                                                             <div><Icon type="home" style={{fontSize:'20px'}}/></div>
                                                         </Col>
                                                         <Col span={20} className='cont1div3MarginTop'>
-                                                            {city ? (<div><span style={{float:'left'}}><p>City: {contacts[0].city}</p></span></div>)
+                                                            {city ? (<div><span style={{float:'left'}}><p>City: {cont[0].city}</p></span></div>)
                                                             :
-                                                            <div><span style={{float:'left'}}><p>City: {contacts[0].town}</p></span></div>
+                                                            <div><span style={{float:'left'}}><p>City: {cont[0].town}</p></span></div>
                                                             }
                                                             
                                                             
@@ -154,7 +165,7 @@ const { Header, Footer, Sider, Content } = Layout;
                                                             <Icon type="mail" style={{fontSize:'20px'}}/>
                                                         </Col>
                                                         <Col span={20}>
-                                                            <div><span style={{float:'left'}}><p>{contacts[0].email}</p></span></div>
+                                                            <div><span style={{float:'left'}}><p>{cont[0].email}</p></span></div>
                                                         </Col>
                                                     </Row>    
                                             </Col>
@@ -176,9 +187,9 @@ const { Header, Footer, Sider, Content } = Layout;
                                                         <h2 className="text1">Applications</h2>
                                                     </Col>
                                                     <Col xs={{ span:22,offset:2}} sm={{ span:22,offset:2}} md={{ span:22,offset:2}} lg={{span:22,offset:2}}>
-                                                        <div className='content1' style={{backgroundColor:'rgb(170, 175, 183)'}}>
+                                                        <div className='content1'>
 
-                                                            {contacts[0].products.map((product,index) => 
+                                                            {cont[0].products.map((product,index) => 
                                                                 
                                                                 <Product2 
                                                                 key={index}

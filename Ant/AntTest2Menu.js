@@ -11,24 +11,9 @@ import {get_contact} from '../actions/DetailsActions';
  class AntTest2Menu extends Component {
 
   
-  // state = {
-
-  //   handleClick1: false,
-  // }
-
-  // handleClick1 = () =>{
-  //   this.setState(state=>({handleClick1: !state.handleClick1}))
-  //   console.log('CLICKED 1ST ICON')
-  //}
-
-  
-
   render() {
 
     
-    // const {id} = this.props.match.params;
-    // console.log('ID PODANAE Z AntTest2Menu',id)
-
     const {contacts} = this.props;
     console.log(contacts);
     const id = this.props.id;

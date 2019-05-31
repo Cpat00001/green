@@ -6,35 +6,32 @@ import {connect} from "react-redux";
 import PropTypes from 'prop-types'; 
 import {getContacts, more_details} from '../../actions/ContactActions';
 import {getProducts} from '../../actions/ProductActions';
-import Product2 from '../../Product2';
+import Product3 from '../../Product3';
 
 
 const { Header, Footer, Sider, Content } = Layout;
 
  class UserCard2 extends Component {
 
-    // componentDidMount(){
-    //     this.props.more_details();
-    // }
-
     
     render() {
 
         // const {id} = this.props.match.params;
         const {id} = this.props.match.params;
-        console.log('ID podane z UserCard2',id)
+        //console.log('ID podane z UserCard2',id)
         const {contacts} = this.props;
-        console.log('UserCard2 contacts:', contacts)
+        //console.log('UserCard2 contacts:', contacts)
 
 
         if(id){
             
             var cont = contacts.filter(contact => (contact.id === id))
-            console.log('filtered contact',cont)
+            //console.log('filtered contact',cont)
         }
-        console.log('Cont out of function scope',cont)
+       
 
-
+        const name = cont[0].name; 
+        //console.log(name)
         //console.log('usercard2 town',cont[0].town)
         const city = cont[0].city;
        // console.log('city from cont out of scope', city)
@@ -43,10 +40,18 @@ const { Header, Footer, Sider, Content } = Layout;
         //console.log('Mobile from UserCard2', mobile)
         const {products} = this.props;
         console.log(products)
+        const date = products.date;
+        console.log('data zalozenia produktu', date)
+        var daty = products.map(pdate =>{
+            var date2 = pdate.date
+            console.log(date2)
+        })
+        const zakup = cont[0].products.date;
+        console.log(zakup)
 
         //total cash >> remaining amount after shopping
         const contribut = cont[0].contribution;
-        console.log(contribut);
+        //console.log(contribut);
 
         var shopping = cont[0].products;
         console.log('SHOPPING',shopping)
@@ -54,7 +59,7 @@ const { Header, Footer, Sider, Content } = Layout;
         // const spent = cont[0].products.map(value => products.value);
         // console.log(spent)
         const spent = cont[0].products.forEach(function(product,index){
-            console.log(product.value,index)
+            console.log('daty zalozenia produktow',product.date,index)
         })
 
         if(shopping){
@@ -67,7 +72,7 @@ const { Header, Footer, Sider, Content } = Layout;
             var remain2 = remain.toFixed(2)
             console.log(remain2)
         };
-        console.log('value of remain2 out of function scope', remain2)
+        //console.log('value of remain2 out of function scope', remain2)
       
         return (
             <div>
@@ -216,10 +221,12 @@ const { Header, Footer, Sider, Content } = Layout;
 
                                                             {cont[0].products.map((product,index) => 
                                                                 
-                                                                <Product2 
+                                                                <Product3 
                                                                 key={index}
                                                                 name={product.name}
                                                                 value={product.value}
+                                                                investor={name}
+                                                                czas={date}
                                                                 />
 
                                                             )}

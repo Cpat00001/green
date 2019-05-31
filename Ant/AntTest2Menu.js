@@ -31,8 +31,8 @@ import {get_contact} from '../actions/DetailsActions';
 
     const {contacts} = this.props;
     console.log(contacts);
-    const {id} = this.props;
-    console.log('ID podane z AntTest2Menu',id)
+    const id = this.props.id;
+    // console.log('ID podane z AntTest2Menu',id)
   
     return (
       <div>
@@ -127,7 +127,7 @@ import {get_contact} from '../actions/DetailsActions';
 }
 
 const mapStateToProps = state =>({
-  contact: state.contact.contacts,
+  contacts: state.contact.contacts,
 })
 
 export default connect(

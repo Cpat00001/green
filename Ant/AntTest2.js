@@ -5,6 +5,9 @@ import '../css/andt.css';
 import AntTest2Menu from './AntTest2Menu';
 import AntTest2Menu2 from './AntTest2Menu2';
 import AntTest2Menu3 from './AntTest2Menu3';
+import PropTypes from 'prop-types' ;
+import {connect} from 'react-redux';
+import {getContacts} from '../actions/ContactActions';
 
 
 const SubMenu = Menu.SubMenu;
@@ -46,7 +49,7 @@ const SubMenu = Menu.SubMenu;
   render() {
 
     const {handleClick1, handleClick2, handleClick3 } = this.state;
-    const id = this.props;
+    const id = this.props.id;
     console.log(id)
     const {contacts} = this.props;
     console.log(contacts)
@@ -55,8 +58,8 @@ const SubMenu = Menu.SubMenu;
     return (
       <div>
         {/* <AntTest2Menu handleClick/> */}
-        {this.state.handleClick1? <AntTest2Menu/>: null}
-        {handleClick2? <AntTest2Menu2/>: null}
+        {this.state.handleClick1? <AntTest2Menu id={id}/>: null}
+        {handleClick2? <AntTest2Menu2 />: null}
         {handleClick3? < AntTest2Menu3/> : null}
         
         <Col span={24} className="class2" style={{backgroundColor: this.state.color}}>
@@ -89,6 +92,13 @@ const SubMenu = Menu.SubMenu;
     )
   }
 }
+AntTest2.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  getContacts: PropTypes.func.isRequired
+}
+const mapStateToProps = state =>({
+  contacts: state.contact.contacts
+})
 
 
-export default AntTest2;
+export default connect( mapStateToProps,{getContacts}) (AntTest2);

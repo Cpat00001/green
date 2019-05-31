@@ -17,7 +17,7 @@ import {getContacts} from '../actions/ContactActions';
 
     const {contacts} = this.props;
     console.log(contacts)
-    const {id} = this.props;
+    const {id} = this.props.match.params;
     console.log('ID PODANAE Z AntTests',id)
 
     return (
@@ -29,7 +29,7 @@ import {getContacts} from '../actions/ContactActions';
 
         {/* second menu navbar */}
           
-          <AntTest2 />
+          <AntTest2 id={id}/>
           <AntTest3 />
           <AntTest4 />
       

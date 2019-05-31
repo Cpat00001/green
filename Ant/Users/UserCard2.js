@@ -21,7 +21,7 @@ const { Header, Footer, Sider, Content } = Layout;
     render() {
 
         // const {id} = this.props.match.params;
-        const {id} = this.props;
+        const {id} = this.props.match.params;
         console.log('ID podane z UserCard2',id)
         const {contacts} = this.props;
         console.log('UserCard2 contacts:', contacts)

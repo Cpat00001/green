@@ -39,10 +39,13 @@ import './css/product3.css';
     const {id,name, description, value, contacts} = this.props;
     //console.log(name)
     console.log('Products 2 , contacts:', contacts[0].id )
-
-    const {czas} = this.props;
-    console.log('DATY DATY', czas)
-
+    //const {contacts} = this.props;
+    console.log('produkty z product3,',contacts)
+    const date = this.props.date;
+    const properDate = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+    console.log('data zalozenia produktu',date)
+    console.log('data zalozenia produktu',properDate)
+    
     const text = <span>Edit</span>;
     const text2 = <span>Delete</span>;
     return (
@@ -87,7 +90,7 @@ import './css/product3.css';
                                 <p className='product3_text'style={{float:'left'}}>Value: ${parseFloat(value).toFixed(2)}</p>
                            </Col>
                            <Col span={8} offset={0}>
-                                <p className='product3_text'style={{float:'left'}}>Started: ${parseFloat(value).toFixed(2)}</p>
+                                <p className='product3_text'style={{float:'left'}}>Started: {properDate}</p>
                            </Col>
                            
                        </Row>

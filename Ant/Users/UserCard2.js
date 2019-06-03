@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {getContacts, more_details} from '../../actions/ContactActions';
 import {getProducts} from '../../actions/ProductActions';
 import Product3 from '../../Product3';
-
+import { Link } from 'react-router-dom';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -39,22 +39,22 @@ const { Header, Footer, Sider, Content } = Layout;
         const mobile = cont[0].mobile;
         //console.log('Mobile from UserCard2', mobile)
         const {products} = this.props;
-        console.log(products)
+        //console.log(products)
         const date = products.date;
-        console.log('data zalozenia produktu', date)
+        //console.log('data zalozenia produktu', date)
         var daty = products.map(pdate =>{
             var date2 = pdate.date
             console.log(date2)
         })
         const zakup = cont[0].products.date;
-        console.log(zakup)
+        //console.log(zakup)
 
         //total cash >> remaining amount after shopping
         const contribut = cont[0].contribution;
         //console.log(contribut);
 
         var shopping = cont[0].products;
-        console.log('SHOPPING',shopping)
+        //console.log('SHOPPING',shopping)
 
         // const spent = cont[0].products.map(value => products.value);
         // console.log(spent)
@@ -65,12 +65,12 @@ const { Header, Footer, Sider, Content } = Layout;
         if(shopping){
 
             const spent2 = shopping.reduce((spent2,product) => spent2 + parseFloat(product.value.toString()),0);
-            console.log('result for spent2', spent2)
+            //console.log('result for spent2', spent2)
 
             const remain = (contribut - spent2);
             //const remain2 = remain.toFixed(2)
             var remain2 = remain.toFixed(2)
-            console.log(remain2)
+            //console.log(remain2)
         };
         //console.log('value of remain2 out of function scope', remain2)
       
@@ -89,9 +89,14 @@ const { Header, Footer, Sider, Content } = Layout;
                                 <Menu.Item key="1" className='iconHeader'>
                                     <Icon type="global" />    
                                 </Menu.Item>
-                                <Menu.Item key="2" className='iconHeader'>
-                                    <Icon type="user" />
-                                </Menu.Item>
+                                
+                                    <Menu.Item key="2" className='iconHeader'>
+                                    <Link to={`/edit/OutputContact/${id}`}>
+                                        <Icon type="user" />
+                                    </Link>
+                                    </Menu.Item>
+                                
+                                
                                 <Menu.Item key="3" className='iconHeader'>
                                     <Icon type="folder-open" />
                                 </Menu.Item>
@@ -226,7 +231,8 @@ const { Header, Footer, Sider, Content } = Layout;
                                                                 name={product.name}
                                                                 value={product.value}
                                                                 investor={name}
-                                                                czas={date}
+                                                                contacts = {contacts}
+                                                                date={product.date}
                                                                 />
 
                                                             )}

@@ -101,7 +101,9 @@ const { Header, Footer, Sider, Content } = Layout;
                                     <Icon type="folder-open" />
                                 </Menu.Item>
                                 <Menu.Item key="4" className='iconHeader'>
-                                    <Icon type="mail" />
+                                    <Link to={`/Looper`}>
+                                        <Icon type="mail" />
+                                        </Link>
                                 </Menu.Item>
                             </Menu>        
                         </Col>

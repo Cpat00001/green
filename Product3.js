@@ -38,13 +38,13 @@ import './css/product3.css';
 
     const {id,name, description, value, contacts} = this.props;
     //console.log(name)
-    console.log('Products 2 , contacts:', contacts[0].id )
+    //console.log('Products 2 , contacts:', contacts[0].id )
     //const {contacts} = this.props;
-    console.log('produkty z product3,',contacts)
+    //console.log('produkty z product3,',contacts)
     const date = this.props.date;
     const properDate = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
-    console.log('data zalozenia produktu',date)
-    console.log('data zalozenia produktu',properDate)
+    //console.log('data zalozenia produktu',date)
+    //console.log('data zalozenia produktu',properDate)
     
     const text = <span>Edit</span>;
     const text2 = <span>Delete</span>;

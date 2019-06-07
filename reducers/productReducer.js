@@ -7,13 +7,15 @@ const initialState = {
           id: 1,
           name: "Financial Product_1",
           description: "short description of product_1",
-          value:'150.22'
+          value:'150.22',
+          backgroundColor:'pink',
         },
         {
           id: 2,
           name: "Financial Product_2",
           description: "short description of product_2",
-          value:'200.99'
+          value:'200.99',
+          backgroundColor:'green'
         },
         {
           id: 3 ,

@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Page5 from './component/Page5';
+import Page6 from './/component/Page6';
+
 
 export default class Loops2 extends Component {
     render() {
@@ -199,13 +202,13 @@ export default class Loops2 extends Component {
 
         for( const item in myObj){
             if(myObj.hasOwnProperty(item)){
-                console.log('vartosci z myObj',myObj[item])
+                //console.log('vartosci z myObj',myObj[item])
             }
         }
 
         for(const car in myObj.cars){
             if(myObj.cars.hasOwnProperty(car)){
-                console.log('modele aut z cars:', myObj.cars[car])
+                //console.log('modele aut z cars:', myObj.cars[car])
             }
         }
 
@@ -222,7 +225,7 @@ export default class Loops2 extends Component {
             
         }
         const cars = Object.values(myObj.cars);
-        console.log(cars)
+        //console.log(cars)
         const druk = <table>
                         <thead><h5>Cars Table</h5></thead>
                             <tr style={{color:'red'}}><td>{cars}</td></tr>
@@ -247,12 +250,12 @@ export default class Loops2 extends Component {
         //     console.log(txt)
         // }
         const xars = myObj.cars;
-        console.log(xars)
+        //console.log(xars)
 
         const keys = Object.keys(myObj.cars);
-        console.log(keys)
+        //console.log(keys)
         const objects = Object.values(myObj.cars);
-        console.log(objects)
+        //console.log(objects)
 
 
 
@@ -326,7 +329,7 @@ export default class Loops2 extends Component {
                           
                     )
 
-                    console.log(wydruki)
+                    //console.log(wydruki)
                    
                 return (
                     <div style={{marginLeft:'100px'}}>
@@ -433,13 +436,13 @@ export default class Loops2 extends Component {
                 const test = user.id;
                 const email =  user.email;
                 const string1 = user.personalInfo.toString();
-                console.log(string1)
+                //console.log(string1)
                 const address = user.personalInfo.address.city.toString();
-                console.log(address)
+               // console.log(address)
 
                 //console.log(newUser)
-                console.log(test);
-                console.log(email)
+                //console.log(test);
+               // console.log(email)
                 
               return(
                             <tr>
@@ -473,6 +476,19 @@ export default class Loops2 extends Component {
                             <tbody style={{backgroundColor:'pink', border:'1px solid black', padding:'10px'}}>
                                 <Row3 />
                             </tbody>
+                        </table>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Food</th>
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <Row3 />     
+                                    </tr>
+                                </tbody>
+                            </thead>
                         </table>
                         
                         
@@ -544,12 +560,12 @@ export default class Loops2 extends Component {
 
             <tr>
                 {investors.map(obj =>{
-                    console.log(obj)
+                    //console.log(obj)
                     return(<tr><td style={{border:'1px solid black'}}>{obj.personalInfo.name}</td>
                     
                         {obj.personalInfo.address.food.map(obj2 => {
 
-                            console.log(obj2)
+                            //console.log(obj2)
                             return(<td style={{color:'orange',border:'1px solid black',padding:'10px'}}>{obj2}</td>)
                         })}
                         </tr>
@@ -560,7 +576,9 @@ export default class Loops2 extends Component {
                 return(
                     <div style={{margin:'20px'}}>
                         <h6>Row 3</h6>
-                        <td>{imiona}</td>
+                        <tr>
+                                <td>{imiona}</td>
+                        </tr> 
                     </div>
                 )
             }
@@ -572,7 +590,7 @@ export default class Loops2 extends Component {
         return (    
             <div>
                
-                {display}
+                {/* {display} */}
                 {/* <p>here is a result : {item}</p>
                 <p>here should be 42 : {item2}</p> */}
                 {display2}
@@ -581,7 +599,9 @@ export default class Loops2 extends Component {
                 {druk}
                 <Table/>
                 <Table2/>
-                <Table3/>
+                <Table3/> 
+                <Page5/>
+                <Page6/>
                 
         
             </div>

@@ -11,9 +11,9 @@ class Page5 extends Component {
 
   }
 
-  componentDidMount(){
-    this.setState({ search: false});
-  }
+  // componentDidMount(){
+  //   this.setState({ search: false});
+  // }
  
   render() {
     const json = {
@@ -109,7 +109,7 @@ class Page5 extends Component {
                 typeC: [
                   { model:'A', function:'Z'},
                   { model:'B', function:'Y'},
-                  { model:'C', function:'X'},
+                  { model:'C', function:'A'},
                   { model:'A', function:'Z'},
                   { model:'B', function:'Y'},
                   { model:'C', function:'X'}
@@ -122,36 +122,47 @@ class Page5 extends Component {
 
   //search for model C with function X
   const lev1 = data.dashboard;
-  console.log(lev1);
+  //console.log(lev1);
   const level1 = lev1.filter(customer => customer.defaultView === "customer4")
-  console.log('Level1',level1)
+  //console.log('Level1',level1)
   const lev2 = level1[0].dataSource;
-  console.log('Lev2',lev2)
+  //console.log('Lev2',lev2)
   const level2 = lev2.filter(type => type.permissionType === "C")
-  console.log("Level2",level2)
+  //console.log("Level2",level2)
   const lev3 = level2[0].typeC;
-  console.log('Lev3',lev3)
+  //console.log('Lev3',lev3)
   const level3 = lev3.filter(model => model.model === "C" && model.function === "X");
-  const count = level3.length;
-  console.log('Liczba wyszukanych elementow',count)
+  //console.log(typeof level3)
+  const count = parseInt(level3.length);
+  console.log('Found elements',count)
+  console.log('type of COUNT: ',typeof count)
   //wyszukalo tylko model C z funckja 
   console.log('Level3',level3);
-  const finalLevel = level3[0].function;
-  console.log('finalLevel',finalLevel);
+  //const finalLevel = level3[0].function;
+  //const typ = typeof finalLevel;
+  //console.log('typeof finalLevel',typ)
+  //console.log('finalLevel',finalLevel);
 
   //warunkowe wyswietlanie
-  function display(d){
+  function display(){
 
-    if( count > 0){
+    if( count === 0){
+
+      console.log('ID HAS NOT BEEN FOUND')
       return(
-      `X function exists ${count}`
+        <p style={{color:'red'}}>function with a value X does not exist</p>
       )
-      
+    
     }else{
-      return(
-       <p>theres no X</p>
-      )
+
+      if( count > 0){
+        return(
+        `function with a value X exists ${count} times`
+        ) 
+      }
     }
+
+   
 
   };
   
@@ -161,9 +172,9 @@ class Page5 extends Component {
 
   
   {data.dashboard.map((obj,index)=>{
-    console.log(obj)
+    //console.log(obj)
     {obj.dataSource.map((permision,index)=>{
-      console.log(permision)
+      //console.log(permision)
     })}
   })}
 
@@ -172,10 +183,10 @@ class Page5 extends Component {
     //console.log(pay.paymentTypes);
     const paa = pay.paymentTypes;
     {paa.map((method,index)=>{
-      console.log('Payment method',method)
+      //console.log('Payment method',method)
     })}
     const metoda = paa.filter(elem => elem === "cash")
-    console.log(metoda.slice(0,1).toString());
+    //console.log(metoda.slice(0,1).toString());
   })}
 
 
@@ -189,7 +200,7 @@ class Page5 extends Component {
   })}
   data.products.forEach(function(product){
     let productDescription = "";
-    console.log(product.productDescription);
+    //console.log(product.productDescription);
   })
 
   const GBP = data.products.filter(function(product){
@@ -369,7 +380,7 @@ class Page5 extends Component {
                                         <td>
                                         {data.products.map((pay,index)=>{
 
-                                          console.log(pay.paymentTypes.join('-'))
+                                          //console.log(pay.paymentTypes.join('-'))
                                             
                                             return(
                                               <tr key={index}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Page5 from './component/Page5';
-import Page6 from './/component/Page6';
-
+import Page6 from './component/Page6';
+import Page7 from './component/Page7';
 
 export default class Loops2 extends Component {
     render() {
@@ -602,6 +602,7 @@ export default class Loops2 extends Component {
                 <Table3/> 
                 <Page5/>
                 <Page6/>
+                <Page7/>
                 
         
             </div>

@@ -1,0 +1,17 @@
+.pdf1{
+    background-color: powderblue;
+    height:100px;
+}
+.pdf2{
+    background-color: rgb(154, 212, 240);
+    height:100px;
+}
+
+.foot{
+    background-color:rgb(197, 194, 194);
+}
+.pdfbut{
+    margin:10px;
+    background-color:#722ed1;
+    color:white;
+}

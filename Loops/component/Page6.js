@@ -4,6 +4,7 @@ import { Button } from 'antd';
 
 
 
+
 class Page6 extends Component {
     constructor(props){
         super(props)
@@ -134,8 +135,9 @@ export default Page6;
         }
 
         return (
-            <div id="tab">
+            <div>
                 <h2>Your data in table</h2>
+                <div id="tab">
                 <table class="table table-striped" style={{marginLeft:'10px',marginRight:'10px',maxWidth:'60%',margin:'auto'}} >
                     <thead class="thead-dark">
                         <tr>
@@ -162,8 +164,8 @@ export default Page6;
                         })}
                     </tbody>
                 </table>
+                </div>
                <Button type="primary" onClick={this.printPDF}>Print PDF</Button>
-               
             </div>
         )
     }

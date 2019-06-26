@@ -23,7 +23,7 @@ showTable(){
 
         return (
             <div style={{marginTop:'1000px',marginBottom:'500px'}}>
-                <h5>Page6: Click button to get table</h5>
+                <h5>Page6: Click a button to get table</h5>
                 <Button type="primary" onClick={this.showTable}>Show table</Button>
                 {this.state.table? (<Table/>) : <h5></h5>}
             </div>
@@ -46,18 +46,18 @@ export default Page6;
 
         var sTable = document.getElementById('tab').innerHTML;
 
-        // var style = "<style>";
-        // style = style + "table {width: 100%;font: 17px Calibri;}";
-        // style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
-        // style = style + "padding: 2px 3px;text-align: center;}";
-        // style = style + "</style>";
+        var style = "<style>";
+        style = style + "table {width: 100%;font: 17px Calibri;}";
+        style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + "</style>";
 
         // CREATE A WINDOW OBJECT.
         var win = window.open('', '', 'height=700,width=700');
 
         win.document.write('<html><head>');
         win.document.write('<title>Table 1</title>');   // <title> FOR PDF HEADER.
-        //win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
         win.document.write('</head>');
         win.document.write('<body>');
         win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
@@ -134,9 +134,9 @@ export default Page6;
         }
 
         return (
-            <div>
+            <div id="tab">
                 <h2>Your data in table</h2>
-                <table class="table table-striped" style={{marginLeft:'10px',marginRight:'10px',maxWidth:'60%',margin:'auto'}} id="tab">
+                <table class="table table-striped" style={{marginLeft:'10px',marginRight:'10px',maxWidth:'60%',margin:'auto'}} >
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Nr</th>

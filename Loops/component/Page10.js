@@ -49,7 +49,7 @@ import { handleSubmit, handleReducer} from './../../actions/CalculatorActions';
         
         return (
             <div>
-                <h4>Page 10</h4>
+                <h4>Page 10 Calculator</h4>
                 <p style={{color:'red'}}></p>
                 <p>Result: {value}</p>
 
@@ -108,111 +108,4 @@ export default connect(
 
 
 
-// import React, { Component } from 'react';
-// import { Row, Col } from 'antd';
-// import './../../css/Page9.css';
-// import PropTypes from 'prop-types';
-// import {connect} from 'react-redux';
-// import { Table,Button } from 'antd';
-// import {NORMALSTATE} from './../../actions/types';
-// import {minusNumber} from './../../actions/CalculatorActions'; 
-// import { addNumber } from './../../actions/CalculatorActions';
 
-
-
-//  class Page10 extends Component {
-//     constructor(props){
-//         super(props);
-
-//         this.state = {
-
-//             value: '',
-//             button: true
-//         }
-        
-
-//         this.handleChange = this.handleChange.bind(this)
-//         //this.handleClick = this.handleClick.bind(this)
-//         this.addNumber = this.addNumber.bind(this)
-//         this.handleClear = this.handleClear.bind(this)
-        
-//     }
-//     handleChange(event) {
-//         this.setState({value: event.target.value});
-//       }
-
-//     componentDidMount(){
-//         //this.props.normalState()
-//     }
-    
-//     addNumber(){
-
-//         this.setState(prevState => ({button: !prevState.button}))
-        
-//         // const v = this.state.value
-//         // console.log('wartosc z v',v)
-//         // console.log('add clicked')
-        
-//     }
-//     handleClear(){
-//         this.setState({value:0})
-//     }
-
-
-//     render() {
-
-//         const{value} = this.state
-//         console.log(value)
-
-       
-//         return (
-//             <div>
-//                 <div className='calculator'>
-//                     <p>Calculator</p>
-//                     <Row>
-//                         <Col span={8}></Col>
-//                         <Col span={8} className='result'>
-//                             <input type="number" 
-//                                 placeholder="0"
-//                                 onChange={this.handleChange}
-//                                 value={this.state.value}
-//                                 name="value"
-//                             />  
-//                         </Col>
-//                         <Col span={4}></Col>
-//                         <Col span={4}></Col>
-//                     </Row>
-//                     <Row>
-//                         <Col span={8}></Col>
-//                         <Col span={2}><Button onClick={this.addNumber}><h5>{this.state.button? '+': '-'}</h5></Button></Col>
-//                         {/* <Col span={2}><Button onClick={this.handleClick(this,value)}><h5>+</h5></Button></Col> */}
-//                         <Col span={2}><Button onClick={this.handleMinus}><h5>-</h5></Button></Col>
-//                         <Col span={2}><Button onClick={this.handleEqual}><h5>=</h5></Button></Col>
-//                         <Col span={2}><Button className='but1' onClick={this.handleClear}><p>Clear</p></Button></Col>
-//                         <Col span={8}><p style={{color:'black'}}>{value}</p></Col>
-//                     </Row>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
-
-// Page10.propTypes = {
-//     addNumber: PropTypes.func.isRequired,
-//     normalState: PropTypes.func.isRequired,
-//     }
-
-// const mapStateToProps = state => ({
-//     value: state.value.value,
-//     result: state.value.result
-// })
-// const mapDispatchToProps = dispatch => ({
-//         normalState: () => dispatch({type: NORMALSTATE})
-// })
-
-// connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(Page10)
-
-// export default Page10;

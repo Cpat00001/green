@@ -1,0 +1,60 @@
+.gutter{
+    max-width:1100px;
+    width:100%;
+    min-height:1100px;
+    background-color:rgb(235, 240, 243);
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(245, 226, 226);
+    margin:0 auto;
+    
+}
+.row1{
+    margin: auto;
+    width: 90%;
+}
+.colLeft{
+    background-color:rgb(211, 210, 210);
+    min-height:1050px;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(245, 201, 201);
+}
+.colRight{
+    background-color:rgb(238, 233, 217);
+    min-height: 1050px;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(245, 201, 201);
+}
+.col1{
+    background-color:rgb(93, 164, 223);
+    min-height:20px
+}
+.col2{
+    background-color:rgb(100, 178, 197);
+    min-height:300px
+}
+
+/* products-styling */
+.prod1{
+    background-color:rgb(184, 219, 228);
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(127, 139, 211);
+    margin:2px;
+    min-height:150px;
+    height:100%;
+    border-radius:5px  
+}
+.text1{
+    font-size:12px;
+    color:rgb(88, 112, 177);
+
+}
+
+.but1{
+    margin:5px;
+    padding:2px;
+    width:100px
+}

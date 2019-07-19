@@ -32,4 +32,8 @@ export const HANDLEREDUCER = 'HANDLEREDUCER';
 export const NORMALSTATE = 'NORMALSTATE';
 export const CLEAR = 'CLEAR'
 
+//produkty
+export const SHOWPRODUCTS = 'SHOWPRODUCTS'
+export const DELETEPRODUCT = 'DELETEPRODUCT'
+
 

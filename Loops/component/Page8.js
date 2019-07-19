@@ -230,8 +230,11 @@ const { Header, Footer, Sider, Content } = Layout;
                                 {/* http://localhost:3000/Loops/component/Page8/Loops/component/Page9 */}
                                     <Col span={3}><Icon type="snippets" className='icon'/></Col>
                                 </Link>
+                                <Link to={`/Loops/component/Page11`}>
+                                    <Col span={3}><Icon type="table" className='icon'/></Col>
+                                </Link>
                                 
-                                <Col span={3}><Icon type="table" className='icon'/></Col>
+
                                 <Col span={3}><Icon type="appstore" className='icon'/></Col>
                                 <Col span={3}><Icon type="setting" className='icon'/></Col>
                                 <Col span={3}><Icon type="user" className='icon'/></Col>

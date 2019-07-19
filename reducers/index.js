@@ -6,6 +6,7 @@ import printReducer from './printReducer';
 import styleReducer from './styleReducer';
 import dataReducer from './DataReducer';
 import calculatorReducer from './calculatorReducer';
+import prodReducer from './prodReducer';
 
 export default combineReducers({
     contact: contactReducer,
@@ -14,7 +15,8 @@ export default combineReducers({
     pdf: printReducer,
     style: styleReducer,
     data: dataReducer,
-    value: calculatorReducer
+    value: calculatorReducer,
+    produkt: prodReducer
 })
 
 

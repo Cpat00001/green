@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../../css/tablepdf.css';
 import { Row, Col,Button } from 'antd';
+import '../../css/beats.png';
 
  class Page7 extends Component {
     constructor(props){
@@ -14,10 +15,18 @@ import { Row, Col,Button } from 'antd';
 
         var sTable = document.getElementById('table1').innerHTML;
 
+        // var style = "<style>";
+        // style = style + "table {width: 100%;font: 17px Calibri;}";
+        // style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+        // style = style + "padding: 2px 3px;text-align: center;}";
+        // style = style + "</style>";
+
         var style = "<style>";
-        style = style + "table {width: 100%;font: 17px Calibri;}";
-        style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
-        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + "table {width: 70%;font: 17px Calibri;margin:auto;max-width:700px;}";
+        style = style + "table, th, td {border: solid 1px black; border-collapse: collapse;padding:5px}";
+        style= style + "div {background-color:powderblue;margin-left:1%;}"
+        style= style + "img{width:100px; height:100px;margin-left:1%;background-color:red}"
+        //style = style + "{padding:20px;text-align: center;}";
         style = style + "</style>";
 
         // CREATE A WINDOW OBJECT.
@@ -43,15 +52,17 @@ import { Row, Col,Button } from 'antd';
                 <h5>Page 7 here</h5>
                 <Row>
                     <Col span={18}></Col>
-                    <Col span={4}> <Button type="danger" className='pdfbut' onClick={this.printPDF}>Print table</Button></Col>
+                    <Col span={4}><Button type="danger" className='pdfbut' onClick={this.printPDF}>Print table</Button></Col>
                     <Col span={2}></Col>
                 </Row>
                 <div id='table1'>
-                    <Row >
-                        <Col span={2} className="pdf1">Statement up to current date</Col>
-                        <Col span={6} className="pdf1">Logo</Col>
-                        <Col span={16} className="pdf2">User Name</Col>
+                    <div id="pdftest">
+                    <Row>
+                        <Col span={2} className="pdf1"></Col>
+                        <Col span={6} className="pdf3"><img  src={require('../../css/beats.png')}  alt="Logo" className="logopdf"></img></Col>
+                        <Col span={16} className="pdf2">your statement</Col>
                     </Row>
+                    </div>
                     <Component1/>
                     <TableFooter/>
                 </div>
@@ -84,7 +95,7 @@ class Component1 extends Component {
 
         const {data} = this.state;
         console.log('podaje dane dla data:', data)
-        console.log('podaj mi key ', data.index)
+        
         return (
             <div>
                 <h5>text form 1st component to page 7 </h5>
@@ -92,7 +103,6 @@ class Component1 extends Component {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Date</th>
                             <th scope="col">Description</th>
                             <th scope="col">Value</th>
@@ -104,13 +114,13 @@ class Component1 extends Component {
                     {data.map((row,index)=>(
 
                         <Component2
-                        key={row}
+                        key={row.toString()}
                         row={row}
 
                         />
                     
                     ))}     
-
+                    
                     </tbody>
                 </table>
             </div>
@@ -122,13 +132,12 @@ class Component1 extends Component {
 class Component2 extends Component {
     render() {
 
-        const {key,date,description,value,balance} = this.props.row;
-        console.log('wywal data from component2 : ', description, value)
-        console.log('podaj index wartosc:' ,key)
+        const {date,description,value,balance} = this.props.row;
+        console.log('data output from component2 : ', description, value)
+        //console.log('podaj index wartosc:' ,key, index)
         return (
             
                         <tr>
-                            <td>{key}</td>
                             <td>{date}</td>
                             <td>{description}</td>
                             <td>{value}</td> 
@@ -140,8 +149,6 @@ class Component2 extends Component {
         )
     }
 }
-
-
 
 class TableFooter extends Component {
     render() {

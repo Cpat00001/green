@@ -1,0 +1,66 @@
+/* general setting */
+.paragraph1{
+    float:left;
+}
+
+/* top of page - header */
+.headone{
+    background-color: powderblue;
+}
+.headtwo{
+    background-color: royalblue;
+}
+.headthree{
+    background-color:pink
+}
+.headfour{
+    background-color:grey;
+
+}
+.headfive{
+    background-color:rgb(172, 74, 172);
+}
+
+/* content midl of page */
+.contentOne{
+    margin-top:2%;
+    background-color:#fff;
+    min-height:50px;
+    height:100%;
+    
+}
+.contentTwo{
+    background-color:rgb(216, 211, 211);
+    min-height:50px;
+    height:100%;
+}
+.contentThree{
+    background-color:rgb(201, 157, 157);
+    height:100%;
+    margin:10px;
+}
+.contentFour{
+    background-color:rgb(100, 97, 97);
+    height:100%;
+    margin:10px;
+    padding:10px;
+}
+/* icons && buttons styling */
+.icon{
+    font-size:20px;
+    color:white;
+}
+.iconButton{
+    font-size:15px;
+}
+.iconportfolio{
+    font-size:20px;
+    color:grey;
+}
+.data-icon{
+    font-size:15px;
+}
+.button1{
+    font-size:15px;
+    height:auto;
+}

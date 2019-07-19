@@ -15,3 +15,21 @@ export const GET_CONTACT = 'GET_CONTACT';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 
+//printing pdfs
+export const PRINT_PDF = 'PRINT PDF';
+
+//styling
+export const STYLE = 'STYLE';
+export const BANNER = 'BANNER';
+
+// getting data from axios
+export const GETDATA = 'GETDATA';
+export const PULLDATA = 'PULLDATA';
+
+//calculator
+export const HANDLESUBMIT = 'HANDLESUBMIT';
+export const HANDLEREDUCER = 'HANDLEREDUCER';
+export const NORMALSTATE = 'NORMALSTATE';
+export const CLEAR = 'CLEAR'
+
+

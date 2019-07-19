@@ -1,8 +1,12 @@
 .pdf1{
-    background-color: powderblue;
+    background-color: rgb(154, 212, 240);
     height:100px;
 }
 .pdf2{
+    background-color: rgb(154, 212, 240);
+    height:100px;
+}
+.pdf3{
     background-color: rgb(154, 212, 240);
     height:100px;
 }
@@ -14,4 +18,14 @@
     margin:10px;
     background-color:#722ed1;
     color:white;
+}
+.logopdf{
+    padding:10px;
+    height:80%;
+    width:80%;
+    margin:auto;
+    max-width:100px;
+
+
+    /* style={{width:"80%", height:"80%",margin:"auto" }} */
 }

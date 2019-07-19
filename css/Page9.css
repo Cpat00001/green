@@ -1,0 +1,39 @@
+.div1{
+    background-color:rgb(175, 168, 168);
+    height:100px;
+}
+.div2{
+    background-color:rgb(175, 168, 168);
+    height:100px;
+}
+.div3{
+    background-color:rgb(175, 168, 168);
+    height:100%;
+}
+.div4{
+    background-color:rgb(190, 160, 199);
+    height:100%;
+
+}
+.div5{
+    background-color:rgb(129, 149, 206);
+    height:100px;
+}
+.calculator{
+    background-color: rgb(206, 205, 205);
+    border: 1px solid grey;
+    padding:20px;
+    margin:20px;
+    
+}
+.result{
+    height:50px;
+    background-color:rgb(177, 208, 226);
+    border:1px solid rgb(54, 54, 54);
+    margin:10px;
+    padding:5px;
+}
+.but1{
+    background-color:rgb(65, 87, 119);
+    color:white;
+}

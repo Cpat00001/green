@@ -4,6 +4,9 @@ import {connect} from 'react-redux'
 import PropTypes from "prop-types";
 import './../../css/Page11.css';
 import DrawerChart from './DrawerChart'
+import Product3 from './../../Product3';
+import Replacement from './Replacement';
+
 // import {fetchData} from './../../actions/fetchDataActions';
 //import {FETCH_DATA} from './../../actions/types';
 
@@ -14,10 +17,10 @@ import DrawerChart from './DrawerChart'
          this.state={
              
             icon1: true,
-
+        
         }
 
-         this.state= { visible: this.props.visible}
+         this.state = { visible: this.props.visible}
          this.onClose = this.onClose.bind(this)
          this.changePic1 = this.changePic1.bind(this)
          //this.fetchData = this.fetchData.bind(this)
@@ -32,7 +35,6 @@ import DrawerChart from './DrawerChart'
     //     this.props.fetchData1()
         
     //  }
-
      changePic1(){
          console.log('icon was clicked')
          this.setState(state =>({ icon1: !state.icon1}))
@@ -45,8 +47,37 @@ import DrawerChart from './DrawerChart'
      }
 
     render() {
+
+        console.log('throw products to display:', this.props.products)
         console.log('throw props from parent', this.state.visible)
         console.log('data for table: this.props.chart1', this.props.chart1)
+
+        const products = this.props.products;    
+
+        let button;
+        if(products.length > 0){
+
+            button = <Col span={20}>
+                                
+            <div style={{backgroundColor:'rgb(220,210,220)', height:'200px', width:'100%', marginTop:'50px'}}>
+                <h5>List of your products</h5>
+                {products.map((product,index) => 
+                <Product3 
+                            
+                    key={index} key={index}
+                    name={product.name}
+                    value={product.value}
+                    date={product.date}/> )}
+            </div>
+        </Col>
+
+        }else{
+
+            button = <Replacement />
+
+        }
+
+
 
         const dataSource = this.props.chart1;
 
@@ -101,11 +132,7 @@ import DrawerChart from './DrawerChart'
                         </Row>
                         <Row>
                             <Col span={2}></Col>
-                            <Col span={20}>
-                                <div style={{backgroundColor:'rgb(220,210,220)', height:'200px', width:'100%', marginTop:'50px'}}>
-                                    <h5>Bring here list of chosen products</h5>
-                                </div>
-                            </Col>
+                            <Col span={20}>{button}</Col>
                             <Col span={2}></Col>
 
                         </Row>

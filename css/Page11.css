@@ -71,3 +71,12 @@
     width:100%,
     
 }
+.productList{
+    background-color:rgb(220,210,220); 
+    height:200px; 
+    width:100%; 
+    margin-top:50px;
+    color: black;
+    text-align:center;
+    padding:10px
+}

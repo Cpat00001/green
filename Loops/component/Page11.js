@@ -10,9 +10,7 @@ import DrawerPopUp from './DrawerPopUp';
 
 import {FETCH_DATA, GET_PRODUCTS} from './../../actions/types';
 import {fetchData} from './../../actions/fetchDataActions';
-import {getProducts} from '../../actions/ProductActions';;
-
-
+import {getProducts} from '../../actions/ProductActions';
 
 
  class Page11 extends Component {
@@ -50,15 +48,11 @@ handleDelete(id){
 
         const {products} = this.props;
         console.log(products)
-        const{name,description,value,id} = this.props;
+        const{name,description,value,id,date} = this.props;
         //const{id} = this.props.id;
         console.log('ProductID', this.props.id)
         const {chart1} = this.props;
         console.log(chart1)
-        const {produkty} = this.props;
-        console.log('bring chosen products:',produkty)
-
-
 
         return (
             <div className="gutter" >
@@ -66,7 +60,7 @@ handleDelete(id){
                         {this.state.visible? 
                         <div>
 
-                        <DrawerPopUp visible={this.state.visible} chart1={chart1}/>
+                        <DrawerPopUp visible={this.state.visible} chart1={chart1} products={products}/>
                         
                         </div>
                         
@@ -100,9 +94,9 @@ handleDelete(id){
                                         <Col span={2}></Col>
                                         <Col span={20} className="prod1">
                                             <p className='text1'>{product.name}</p>
-                                            <p>ProductID: {product.id}</p>
+                                            <p>ProductName: {product.name}</p>
                                             <p>Value:{product.value}</p>
-                                            {/* <Button type="danger" className="login-form-button" className='but1' onClick={this.handleDelete.bind(this,product.id)}> */}
+                                            {/* <p>Started: {product.date}</p> */}
                                             <Button type="danger" className="login-form-button" className='but1' onClick={this.handleDelete.bind(this,product.id)}>
                                             Delete {/*  {product.id} */}
                                             </Button>

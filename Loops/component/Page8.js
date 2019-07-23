@@ -227,7 +227,6 @@ const { Header, Footer, Sider, Content } = Layout;
                                 <Col span={3}><Icon type="codepen" className='icon' onClick={this.getData}/></Col>
 
                                 <Link to={`/Loops/component/Page9`}>
-                                {/* http://localhost:3000/Loops/component/Page8/Loops/component/Page9 */}
                                     <Col span={3}><Icon type="snippets" className='icon'/></Col>
                                 </Link>
                                 <Link to={`/Loops/component/Page11`}>

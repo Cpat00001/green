@@ -59,8 +59,18 @@
     width:100px
 }
 /* ###############################   DRAWER Page11 icons #######################################  */
+.drawiconBackground{
+    background-color:#6F6F6F;
+    height:80px;
+    color:white;
+    margin:2px
+
+}
 .drawericon{
-    font-size:30px;
+    font-size:40px;
+    margin:auto;
+    width:100%;
+    padding:20px
 }
 .table1{
     border: 1px solid rgb(109, 104, 104);
@@ -72,7 +82,7 @@
     
 }
 .productList{
-    background-color:rgb(220,210,220); 
+    background-color:rgb(209, 218, 232); 
     height:200px; 
     width:100%; 
     margin-top:50px;

@@ -6,6 +6,8 @@ import './../../css/Page11.css';
 import DrawerChart from './DrawerChart'
 import Product3 from './../../Product3';
 import Replacement from './Replacement';
+import {Link} from 'react-router-dom';
+
 
 // import {fetchData} from './../../actions/fetchDataActions';
 //import {FETCH_DATA} from './../../actions/types';
@@ -25,16 +27,7 @@ import Replacement from './Replacement';
          this.changePic1 = this.changePic1.bind(this)
          //this.fetchData = this.fetchData.bind(this)
      }
-    //  componentDidMount(){
-
-    //     this.props.fetchData();
-    // }
-
-    //  fetchData(){
-    //     console.log('this.props.fetchData CLICKED')
-    //     this.props.fetchData1()
-        
-    //  }
+    
      changePic1(){
          console.log('icon was clicked')
          this.setState(state =>({ icon1: !state.icon1}))
@@ -59,7 +52,8 @@ import Replacement from './Replacement';
 
             button = <Col span={20}>
                                 
-            <div style={{backgroundColor:'rgb(220,210,220)', height:'200px', width:'100%', marginTop:'50px'}}>
+            {/* <div style={{backgroundColor:'rgb(209, 218, 232)', height:'200px', width:'100%', marginTop:'50px'}} className='productList'> */}
+            <div className='productList'>
                 <h5>List of your products</h5>
                 {products.map((product,index) => 
                 <Product3 
@@ -118,16 +112,18 @@ import Replacement from './Replacement';
                         <h5>PopUp Drawer</h5>
                         <Row style={{padding:'10px'}}>
                             <Col span={2}></Col>
-                            <Col span={5} onClick={this.changePic1} >{this.state.icon1? (<Icon type="table" className='drawericon'/>) : <Icon type="fund" className='drawericon'/> }</Col>
+                            <Col span={6} onClick={this.changePic1} className='drawiconBackground'>{this.state.icon1? (<Icon type="table" className='drawericon'/>) : <Icon type="fund" className='drawericon'/> }</Col>
                             {/* <Col span={5}><Icon type="snippets" className='drawericon' onClick={this.fetchData}/></Col> */}
-                            <Col span={5}><Icon type="snippets" className='drawericon'/></Col>
-                            <Col span={5}><Icon type="calendar" className='drawericon' /></Col>
+                            <Col span={6} className='drawiconBackground'><Icon type="snippets" className='drawericon'/></Col>
+                            <Link to={`/Loops/component/Page12`}>
+                                    <Col span={6} className='drawiconBackground'><Icon type="user" className='drawericon' /></Col>
+                            </Link>
                             <Col span={2}></Col>
                         </Row>
                         <Row>
                                 <Col span={2}></Col>
                                 {/* <Col span={14}>{this.state.icon1? (<div style={{backgroundColor:'#69c0ff',height:'300px',width:'100%'}}><h5>Chart</h5></div>): <p>Table</p>}</Col> */}
-                                <Col span={20}>{this.state.icon1? (<div style={{backgroundColor:'rgb(184, 195, 212)',height:'300px',width:'100%'}}><DrawerChart dataSource={dataSource}/></div>): <Table dataSource={dataSource} columns={columns} pagination={false} className='table1'/>}</Col>
+                                <Col span={20}>{this.state.icon1? (<div style={{backgroundColor:'rgb(209, 218, 232)',height:'300px',width:'100%'}}><DrawerChart dataSource={dataSource}/></div>): <Table dataSource={dataSource} columns={columns} pagination={false} className='table1'/>}</Col>
                                 <Col span={2}></Col>
                         </Row>
                         <Row>

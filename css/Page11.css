@@ -58,3 +58,16 @@
     padding:2px;
     width:100px
 }
+/* ###############################   DRAWER Page11 icons #######################################  */
+.drawericon{
+    font-size:30px;
+}
+.table1{
+    border: 1px solid rgb(109, 104, 104);
+    background-color:rgb(213, 206, 219);
+    text-align:center;
+    margin-top:50px;
+    font-weight:bold;
+    width:100%,
+    
+}

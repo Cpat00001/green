@@ -7,6 +7,7 @@ import styleReducer from './styleReducer';
 import dataReducer from './DataReducer';
 import calculatorReducer from './calculatorReducer';
 import prodReducer from './prodReducer';
+import dataChartReducer from './dataChartReducer';
 
 export default combineReducers({
     contact: contactReducer,
@@ -16,7 +17,8 @@ export default combineReducers({
     style: styleReducer,
     data: dataReducer,
     value: calculatorReducer,
-    produkt: prodReducer
+    produkt: prodReducer,
+    fetchData: dataChartReducer
 })
 
 

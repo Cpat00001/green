@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
-import { Row, Col,Button } from 'antd';
+import { Row, Col,Button , Icon,Drawer,Form, Input} from 'antd';
 import './../../css/Page11.css';
 import {connect} from 'react-redux';
 import {SHOWPRODUCTS}  from './../../actions/types';
 import {showProducts,handleDelete} from './../../actions/prodActions';
 import PropTypes from "prop-types";
+import DrawerPopUp from './DrawerPopUp';
+
+
+import {FETCH_DATA} from './../../actions/types';
+import {fetchData} from './../../actions/fetchDataActions';
+
 
 
 
  class Page11 extends Component {
+     constructor(props){
+         super(props)
+
+         this.state = { visible : false}
+         this.handleMenu = this.handleMenu.bind(this)
+         
+     }
+
+
+handleMenu(){
+    console.log('Menu button was clicked')
+    this.setState({ visible: !this.state.visible })
+    console.log(this.state.visible)
+}
 
 componentDidMount(){
 
-    this.props.showProducts()
+    this.props.showProducts();
+    this.props.fetchData();
+    console.log(this.props)
 }
 
 handleDelete(id){
@@ -29,12 +51,32 @@ handleDelete(id){
         const{name,description,value,id} = this.props;
         //const{id} = this.props.id;
         console.log('ProductID', this.props.id)
+        const {chart1} = this.props;
+        console.log(chart1)
 
 
 
         return (
             <div className="gutter" >
-                
+
+                        {this.state.visible? 
+                        <div>
+
+                        <DrawerPopUp visible={this.state.visible} chart1={chart1}/>
+                        
+                        </div>
+                        
+                        : ''}
+                        
+
+
+                    <Row style={{height:'50px',backgroundColor:'#44b3ae'}}>
+                        <Col span={2}></Col>
+                        <Col span={10}></Col>
+                        <Col span={8}></Col>
+                        <Col span={2}>Menu<Icon type="menu" style={{fontSize:'30px'}} onClick={this.handleMenu}/></Col>
+                        <Col span={2}></Col>
+                    </Row>
                     <Row className='row1'>
                         <h5>Page 11</h5>
                         <Col span={1}></Col>
@@ -48,9 +90,9 @@ handleDelete(id){
                         
                         <Col span={10} className='colRight'>
                             <h5>Column right</h5>
-                            {products.map(product=>(
+                            {products.map((product,index)=>(
 
-                                        <Row>
+                                        <Row key={index}>
                                         <Col span={2}></Col>
                                         <Col span={20} className="prod1">
                                             <p className='text1'>{product.name}</p>
@@ -78,16 +120,23 @@ handleDelete(id){
 Page11.propTypes = {
     products: PropTypes.array.isRequired,
     showProducts: PropTypes.func.isRequired,
-    handleDelete: PropTypes.func.isRequired
+    handleDelete: PropTypes.func.isRequired,
+
+    fetchData: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state =>({
-    products: state.produkt.products
+    products: state.produkt.products,
+
+    //data2: state.fetchData.dataChart,
+    chart1:state.fetchData.dataChart
 })
 
 const mapDispatchToProps = dispatch =>({
     showProducts: () => dispatch({ type: SHOWPRODUCTS}),
-    handleDelete: (id) => dispatch(handleDelete(id))
+    handleDelete: (id) => dispatch(handleDelete(id)),
+
+    fetchData: () => dispatch({type: FETCH_DATA})
 
 })
 export default connect(

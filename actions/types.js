@@ -36,4 +36,7 @@ export const CLEAR = 'CLEAR'
 export const SHOWPRODUCTS = 'SHOWPRODUCTS'
 export const DELETEPRODUCT = 'DELETEPRODUCT'
 
+// drawer
+export const FETCH_DATA = 'FETCH_DATA'
+
 

@@ -51,7 +51,7 @@ import { handleSubmit, handleReducer} from './../../actions/CalculatorActions';
             <div>
                 <h4>Page 10 Calculator</h4>
                 <p style={{color:'red'}}></p>
-                <p>Result: {value}</p>
+                <h5 style={{color:'peru'}}>Result: {value}</h5>
 
 
                 {/* FORM */}

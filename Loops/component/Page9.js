@@ -13,6 +13,7 @@ import Page10 from './Page10';
     componentDidMount(){
 
         this.props.pullData();
+        console.log(this.props.pullData())
     }
 
     render() {

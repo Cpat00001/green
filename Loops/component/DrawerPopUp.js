@@ -11,7 +11,11 @@ import DrawerChart from './DrawerChart'
      constructor(props){
          super(props)
 
-         this.state={icon1: true}
+         this.state={
+             
+            icon1: true,
+
+        }
 
          this.state= { visible: this.props.visible}
          this.onClose = this.onClose.bind(this)
@@ -70,7 +74,6 @@ import DrawerChart from './DrawerChart'
             
         ]
 
-
         return (
             <div >
                 <Drawer 
@@ -93,8 +96,18 @@ import DrawerChart from './DrawerChart'
                         <Row>
                                 <Col span={2}></Col>
                                 {/* <Col span={14}>{this.state.icon1? (<div style={{backgroundColor:'#69c0ff',height:'300px',width:'100%'}}><h5>Chart</h5></div>): <p>Table</p>}</Col> */}
-                                <Col span={18}>{this.state.icon1? (<div style={{backgroundColor:'rgb(184, 195, 212)',height:'300px',width:'100%'}}><DrawerChart dataSource={dataSource}/></div>): <Table dataSource={dataSource} columns={columns} pagination={false} className='table1'/>}</Col>
+                                <Col span={20}>{this.state.icon1? (<div style={{backgroundColor:'rgb(184, 195, 212)',height:'300px',width:'100%'}}><DrawerChart dataSource={dataSource}/></div>): <Table dataSource={dataSource} columns={columns} pagination={false} className='table1'/>}</Col>
                                 <Col span={2}></Col>
+                        </Row>
+                        <Row>
+                            <Col span={2}></Col>
+                            <Col span={20}>
+                                <div style={{backgroundColor:'rgb(220,210,220)', height:'200px', width:'100%', marginTop:'50px'}}>
+                                    <h5>Bring here list of chosen products</h5>
+                                </div>
+                            </Col>
+                            <Col span={2}></Col>
+
                         </Row>
                         <Row style={{height:'50px', marginTop:'100px'}}>
                             <Col span={14}></Col>

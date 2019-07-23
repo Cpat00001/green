@@ -3,13 +3,14 @@ import { Row, Col,Button , Icon,Drawer,Form, Input} from 'antd';
 import './../../css/Page11.css';
 import {connect} from 'react-redux';
 import {SHOWPRODUCTS}  from './../../actions/types';
-import {showProducts,handleDelete} from './../../actions/prodActions';
+import {showProducts,handleDelete} from './../../actions/ProductActions';
 import PropTypes from "prop-types";
 import DrawerPopUp from './DrawerPopUp';
 
 
-import {FETCH_DATA} from './../../actions/types';
+import {FETCH_DATA, GET_PRODUCTS} from './../../actions/types';
 import {fetchData} from './../../actions/fetchDataActions';
+import {getProducts} from '../../actions/ProductActions';;
 
 
 
@@ -35,6 +36,7 @@ componentDidMount(){
     this.props.showProducts();
     this.props.fetchData();
     console.log(this.props)
+    this.props.getProducts()
 }
 
 handleDelete(id){
@@ -53,6 +55,8 @@ handleDelete(id){
         console.log('ProductID', this.props.id)
         const {chart1} = this.props;
         console.log(chart1)
+        const {produkty} = this.props;
+        console.log('bring chosen products:',produkty)
 
 
 
@@ -98,8 +102,9 @@ handleDelete(id){
                                             <p className='text1'>{product.name}</p>
                                             <p>ProductID: {product.id}</p>
                                             <p>Value:{product.value}</p>
+                                            {/* <Button type="danger" className="login-form-button" className='but1' onClick={this.handleDelete.bind(this,product.id)}> */}
                                             <Button type="danger" className="login-form-button" className='but1' onClick={this.handleDelete.bind(this,product.id)}>
-                                                Delete {product.id}
+                                            Delete {/*  {product.id} */}
                                             </Button>
 
                                         </Col>
@@ -122,21 +127,24 @@ Page11.propTypes = {
     showProducts: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
 
-    fetchData: PropTypes.func.isRequired
+    fetchData: PropTypes.func.isRequired,
+    getProducts: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state =>({
     products: state.produkt.products,
 
     //data2: state.fetchData.dataChart,
-    chart1:state.fetchData.dataChart
+    chart1:state.fetchData.dataChart,
+    products: state.product.portfolio
 })
 
 const mapDispatchToProps = dispatch =>({
     showProducts: () => dispatch({ type: SHOWPRODUCTS}),
     handleDelete: (id) => dispatch(handleDelete(id)),
 
-    fetchData: () => dispatch({type: FETCH_DATA})
+    fetchData: () => dispatch({type: FETCH_DATA}),
+    getProducts:() => dispatch({ type: GET_PRODUCTS})
 
 })
 export default connect(

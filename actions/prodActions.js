@@ -6,9 +6,9 @@ import {SHOWPRODUCTS,DELETEPRODUCT}  from './types';
 
 //     }
 // }
-export const handleDelete =(id) =>{
-    return{
-        type: DELETEPRODUCT,
-        payload:id
-    }
-}
+// export const handleDelete =(id) =>{
+//     return{
+//         type: DELETEPRODUCT,
+//         payload:id
+//     }
+// }

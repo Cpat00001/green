@@ -1,4 +1,4 @@
-import {ADD_PRODUCT, GET_PRODUCTS} from './types';
+import {ADD_PRODUCT, GET_PRODUCTS,DELETEPRODUCT} from './types';
 
 export const getProducts = () => {
     return{
@@ -11,4 +11,10 @@ export const addProduct = (product) => {
         type: ADD_PRODUCT,
         payload: product
     }
-} 
+}
+export const handleDelete =(id) =>{
+    return{
+        type: DELETEPRODUCT,
+        payload:id
+    }
+}

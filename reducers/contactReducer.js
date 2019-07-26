@@ -1,4 +1,4 @@
-import {GET_CONTACTS, ADD_CONTACT, DELETE_CONTACT, INITIAL_DETAILS, GET_CONTACT, INSERT_PRODUCT, MORE_DETAILS} from '../actions/types';
+import {GET_CONTACTS, ADD_CONTACT, DELETE_CONTACT, INITIAL_DETAILS, GET_CONTACT, INSERT_PRODUCT, MORE_DETAILS, OVERWRITE, REPLACEDATA} from '../actions/types';
 
 
 
@@ -64,6 +64,21 @@ export default function (state = initialState , action){
                 ns.contact = ns.contacts.filter(contact => contact.id === action.payload)[0]
             }
             return Object.assign({}, state, ns)
+
+            // ##############
+            case OVERWRITE:
+                return{
+                    ...state,
+                   contacts: state.contacts.map(contact => contact.id === action.payload.id ? (contact = action.payload): contact)
+                }
+
+
+            // #############
+            case REPLACEDATA:
+                return{
+                    ...state,
+                    contacts: state.contacts.map(contact => contact.id === action.payload.id ? (contact = action.payload): contact)
+                }
            
         default:
             return state;

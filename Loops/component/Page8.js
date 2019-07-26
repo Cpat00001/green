@@ -209,7 +209,9 @@ const { Header, Footer, Sider, Content } = Layout;
         const {contacts} = this.props;
         const {pdf} = this.props;
         const printPDF = this.state.pdf;
-        const {style} = this.props
+        const {style} = this.props;
+        const {id} = this.props.match.params;
+        console.log(id)
         
         return (
             <div style={{maxWidth:'800px', width:'100%', margin:'0 auto'}}>
@@ -233,10 +235,14 @@ const { Header, Footer, Sider, Content } = Layout;
                                     <Col span={3}><Icon type="table" className='icon'/></Col>
                                 </Link>
                                 
-
-                                <Col span={3}><Icon type="appstore" className='icon'/></Col>
+                                <Link to={`/Loops/component/Page14/${id}`}>
+                                    <Col span={3}><Icon type="appstore" className='icon'/></Col>
+                                </Link>
                                 <Col span={3}><Icon type="setting" className='icon'/></Col>
+                                <Link to={`/Loops/component/Page13/${id}`}>
                                 <Col span={3}><Icon type="user" className='icon'/></Col>
+                                </Link>
+                                
 
                             </Row>
                         </Col>

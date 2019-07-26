@@ -1,4 +1,4 @@
-import {GET_CONTACTS, ADD_CONTACT, DELETE_CONTACT, INITIAL_DETAILS, GET_CONTACT , INSERT_PRODUCT, MORE_DETAILS } from './types';
+import {GET_CONTACTS, ADD_CONTACT, DELETE_CONTACT, INITIAL_DETAILS, GET_CONTACT , INSERT_PRODUCT, MORE_DETAILS,OVERWRITE, REPLACEDATA } from './types';
 
 export const getContacts = () => {
     return {
@@ -43,6 +43,21 @@ export const more_details = (user) => {
     return{
         type: MORE_DETAILS,
         payload: user
+    }
+}
+// #################################
+export const updateData = (overwrite) =>{
+    return{
+        type: OVERWRITE,
+        payload: overwrite
+    }
+}
+//##################################
+
+export const replacedata = (swapdata) => {
+    return{
+        type: REPLACEDATA,
+        payload: swapdata
     }
 }
 

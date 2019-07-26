@@ -39,4 +39,10 @@ export const DELETEPRODUCT = 'DELETEPRODUCT'
 // drawer
 export const FETCH_DATA = 'FETCH_DATA'
 
+//OVERWRITING FROM SMALL LOGIN FORM
+export const OVERWRITE = 'OVERWRITE'
+
+//overwriting test
+export const REPLACEDATA = 'REPLACEDATA'
+
 

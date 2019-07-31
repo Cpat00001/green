@@ -45,4 +45,8 @@ export const OVERWRITE = 'OVERWRITE'
 //overwriting test
 export const REPLACEDATA = 'REPLACEDATA'
 
+// data for table with models
+export const MODEL_DATA = 'MODEL_DATA'
+export const MODEL_DETAILS = 'MODEL_DETAILS'
+
 

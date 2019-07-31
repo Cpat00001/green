@@ -29,21 +29,24 @@ import {Link} from 'react-router-dom';
      }
     
      changePic1(){
-         console.log('icon was clicked')
+         //console.log('icon was clicked')
          this.setState(state =>({ icon1: !state.icon1}))
-         console.log('this.state.icon1:',this.state.icon1)
+         //console.log('this.state.icon1:',this.state.icon1)
      }
 
      onClose(){
         this.setState({visible: false})
-         console.log('close button was clicked')
+         //console.log('close button was clicked')
      }
 
     render() {
 
-        console.log('throw products to display:', this.props.products)
-        console.log('throw props from parent', this.state.visible)
-        console.log('data for table: this.props.chart1', this.props.chart1)
+        //console.log('throw products to display:', this.props.products)
+        //console.log('throw props from parent', this.state.visible)
+        //console.log('data for table: this.props.chart1', this.props.chart1)
+
+        const id = this.props.investor[0].id;
+        console.log('throw this.props.investor',this.props.investor[0].id)
 
         const products = this.props.products;    
 
@@ -114,7 +117,10 @@ import {Link} from 'react-router-dom';
                             <Col span={2}></Col>
                             <Col span={6} onClick={this.changePic1} className='drawiconBackground'>{this.state.icon1? (<Icon type="table" className='drawericon'/>) : <Icon type="fund" className='drawericon'/> }</Col>
                             {/* <Col span={5}><Icon type="snippets" className='drawericon' onClick={this.fetchData}/></Col> */}
-                            <Col span={6} className='drawiconBackground'><Icon type="snippets" className='drawericon'/></Col>
+                            <Link to={`/Loops/component/Page17/${id}`}>
+                                <Col span={6} className='drawiconBackground'><Icon type="snippets" className='drawericon'/></Col>
+                            </Link>
+                            
                             <Link to={`/Loops/component/Page12`}>
                                     <Col span={6} className='drawiconBackground'><Icon type="user" className='drawericon' /></Col>
                             </Link>
@@ -136,7 +142,6 @@ import {Link} from 'react-router-dom';
                             <Col span={14}></Col>
                             <Col span={4}><Button type="primary">Primary</Button></Col>
                             <Col span={4}><Button type="danger">Brexit</Button></Col>
-
                             <Col span={2}></Col>
 
 
@@ -151,6 +156,7 @@ import {Link} from 'react-router-dom';
 }
 DrawerPopUp.propTypes = {
     //fetchData: PropTypes.func.isRequired
+    // contact: PropTypes.array.isRequired
 }
 const mapStateToProps = state =>({
     //data2: state.data2.dataChart

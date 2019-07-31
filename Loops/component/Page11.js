@@ -24,22 +24,22 @@ import {getProducts} from '../../actions/ProductActions';
 
 
 handleMenu(){
-    console.log('Menu button was clicked')
+    //console.log('Menu button was clicked')
     this.setState({ visible: !this.state.visible })
-    console.log(this.state.visible)
+    //console.log(this.state.visible)
 }
 
 componentDidMount(){
 
     this.props.showProducts();
     this.props.fetchData();
-    console.log(this.props)
+    //console.log(this.props)
     this.props.getProducts()
 }
 
 handleDelete(id){
 
-    console.log('was clicked productID:', id)
+    //console.log('was clicked productID:', id)
     this.props.handleDelete(id)
 }
 
@@ -47,12 +47,14 @@ handleDelete(id){
     render() {
 
         const {products} = this.props;
-        console.log(products)
+        //console.log(products)
         const{name,description,value,id,date} = this.props;
         //const{id} = this.props.id;
-        console.log('ProductID', this.props.id)
+        //console.log('ProductID', this.props.id)
         const {chart1} = this.props;
-        console.log(chart1)
+        //console.log(chart1)
+        const investor = this.props.contact;
+        //console.log('throw user details', this.props.contact)
 
         return (
             <div className="gutter" >
@@ -60,7 +62,7 @@ handleDelete(id){
                         {this.state.visible? 
                         <div>
 
-                        <DrawerPopUp visible={this.state.visible} chart1={chart1} products={products}/>
+                        <DrawerPopUp visible={this.state.visible} chart1={chart1} products={products} investor={investor}/>
                         
                         </div>
                         
@@ -122,11 +124,13 @@ Page11.propTypes = {
     handleDelete: PropTypes.func.isRequired,
 
     fetchData: PropTypes.func.isRequired,
-    getProducts: PropTypes.func.isRequired
+    getProducts: PropTypes.func.isRequired,
+    contact: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state =>({
     products: state.produkt.products,
+    contact:state.contact.contacts,
 
     //data2: state.fetchData.dataChart,
     chart1:state.fetchData.dataChart,

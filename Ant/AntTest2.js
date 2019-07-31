@@ -27,7 +27,7 @@ const SubMenu = Menu.SubMenu;
     this.setState(state=>({color:'rgb(106, 52, 138)'}))
     this.setState(state=>({handleClick2: false}))
     this.setState(state=>({handleClick3: false}))
-    console.log('CLICKED 1ST ICON')
+    //console.log('CLICKED 1ST ICON')
   }
 
   handleClick2 = () => {
@@ -50,9 +50,9 @@ const SubMenu = Menu.SubMenu;
 
     const {handleClick1, handleClick2, handleClick3 } = this.state;
     const id = this.props.id;
-    console.log(id)
+    //console.log(id)
     const {contacts} = this.props;
-    console.log(contacts)
+    //console.log(contacts)
     
 
     return (

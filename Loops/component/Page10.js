@@ -83,7 +83,7 @@ import { handleSubmit, handleReducer} from './../../actions/CalculatorActions';
 }
 Page10.propTypes = {
     normalState: PropTypes.func.isRequired,
-    result: PropTypes.object.isRequired,
+    result: PropTypes.number.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleReducer: PropTypes.func.isRequired
 }

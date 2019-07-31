@@ -45,8 +45,8 @@ const columns = [
     },
     {
         title: 'Change (%)',
-        dataIndex:'change',
-        key: 'change',
+        dataIndex:'change%',
+        key: 'change%',
     }
 
   ];
@@ -328,7 +328,7 @@ const { Header, Footer, Sider, Content } = Layout;
                         <Col span={24}><Icon type="bars" className='icon' style={{color:'grey',float:'left'}}/><p className='paragraph1'>Holding performance</p></Col>
                     </Row>
                     <Row>
-                        <Col key={id} span={24} style={{backgroundColor:'powderblue', height:'100px'}}><Table columns={columns} dataSource={data} /></Col>
+                        <Col row='name' span={24} style={{backgroundColor:'powderblue', height:'100px'}}><Table columns={columns} dataSource={data} /></Col>
                     </Row>
 
                     

@@ -62,7 +62,7 @@ import Page10 from './Page10';
                     <Col span={2} className='div3'></Col>
                     <Col span={20} className='div4'>
                         <h5>table with data from API</h5>
-                        <Table dataSource={dataSource} columns={columns} pagination={{pageSize:50}}/>;
+                        <Table dataSource={dataSource} columns={columns} pagination={{pageSize:50}}/>
                     </Col>
                     <Col span={2} className='div3'></Col>
                 </Row>

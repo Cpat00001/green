@@ -1,0 +1,42 @@
+.p18_left{
+    min-height:100px;
+    background-color:rgb(255, 255, 255);
+    /* margin-top:100px */
+}
+.p18_right{
+    min-height:500px;
+    /* height:auto; */
+    background-color:rgb(255, 255, 255);
+    
+}
+.p18applications{
+    margin-top:100px;
+    margin-bottom:100px
+
+}
+.p18applicationsText{
+    float:left;
+}
+
+/* ########## Page18_Product styling */
+
+.p18p_icon{
+    border: 1px solid grey;
+    width: auto;
+    height: auto;
+    background-color: #F7F7F7;
+    border-radius:3px;
+    margin:2px;
+    opacity:0.5;
+    padding:5px;
+}
+.p18p_icon:hover{
+    opacity:1.0
+}
+.text1{
+    float: left;
+    /* font-weight:bold; */
+    color:white;
+    font-size:15px;
+    text-align:center;
+}

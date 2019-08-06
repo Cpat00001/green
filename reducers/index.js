@@ -8,6 +8,7 @@ import dataReducer from './DataReducer';
 import calculatorReducer from './calculatorReducer';
 import prodReducer from './prodReducer';
 import dataChartReducer from './dataChartReducer';
+import financialReducer from './financialReducer';
 
 export default combineReducers({
     contact: contactReducer,
@@ -18,7 +19,8 @@ export default combineReducers({
     data: dataReducer,
     value: calculatorReducer,
     produkt: prodReducer,
-    fetchData: dataChartReducer
+    fetchData: dataChartReducer,
+    financialProd: financialReducer
 })
 
 

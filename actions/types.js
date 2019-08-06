@@ -49,4 +49,7 @@ export const REPLACEDATA = 'REPLACEDATA'
 export const MODEL_DATA = 'MODEL_DATA'
 export const MODEL_DETAILS = 'MODEL_DETAILS'
 
+//get financial products
+export const GET_FINPROD = 'GET_FINPROD'
+
 

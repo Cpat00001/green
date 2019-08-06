@@ -111,8 +111,6 @@ export class Table3 extends Component {
             
           ];
 
-       
-
 
         return (
             <div>

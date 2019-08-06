@@ -2,9 +2,10 @@ import {STYLE,BANNER} from './../actions/types';
 
 const initialState = { 
     
-    backgroundColor1: 'grey',
-    backgroundColor2: 'black',
-    backColor:'powderblue',
+    backgroundColor1: '#44b3ae',
+    backgroundColor2: '#4db874',
+    backgroundColor3: '#715ac8',
+    backColor:'#527bbc',
     width: '500px',
     height:'300px',
     banner: false,

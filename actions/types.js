@@ -52,4 +52,7 @@ export const MODEL_DETAILS = 'MODEL_DETAILS'
 //get financial products
 export const GET_FINPROD = 'GET_FINPROD'
 
+//get models for Page 19 SUB-ACCOUNT
+export const SUBACC_MODEL = 'SUBACC_MODEL'
+
 

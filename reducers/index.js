@@ -9,6 +9,8 @@ import calculatorReducer from './calculatorReducer';
 import prodReducer from './prodReducer';
 import dataChartReducer from './dataChartReducer';
 import financialReducer from './financialReducer';
+import subaccountReducer from './subaccountReducer';
+
 
 export default combineReducers({
     contact: contactReducer,
@@ -20,7 +22,8 @@ export default combineReducers({
     value: calculatorReducer,
     produkt: prodReducer,
     fetchData: dataChartReducer,
-    financialProd: financialReducer
+    financialProd: financialReducer,
+    subAcc: subaccountReducer
 })
 
 

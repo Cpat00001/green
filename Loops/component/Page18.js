@@ -32,16 +32,53 @@ render() {
                     <Row gutter={16} style={{marginTop:'100px'}}>
                         <Col sm={12} className='p18_left'>
                             <Row>
-                                <Col span={24} style={{height:'100px', backgroundColor:'rgb(245,245,245)', margin:'5px' , borderRadius:'5px'}}></Col>
+                                <Col span={24} style={{height:'100px', backgroundColor:'rgb(245,245,245)', margin:'5px' , borderRadius:'5px'}}>
+                                    <Row>
+                                        <Col span={12}><h5>Total value</h5></Col>
+                                        <Col span={12}><h5><span style={{fontSize:'15px', fontWeight:'bold'}}>£</span>00.00</h5></Col>
+                                    </Row>
+                                    <Row>
+                                        <Col span={12}><h5>Total cash</h5></Col>
+                                        <Col span={12}><h5><span style={{fontSize:'15px', fontWeight:'bold'}}>£</span>300.00</h5></Col>
+                                    </Row>
+                                    <Row>
+                                        <Col span={2}></Col>
+                                        <Col span={20}><p style={{fontSize:'12px'}}>Combined values of all active accounts. Market Value uses latest closing prices.</p></Col>
+                                        <Col span={2}></Col>
+                                    </Row>
+                                </Col>
                             </Row> 
                             <Row>
-                                <Col span={24} style={{height:'400px', backgroundColor:'rgb(245,245,245)', margin:'5px', borderRadius:'5px'}}></Col>
+                                <Col span={24} style={{minHeight:'400px',height:'auto', backgroundColor:'rgb(245,245,245)', margin:'5px', borderRadius:'5px', height:'auto'}}></Col>
                             </Row> 
                              <Row>
-                                <Col span={24} style={{height:'200px', backgroundColor:'rgb(200,245,245)', margin:'5px', borderRadius:'5px'}}></Col>
+                                <Col span={24} style={{minHeight:'50px',height:'auto', backgroundColor:'rgba(113, 90, 200, 0.1)',color:'#715ac8',boxShadow:'0px 0px 0px 1px #715ac8', margin:'5px', borderRadius:'5px'}}>
+                                    <Icon type="arrow-down" style={{fontSize:'20px',float:'left',padding: "10px 0"}}/>
+                                    <p style={{float:'left', textAlign:'center', padding: "10px 0"}}><span style={{fontWeight:'bold'}}>20,000.00 GBP</span> ISA funding available in this period.</p>
+                                </Col>
                             </Row>
                             <Row>
-                                <Col span={24} style={{height:'100px', backgroundColor:'rgb(245,245,245)', margin:'5px', borderRadius:'5px'}}></Col>
+                                <div className='p18smallBox'><Icon type="user" style={{float:'left'}}/><p>Contact Details</p></div>
+                                <Col span={24} style={{minHeight:'100px',height:'auto', backgroundColor:'rgb(245,245,245)', margin:'20px', borderRadius:'5px'}}>
+                                    <Row style={{marginTop:'60px',padding:'20px'}}>
+                                        <Col span={2}></Col>
+                                        <Col span={2}>
+                                            <Row>
+                                                <Col span={24}><Icon type="home" /></Col>
+                                                <Col span={24}><Icon type="phone" /></Col>
+                                                <Col span={24}><Icon type="mail" /></Col>        
+                                            </Row>
+                                        </Col>
+                                        <Col span={18}>
+                                            <Row>
+                                                <Col span={24}><p>adres details</p></Col>
+                                                <Col span={24}><p>mobile</p></Col>
+                                                <Col span={24}><p>email</p></Col>        
+                                            </Row>
+                                        </Col>
+                                        <Col span={2}></Col>
+                                    </Row>
+                                </Col>
                             </Row> 
                         </Col>
 

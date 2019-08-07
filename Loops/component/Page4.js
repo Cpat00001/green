@@ -17,7 +17,96 @@ class Page4 extends Component {
 
     const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 
+    class Class{
+      constructor(num){
+        this.num = num;
+      }
+      then(res,rej){
+        setTimeout(()=> res(this.num * 3),3000);
+      }
+    }
+    async function wolacz(){
+      let result = await new Class(3);
+      alert(result);
+    }
+    wolacz();
 
+    // class Klasa{
+    //   constructor(num){
+    //     this.num = num;
+    //   }
+    //   then(resolve,reject){
+    //     setTimeout(()=> resolve(this.num * 2),2000);
+    //   }
+    // }
+    // async function f(){
+    //   let result = await new Klasa(1);
+    //   alert(result);
+    // }
+    // f();
+    
+
+    // class Thenable{
+    //   constructor(num){
+    //     this.num = num;
+    //   }
+    //   then(resolve,reject){
+    //     // alert(resolve);
+    //     setTimeout(()=> resolve(this.num * 2),1000);
+    //   }
+    // }
+    // async function f(){
+    //   let result = await new Thenable(1);
+    //   alert(result);
+    // }
+    // f();
+
+    // async function newFun(){
+    //   let promise = new Promise((resolve,reject)=>{
+    //     setTimeout(()=> resolve('booom'),2000);
+    //   });
+    //   let result = await promise;
+    //   alert(result);
+    // }
+    // newFun();
+
+    // async function f(){
+
+    //   let prom = new Promise((resolve,reject)=>{
+    //     setTimeout(()=>resolve('bingo'),2000);
+    //   })
+    //   let result = await prom;
+    //   alert(result);
+    // };
+    // f();
+
+    // async function f(){
+    //   let promise = new Promise((resolve,reject)=>{
+    //     setTimeout(()=>resolve("done"), 2000)
+    //   })
+    //   let result = await promise;
+    //   alert(result);
+    // }
+    // f();
+
+
+    // async function f(){
+    //  let promise = new Promise((resolve,reject)=>{
+    //    setTimeout(()=>resolve("done"),2000);
+    //  })
+    //  let result = await promise;
+    //   alert(result);
+    // }
+    // f();
+
+  //  void function test(){
+  //    console.log('huurraa');
+  //  }();
+  //  try{
+
+  //  }catch(e){
+  //    console.log(e);
+  //  }
 
 
     const date = companies.sort((a, b) => (a.start > b.start ? 1 : -1));

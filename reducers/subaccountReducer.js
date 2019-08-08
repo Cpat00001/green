@@ -1,8 +1,10 @@
-import {SUBACC_MODEL} from './../actions/types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS} from './../actions/types';
 
 const initialState = {
 
-    subbAccounts: []
+    subbAccounts: [],
+    Modelinstruments:[],
+    selectedInstruments:[]
 };
 
 export default function(state = initialState , action){
@@ -13,7 +15,20 @@ export default function(state = initialState , action){
             return{
                 ...state,
                 subbAccounts: action.payload 
-            } 
+            }
+        case MATCH_INSTRUMENT:
+            return{
+                ...state,
+                Modelinstruments: action.payload
+
+            }
+        case FILTER_INSTRUMENTS:
+            return{
+                ...state,
+                selectedInstruments: state.Modelinstruments.filter( model => model.match === action.payload )
+                
+
+            }
         default:
             return state
 

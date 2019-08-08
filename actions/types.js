@@ -54,5 +54,7 @@ export const GET_FINPROD = 'GET_FINPROD'
 
 //get models for Page 19 SUB-ACCOUNT
 export const SUBACC_MODEL = 'SUBACC_MODEL'
+export const MATCH_INSTRUMENT = 'MATCH_INSTRUMENT'
+export const FILTER_INSTRUMENTS = 'FILTER_INSTRUMENTS'
 
 

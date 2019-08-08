@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon, Button,Switch,Select,Table } from 'antd';
+import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider } from 'antd';
 import './../../css/Page18.css';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
@@ -14,14 +14,32 @@ const { Option, OptGroup } = Select;
      constructor(props){
          super(props)
 
-         this.state = {}
+         this.state = { 
+             
+            radiovalue: 1,
+            bespokeModel: false 
+        
+        }
 
          this.clickSelect = this.clickSelect.bind(this)
+         this.onRadioChange = this.onRadioChange.bind(this)
+         this.handleSwitchClick = this.handleSwitchClick.bind(this)
      }
      componentDidMount(){
          this.props.getSubAccountModels();
          console.log('Page19 mounted',this.props)
      }
+
+     handleSwitchClick(){
+         this.setState({ bespokeModel:true})
+     }
+     onRadioChange = event => {
+
+        console.log('radio checked', event.target.value);
+        this.setState({
+          radiovalue: event.target.value  
+         })
+    }
 
      clickSelect(value){
         console.log(`selected ${value}`);
@@ -91,13 +109,30 @@ const { Option, OptGroup } = Select;
                                 <Col span={8}><h5 className='text2'>Model Selection</h5></Col>
                                 <Col span={6}></Col>
                                 <Col span={6}><p style={{float:'right'}}>Create a bespoke Model:</p></Col>
-                                <Col span={2}><Switch defaultChecked /></Col>   
+                                <Col span={2}><Switch defaultChecked onClick={this.handleSwitchClick}/></Col>   
                             </Row>
+                        </Col>
+                    </Row>
+                </div>
+
+
+                {/* beginning of subComponent */}
+                <div style={{maxWidth:'1100px',margin:'auto'}}>
+
+                    <Row>
+                        <Col span={24}>
                             <Row>
-                                <Col span={12}><p>Please choose from the list of existing models shown below.</p></Col>
+                                <Col span={12}><p style={{float:'left'}}>Please choose from the list of existing models shown below.</p></Col>
                                 <Col span={12}></Col>
                             </Row>
+                        </Col>
+                
+                        
+                            {/* switch change select a model and create a model */}
+                        
+
                             {/* dropdown list choose a model */}
+                            <Col span={24}>
                             <Row>
                                 <Col span={12}>
                                 <Select placeholder='Please Select a model...'  style={{ minWidth: '100%' }} onChange={this.clickSelect}>
@@ -119,9 +154,46 @@ const { Option, OptGroup } = Select;
                                 </Col>
                             </Row>
                         </Col>
-                        {/* <Col span={12}></Col> */}
-
+                        
                     </Row>
+                </div>
+                {/* end of subComponent */}
+
+
+                
+                <div style={{maxWidth:'1100px',margin:'auto'}}>
+                    <Divider />
+                    <Row>
+                        <Col span={12}>
+                            <Row>
+                                <Col span={2}>
+                                <Icon type="vertical-right" style={{float:'left'}} className='p18p_icon' />
+                                </Col>
+                                <Col span={10}><h5 className='text2'>Income Options</h5></Col>
+                                <Col span={12}></Col>
+                            </Row>
+                        </Col>
+                        <Col span={12}></Col>
+                    </Row>
+                    <Row>
+                        <Col span={24}>
+                            <p style={{float:'left'}}>Please choose your preferred income option for this account.</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={12}>
+                            <Row>
+                                <Col span={24}>
+                                <Radio.Group onChange={this.onRadioChange} radiovalue={this.state.value}>
+                                    <Radio value={1}>Use as available cash.</Radio>
+                                    <Radio value={2}>Reinvest any income into the underlying model.</Radio> 
+                                </Radio.Group>    
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col span={12}></Col>
+                    </Row>
+                    <Divider />
                 </div>
             </div>
         )

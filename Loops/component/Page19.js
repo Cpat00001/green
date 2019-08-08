@@ -6,6 +6,9 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {SUBACC_MODEL} from './../../actions/types';
 import {getSubAccountModels, matchingInstrumentModel} from './../../actions/SubaccountActions';
+import Page19_selectModelTable from './Page19_selectModelTable';
+import Page19_createBespokeModel from './Page19_createBespokeModel';
+
 
 
 const { Option, OptGroup } = Select;
@@ -17,21 +20,21 @@ const { Option, OptGroup } = Select;
          this.state = { 
              
             radiovalue: 1,
-            bespokeModel: false 
+            bespokeModel: true 
         
         }
 
-         this.clickSelect = this.clickSelect.bind(this)
+        //  this.clickSelect = this.clickSelect.bind(this)
          this.onRadioChange = this.onRadioChange.bind(this)
          this.handleSwitchClick = this.handleSwitchClick.bind(this)
      }
-     componentDidMount(){
-         this.props.getSubAccountModels();
-         console.log('Page19 mounted',this.props)
-     }
+    //  componentDidMount(){
+    //      this.props.getSubAccountModels();
+    //      console.log('Page19 mounted',this.props)
+    //  }
 
      handleSwitchClick(){
-         this.setState({ bespokeModel:true})
+         this.setState({ bespokeModel:!this.state.bespokeModel})
      }
      onRadioChange = event => {
 
@@ -41,15 +44,16 @@ const { Option, OptGroup } = Select;
          })
     }
 
-     clickSelect(value){
-        console.log(`selected ${value}`);
-        //send an action which wysyla payload to reducer reducer as case has got match BK35 or other name, and then filter reducer state where case === match in array[objects]
-        this.props.matchingInstrumentModel(value)
-        // this.props.selectIntrument(value)
-     }
+    //  clickSelect(value){
+    //     console.log(`selected ${value}`);
+    //     //send an action which wysyla payload to reducer reducer as case has got match BK35 or other name, and then filter reducer state where case === match in array[objects]
+    //     this.props.matchingInstrumentModel(value)
+    //     // this.props.selectIntrument(value)
+    //  }
      
     render() {
 
+        const bespokeModel = this.state.bespokeModel;
         const subaccounts = this.props.subbAccounts;
         console.log(subaccounts)
         const  matchinInstruments = this.props;
@@ -111,58 +115,31 @@ const { Option, OptGroup } = Select;
                                 <Col span={6}><p style={{float:'right'}}>Create a bespoke Model:</p></Col>
                                 <Col span={2}><Switch defaultChecked onClick={this.handleSwitchClick}/></Col>   
                             </Row>
+                            <Row>
+                                <Col span={24}>{bespokeModel? null:(
+                                <Row>
+                                <Col span={18}><p style={{float:'left'}}>Please create a bespoke model by adding instruments and setting the allocation values to reach a total of 100%.</p></Col>
+                                
+                                <Col span={6}>
+                                    <p style={{color:'#ffc107',backgroundColor:'#dc3545',borderRadius:'5px',fontWeight:'bold'}}>Creating BespokeModel Mode</p>
+                                </Col>
+            
+                            </Row>
+                                
+                                )}</Col>
+                            </Row>
                         </Col>
                     </Row>
                 </div>
+                { bespokeModel? (
+                    <Page19_selectModelTable data={data} columns={columns} subaccounts={subaccounts}/>
+                ):(
+                    <Page19_createBespokeModel columns={columns} data={data}/>  
+                )}
 
 
-                {/* beginning of subComponent */}
                 <div style={{maxWidth:'1100px',margin:'auto'}}>
-
-                    <Row>
-                        <Col span={24}>
-                            <Row>
-                                <Col span={12}><p style={{float:'left'}}>Please choose from the list of existing models shown below.</p></Col>
-                                <Col span={12}></Col>
-                            </Row>
-                        </Col>
-                
-                        
-                            {/* switch change select a model and create a model */}
-                        
-
-                            {/* dropdown list choose a model */}
-                            <Col span={24}>
-                            <Row>
-                                <Col span={12}>
-                                <Select placeholder='Please Select a model...'  style={{ minWidth: '100%' }} onChange={this.clickSelect}>
-                                        <OptGroup label="Modles">
-                                            {/* zrob map przez dane jako value wstaw nazwe jako model nazwa wstaw nazwe */}
-                                            {subaccounts.map((model,id)=>
-                                                <Option value={model.model} key={id}>{model.model}</Option>
-                                            )}
-                                </OptGroup>
-                                </Select>
-                                </Col>
-                                <Col span={12}></Col>
-                            </Row>
-                            <Row style={{marginTop:'10px'}}>
-                                <Col span={24}>
-                                    <div>
-                                        <Table columns={columns} dataSource={data} size="small" pagination={false} className='p19_table'/>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Col>
-                        
-                    </Row>
-                </div>
-                {/* end of subComponent */}
-
-
-                
-                <div style={{maxWidth:'1100px',margin:'auto'}}>
-                    <Divider />
+                <Divider />
                     <Row>
                         <Col span={12}>
                             <Row>
@@ -202,24 +179,14 @@ const { Option, OptGroup } = Select;
 Page19.propTypes = {
 
     subbAccounts:PropTypes.array.isRequired,
-    getSubAccountModels: PropTypes.func.isRequired,
-    matchingInstrumentModel: PropTypes.func.isRequired,
     selectIntrument: PropTypes.func.isRequired
 
 }
 const mapStateToProps = state =>{
     return{
         subbAccounts: state.subAcc.subbAccounts,
-        Modelinstruments: state.subAcc.Modelinstruments,
         selectedInstruments: state.subAcc.selectedInstruments,
     }
 }
-// const mapDispatchToProps = dispatch =>{
-//     return{
-//         getSubAccountModels: ()=>{dispatch(getSubAccountModels())
-//         matchingInstrumentModel:()=>{dispatch(matchingInstrumentModel())}    
-//         }
-//     }
-// }
-//export default connect(mapStateToProps,mapDispatchToProps ) (Page19);
+
 export default connect(mapStateToProps,{getSubAccountModels,matchingInstrumentModel}) (Page19);

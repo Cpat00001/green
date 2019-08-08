@@ -88,18 +88,10 @@
   }
 
 
-/* .p19_table tr:nth-child(even){background-color: #918888;}
-.p19_table tr:nth-child(odd){background-color: #6d3737;}
-
-
-tbody tr:nth-child(odd){
-    background-color: #d17474;
-    transition: all 0.3s, border 0s;
+/* ######### Page19_createBespokeModel */
+.labelText{
+    font-size: 0.85em;
+    font-style: italic;
+    margin-bottom: 5px;
+    float:left
 }
-.p19_table tbody tr:nth-child(odd){
-    background-color: #3e947a;
-    transition: all 0.3s, border 0s;
-} */
-/* .p19_table row{
-    background-color: #d17474;
-} */

@@ -1,4 +1,4 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS}  from './types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION}  from './types';
 import axios from 'axios';
 
 export const getSubAccountModels = () => async dispatch => {
@@ -38,5 +38,31 @@ export const matchingInstrumentModel = (value) => async dispatch =>{
         payload:value
 
     })
+}
+// actions for popup window >> MODAL >> search by TYPE search by Name , search by SEDOL 
+
+export const searchByType = () => async dispatch =>{
+    let result = await axios.get('/Data/ModelDetails2.json')
+    console.log('SEARCH BY TYPE FOR MODAL', result.data)
+    dispatch({
+        type: SEARCH_BYTYPE,
+        payload:result.data
+    })
+}
+//add  a row (with instrument) from table to reducer state.
+export const addInstrument = (info) =>{
+    return{
+        type: ADD_INSTRU,
+        payload: info
+    }
+}
+
+// this acction will be used for allocation
+export const allocations = (allo) => {
+    return{
+        type: ALLOCATION,
+        payload: allo
+
+    }
 }
 

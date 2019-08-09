@@ -20,7 +20,8 @@ const { Option, OptGroup } = Select;
          this.state = { 
              
             radiovalue: 1,
-            bespokeModel: true 
+            bespokeModel: true,
+            allocations:''
         
         }
 
@@ -134,7 +135,7 @@ const { Option, OptGroup } = Select;
                 { bespokeModel? (
                     <Page19_selectModelTable data={data} columns={columns} subaccounts={subaccounts}/>
                 ):(
-                    <Page19_createBespokeModel columns={columns} data={data}/>  
+                    <Page19_createBespokeModel columns={columns} data={data} subaccounts={subaccounts}/>  
                 )}
 
 

@@ -57,4 +57,9 @@ export const SUBACC_MODEL = 'SUBACC_MODEL'
 export const MATCH_INSTRUMENT = 'MATCH_INSTRUMENT'
 export const FILTER_INSTRUMENTS = 'FILTER_INSTRUMENTS'
 
+// type for models in POPUP MODAL WINDOW
+export const SEARCH_BYTYPE = 'SEARCH_BYTYPE' 
+export const ALLOCATION = 'ALLOCATION'
+export const ADD_INSTRU = 'ADD_INSTRU'
+
 

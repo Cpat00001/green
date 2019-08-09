@@ -1,10 +1,13 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS} from './../actions/types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION} from './../actions/types';
 
 const initialState = {
 
     subbAccounts: [],
     Modelinstruments:[],
-    selectedInstruments:[]
+    selectedInstruments:[],
+    search_type: [],
+    allocation:'',
+    tableInstruments:[]
 };
 
 export default function(state = initialState , action){
@@ -29,8 +32,22 @@ export default function(state = initialState , action){
                 
 
             }
+        case SEARCH_BYTYPE:
+            return{
+                ...state,
+                search_type: action.payload
+            }
+        case ALLOCATION:
+            return{
+                ...state,
+                allocation: state.allocation == 0 ? action.payload : state.allocation + action.payload
+            }
+        case ADD_INSTRU:
+            return{
+                ...state,
+                tableInstruments: [action.payload, ...state.tableInstruments]
+            }
         default:
             return state
-
     }
 }

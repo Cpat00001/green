@@ -1,4 +1,4 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION} from './../actions/types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD} from './../actions/types';
 
 const initialState = {
 
@@ -46,6 +46,11 @@ export default function(state = initialState , action){
             return{
                 ...state,
                 tableInstruments: [action.payload, ...state.tableInstruments]
+            }
+        case DELETE_RECORD:
+            return{
+                ...state,
+                tableInstruments: state.tableInstruments.filter(record => record.id !== action.payload)
             }
         default:
             return state

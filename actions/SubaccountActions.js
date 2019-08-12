@@ -1,5 +1,6 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION}  from './types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD}  from './types';
 import axios from 'axios';
+import { relativeTimeRounding } from 'moment';
 
 export const getSubAccountModels = () => async dispatch => {
 
@@ -50,10 +51,10 @@ export const searchByType = () => async dispatch =>{
     })
 }
 //add  a row (with instrument) from table to reducer state.
-export const addInstrument = (info) =>{
+export const addInstrument = (newInstrument) =>{
     return{
         type: ADD_INSTRU,
-        payload: info
+        payload: newInstrument
     }
 }
 
@@ -63,6 +64,13 @@ export const allocations = (allo) => {
         type: ALLOCATION,
         payload: allo
 
+    }
+}
+//delete row/record from table
+export const deleteRecord = id => {
+    return{
+        type: DELETE_RECORD,
+        payload: id
     }
 }
 

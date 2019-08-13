@@ -1,4 +1,4 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD} from './../actions/types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION} from './../actions/types';
 
 const initialState = {
 
@@ -6,8 +6,9 @@ const initialState = {
     Modelinstruments:[],
     selectedInstruments:[],
     search_type: [],
-    allocation:'',
-    tableInstruments:[]
+    // allocation:[],
+    tableInstruments:[],
+    sum: ''
 };
 
 export default function(state = initialState , action){
@@ -51,6 +52,13 @@ export default function(state = initialState , action){
             return{
                 ...state,
                 tableInstruments: state.tableInstruments.filter(record => record.id !== action.payload)
+            }
+        case INSERT_ALLOCATION:
+            return{
+                ...state,
+                sum: action.payload
+                //allocation: state.subAcc.tableInstruments.allocation.push(action.payload)
+
             }
         default:
             return state

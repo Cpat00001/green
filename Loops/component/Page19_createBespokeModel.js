@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider,Input, Tooltip,DatePicker, Modal,Tag} from 'antd';
+import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider,Input, Tooltip,DatePicker, Modal,Tag, Form} from 'antd';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import {searchByType,addInstrument, allocations,deleteRecord} from './../../actions/SubaccountActions';
+import {searchByType,addInstrument, allocations,deleteRecord, insertAllocation} from './../../actions/SubaccountActions';
 import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
 
 
@@ -19,49 +19,24 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             value2:'' || 'Sedol',
             value3:'',
             errors: '',
+            allocation:'',
+            allocation2: [],
             narrowSearch:[],
             value:0,
-            allocation: []
           };
 
           this.popUpButtonClick = this.popUpButtonClick.bind(this)
           this.searchForType = this.searchForType.bind(this)
           this.handleRemove = this.handleRemove.bind(this)
           this.handleAllocation = this.handleAllocation.bind(this)
-          this.handleBlur = this.handleBlur.bind(this)
+          this.handleSubmit = this.handleSubmit.bind(this)
         
      }
      componentDidMount(){
         this.props.searchByType();
         console.log('Page19 mounted',this.props)
     }
-    handleAllocation(event){
-        this.setState({ [event.target.name]: event.target.value });
-        console.log('event.target.value',event.target.value)
-        this.setState({value:event.target.value})
-        //on blur zrob submit >> submit bedzie push.array >> a pozniej reduce(obecna wartosc,plus kolejna)
-
-        // if(this.state.allocation !== 0){
-
-        //     this.state.allocation = 0 ? event.target.value: this.state.allocation + event.target.value
-
-        //     console.log('this.state.allocation',this.state.allocation)
-        //     // let accu = this.state.allocation;
-        //     // let curr = event.target.value;
-            
-        //     // const total = accu.reduce((accu,curr) => accu + curr,0 )
-        //     // console.log(total)
-        // }
-
-     }
-     handleBlur(){
-        console.log('this.state.allocation',this.state.allocation)
-        // this.setState({allocation:this.state.value === 0 ? this.state.value + this.state.value})
-        //value: state.value == 0 ? action.payload : state.value + action.payload
-
-     }
      
-    
     // searchByType handle swtich button change main views select one of models or creating BespokeModel 
      searchForType(event){
         console.log(`selected searchFor TYPE ${event}`);
@@ -85,13 +60,34 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
         this.props.deleteRecord(id)
      }
      
+     //HANDLE ALLOCATION
+     handleAllocation(event){
+        this.setState({allocation: parseInt(event.target.value)});
+        console.log('RECORD...',event);
+       
+
+        // const value = parseInt([event.target.value]);
+        //this.props.insertAllocation(value)
+    
+     }
+     handleSubmit(event){
+        event.preventDefault();
+        const ev = this.state.allocation
+        console.log('wartosc z input field', ev)
+        const {allocation2} = this.state;
+        allocation2.push(ev)
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        const sum = allocation2.reduce(reducer);
+        console.log('podaj sume input fields', sum)
+        this.props.insertAllocation(sum)
+     }
+     
     render() {
 
         
-
         //data from reducer state
         const dataforTable = this.props.tableInstruments;
-        console.log('dataforTable....wlasciwe dane po selekcji do glownej tablie',dataforTable)
+        console.log('dataforTable....wlasciwe dane po selekcji do glownej tabeli',dataforTable)
 
         //data from Parent Component
         const data = this.state.narrowSearch;
@@ -111,7 +107,22 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
         const columns = [
             { title:'Sedol',dataIndex:'sedol', key:'sedol'},
             { title: 'Name', dataIndex: 'name', key: 'name' },
-            { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: () => <Input size="small" placeholder="insert a number" name='allocation' onChange={this.handleAllocation} style={{width:'50%'}} onBlur={this.handleBlur}/> },
+            // { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record.allocation)} style={{width:'50%'}} /> },
+            // { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record)} style={{width:'50%'}} /> },
+            { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: () => 
+            
+            <form onSubmit={this.handleSubmit}>
+                <input type="text"  onChange={this.handleAllocation} />
+                <input type="submit" value="Allocate" />
+            </form>
+            
+            // <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record)} style={{width:'50%'}} />
+        
+        
+        
+        
+        },
+            
             {
               title: 'Action',
               dataIndex: '',
@@ -147,7 +158,7 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
                                                 }/>
                             </Col>
                             <Col span={8}><DatePicker size={size} placeholder='current date'/></Col>
-                            <Col span={8}><h5 style={{float:'left'}}><span>{this.state.allocation}</span>%</h5></Col>
+                            <Col span={8}><h5 style={{float:'left'}}><span>{this.props.sum}</span>%</h5></Col>
                         </Row>
                     </Col>
                 </Row>
@@ -195,13 +206,16 @@ Page19_createBespokeModel.propTypes = {
     allocations: PropTypes.func.isRequired,
     addInstrument: PropTypes.func.isRequired,
     tableInstruments: PropTypes.array.isRequired,
+    insertAllocation: PropTypes.func.isRequired,
+    sum: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state =>{
     return{
         search_type: state.subAcc.search_type,
         tableInstruments: state.subAcc.tableInstruments,
+        sum: state.subAcc.sum
     }
 }
-export default connect(mapStateToProps,{searchByType,addInstrument,allocations,deleteRecord}) (Page19_createBespokeModel)
+export default connect(mapStateToProps,{searchByType,addInstrument,allocations,deleteRecord,insertAllocation}) (Page19_createBespokeModel)
 

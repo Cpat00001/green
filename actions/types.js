@@ -62,5 +62,6 @@ export const SEARCH_BYTYPE = 'SEARCH_BYTYPE'
 export const ALLOCATION = 'ALLOCATION'
 export const ADD_INSTRU = 'ADD_INSTRU'
 export const DELETE_RECORD = 'DELETE_RECORD'
+export const INSERT_ALLOCATION =  'INSERT_ALLOCATION'
 
 

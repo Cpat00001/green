@@ -7,7 +7,7 @@ const initialState = {
     selectedInstruments:[],
     search_type: [],
     tableInstruments:[],
-    sum: []
+    sum: ""
 };
 
 export default function(state = initialState , action){
@@ -55,13 +55,49 @@ export default function(state = initialState , action){
         case INSERT_ALLOCATION:
             
                 let copy = Object.assign({},state);
-                let intruments = copy.tableInstruments.filter( instr => instr.id === action.instrumentId)[0]
-                intruments.allocation.push(action.payload)
+                let instruments = copy.tableInstruments.filter( instr => instr.id === action.instrumentId)[0]
+                //intruments.allocation.push(action.payload)
+                instruments.allocation = action.payload
 
         case ALLOCATIN_SUM:
-        //loop through arrays of allocation, get values and push to one array. then add all element of this big array to check if sum is >100 or less
-        let loop = state.tableInstruments[0].allocation.forEach(function(element){console.log(element)})
-                    
+        
+        
+            // let loop = state.tableInstruments.map( element => parseInt(element.allocation))
+            // console.log('podaj looooop___', loop)
+            // let sum = loop.reduce((a, b)=> a + b, 0 )
+            // console.log('suuuuuuummm___',sum)
+            return{
+                ...state,
+                sum: state.tableInstruments.map(element => parseInt(element.allocation)).reduce((a, b)=> a + b, 0)
+                
+                // inny test
+                //sum: state.tableInstruments.map( (element) => { parseInt(element.allocation) }).reduce((a, b)=> {
+                    // if(typeof b === "undefined" || b === ''){
+
+                    //     b = 0;
+
+                    //     console.log(`a value ${a}`)
+                    //     console.log(`b value ${b}`)
+
+                    //     console.log(`sum ${a + b}`)
+
+                    //     return a + b
+
+                    // }else{
+
+                    //     console.log(`a value ${a}`)
+                    //     console.log(`b value ${b}`)
+
+                    //     console.log(`sum ${a + b}`)
+
+                    //     return a + b
+
+                    // }
+
+                //}, 0 )
+            }
+            
+        
         default:
             return state
     }

@@ -62,9 +62,14 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
      }
      
      //HANDLE ALLOCATION
-     handleAllocation(event){
+     handleAllocation(value){
         let allocation = this.state.allocation;
-        this.setState({allocation: event.target.value});
+        this.setState({allocation: value});
+    //  dzialajacy kod z Input bez value ###############
+    //  handleAllocation(event){
+    //     let allocation = this.state.allocation;
+    //     this.setState({allocation: event.target.value});
+    //#######################################################
 
         //this.setState({allocation: parseInt(value)});
         console.log('RECORD...',allocation);
@@ -75,22 +80,36 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
 
      handleSubmit(event,record){
 
-        //#### works fine adds to proper intruments #######//
-        console.log('record values.......',record)
-        event.preventDefault();
-        let instrumentId = record.id;
-        console.log('instrumentId_  ',instrumentId)
-        let value = this.state.allocation;
-        console.log('value to pass to redux___',value)
-        this.props.insertAllocation(instrumentId,value)
-        // ###############################################
+        let value = parseInt(this.state.allocation);
+        let added =  parseInt(this.props.sum)
+        console.log('added___', added)
+        console.log('value to add___',value )
 
-        //if value is submitted, then change button and inputfieldReadOly or disabled
-        
+        if(this.props.sum + value > 100 || value > 100){
+            alert('not allowed')
+        }else{
 
-        // map allocations in redux state and add all values - display onPage as total % of allocation
-        this.props.allocationSum()
-        console.log('this.props.allocation_________',this.props.allocation)
+             //#### works fine adds to proper intruments #######//
+            console.log('record values.......',record)
+            event.preventDefault();
+            let instrumentId = record.id;
+            console.log('instrumentId_  ',instrumentId)
+            let value = this.state.allocation;
+            console.log('value to pass to redux___',value)
+            this.props.insertAllocation(instrumentId,value)
+            // ###############################################
+
+            //if value is submitted, then change button('CLEAR INPUT') and inputfieldReadOly or disabled
+
+
+            // map allocations in redux state and add all values - display onPage as total % of allocation
+            this.props.allocationSum()
+            console.log('this.props.allocation_________',this.props.allocationSum)
+
+
+        }
+
+       
          
         // allocation2.push(value)
         // // let xyz = 0;
@@ -160,8 +179,9 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => 
             
             <form onSubmit={event => this.handleSubmit(event,record)}>
-                    <Input size="small" defaultValue={0} min={0} max={100} placeholder="insert a number" name='allocation' onChange={this.handleAllocation} style={{width:'50%'}} />
-                    {/* <InputNumber min={1} max={10} defaultValue={3} onChange={this.onChange} /> */}
+                        <InputNumber size="small"  defaultValue={0} min={0} max={100} placeholder="insert a number" name='allocation' onChange={this.handleAllocation} style={{width:'50%'}} />
+                    {/* <Input size="small" defaultValue={0} min={0} max={100} placeholder="insert a number" name='allocation' onChange={this.handleAllocation} style={{width:'50%'}} /> */}
+                    {/* <InputNumber min={1} max={10} defaultValue={3}  onChange={this.onChange} /> */}
                     <input type="submit" value="Allocate" id={this.props.tableInstruments[0].id} />
                 </form>
            },
@@ -253,7 +273,7 @@ Page19_createBespokeModel.propTypes = {
     addInstrument: PropTypes.func.isRequired,
     tableInstruments: PropTypes.array.isRequired,
     insertAllocation: PropTypes.func.isRequired,
-    sum: PropTypes.string.isRequired,
+    sum: PropTypes.number.isRequired,
     allocation: PropTypes.array.isRequired,
 }
 

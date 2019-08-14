@@ -1,4 +1,4 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION}  from './types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION, ALLOCATIN_SUM}  from './types';
 import axios from 'axios';
 import { relativeTimeRounding } from 'moment';
 
@@ -74,10 +74,17 @@ export const deleteRecord = id => {
     }
 }
 //INSERT ALLOCATION
-export const insertAllocation = sum =>{
+export const insertAllocation = (instrumentId,value) =>{
     return{
         type: INSERT_ALLOCATION,
-        payload: sum
+        instrumentId: instrumentId,
+        payload: value
+    }
+}
+// ALLOCATIN_SUM
+export const allocationSum = () => {
+    return{
+        type:ALLOCATIN_SUM
     }
 }
 

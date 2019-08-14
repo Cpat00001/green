@@ -63,5 +63,6 @@ export const ALLOCATION = 'ALLOCATION'
 export const ADD_INSTRU = 'ADD_INSTRU'
 export const DELETE_RECORD = 'DELETE_RECORD'
 export const INSERT_ALLOCATION =  'INSERT_ALLOCATION'
+export const ALLOCATIN_SUM = 'ALLOCATIN_SUM'
 
 

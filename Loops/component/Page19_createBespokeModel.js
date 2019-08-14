@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider,Input, Tooltip,DatePicker, Modal,Tag, Form} from 'antd';
+import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider,Input, Tooltip,DatePicker, Modal,Tag, Form, InputNumber} from 'antd';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import {searchByType,addInstrument, allocations,deleteRecord, insertAllocation} from './../../actions/SubaccountActions';
+import {searchByType,addInstrument, allocations,deleteRecord, insertAllocation,allocationSum} from './../../actions/SubaccountActions';
 import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
 
 
@@ -23,6 +23,7 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             allocation2: [],
             narrowSearch:[],
             value:0,
+            sum:''
           };
 
           this.popUpButtonClick = this.popUpButtonClick.bind(this)
@@ -30,7 +31,7 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
           this.handleRemove = this.handleRemove.bind(this)
           this.handleAllocation = this.handleAllocation.bind(this)
           this.handleSubmit = this.handleSubmit.bind(this)
-        
+         
      }
      componentDidMount(){
         this.props.searchByType();
@@ -62,25 +63,62 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
      
      //HANDLE ALLOCATION
      handleAllocation(event){
-        this.setState({allocation: parseInt(event.target.value)});
-        console.log('RECORD...',event);
-       
+        let allocation = this.state.allocation;
+        this.setState({allocation: event.target.value});
 
-        // const value = parseInt([event.target.value]);
-        //this.props.insertAllocation(value)
-    
+        //this.setState({allocation: parseInt(value)});
+        console.log('RECORD...',allocation);
+        // let instrumentId = this.props.tableInstruments[0].id;
+        // console.log('instrumentId_  ',instrumentId)
+  
      }
-     handleSubmit(event){
+
+     handleSubmit(event,record){
+
+        //#### works fine adds to proper intruments #######//
+        console.log('record values.......',record)
         event.preventDefault();
-        const ev = this.state.allocation
-        console.log('wartosc z input field', ev)
-        const {allocation2} = this.state;
-        allocation2.push(ev)
-        const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        const sum = allocation2.reduce(reducer);
-        console.log('podaj sume input fields', sum)
-        this.props.insertAllocation(sum)
+        let instrumentId = record.id;
+        console.log('instrumentId_  ',instrumentId)
+        let value = this.state.allocation;
+        console.log('value to pass to redux___',value)
+        this.props.insertAllocation(instrumentId,value)
+        // ###############################################
+
+        //if value is submitted, then change button and inputfieldReadOly or disabled
+        
+
+        // map allocations in redux state and add all values - display onPage as total % of allocation
+        this.props.allocationSum()
+        console.log('this.props.allocation_________',this.props.allocation)
+         
+        // allocation2.push(value)
+        // // let xyz = 0;
+        // // let allocation2 = xyz ? xyz : this.state.allocation;
+        // let reducer2 = ((accumulator, value) => accumulator + value);
+        // let sumAllo2 = allocation2.reduce(reducer2);
+        // console.log('sumAllo2',sumAllo2)
+
+        // if((this.state.allocation2 + value > 100) || (value > 100)){
+        // //if(this.props.sum > 100){
+        //     alert('Sorry cannot add more')
+        // }else{
+
+        //     let value = parseInt(this.state.allocation);
+        //     console.log('value', value)
+        //     let allocation2 = this.state.allocation2;
+        //     console.log('allocation2',allocation2)
+        //     //push value from allocation/input field into array allocation2
+        //     allocation2.push(value);
+
+        //     let reducer = ((accumulator, value) => accumulator + value);
+            
+        //         let sum = allocation2.reduce(reducer);
+        //         console.log('podaj sume input fields', sum)
+        //         this.props.insertAllocation(sum)
+        // }
      }
+     
      
     render() {
 
@@ -108,26 +146,34 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             { title:'Sedol',dataIndex:'sedol', key:'sedol'},
             { title: 'Name', dataIndex: 'name', key: 'name' },
             // { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record.allocation)} style={{width:'50%'}} /> },
-            // { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record)} style={{width:'50%'}} /> },
-            { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: () => 
             
-            <form onSubmit={this.handleSubmit}>
-                <input type="text"  onChange={this.handleAllocation} />
-                <input type="submit" value="Allocate" />
-            </form>
+            //######### new Solution in progress
+            //{ title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => 
             
-            // <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record)} style={{width:'50%'}} />
-        
-        
-        
-        
-        },
+            //<InputNumber defaultValue={0} min={0} max={100} onChange={this.handleAllocation} onBlur={this.handleBlur}/>
+            // 
+           //}
+        //######### end of testing new solution
+
+
+            // ######### working with submit form button
+            { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => 
+            
+            <form onSubmit={event => this.handleSubmit(event,record)}>
+                    <Input size="small" defaultValue={0} min={0} max={100} placeholder="insert a number" name='allocation' onChange={this.handleAllocation} style={{width:'50%'}} />
+                    {/* <InputNumber min={1} max={10} defaultValue={3} onChange={this.onChange} /> */}
+                    <input type="submit" value="Allocate" id={this.props.tableInstruments[0].id} />
+                </form>
+           },
+        // ######### end of working with submit form button
+
+
+
             
             {
               title: 'Action',
               dataIndex: '',
               key: 'x',
-            // render: () => <Button onClick={this.handleRemove.bind(this,id)}><Icon type="minus-circle" style={{fontSize:'15px'}}/>Remove</Button>
             render: (text,record) => <Button onClick={e => this.handleRemove(record)}><Icon type="minus-circle" style={{fontSize:'15px'}}/>Remove</Button>
             },
           ];
@@ -207,15 +253,17 @@ Page19_createBespokeModel.propTypes = {
     addInstrument: PropTypes.func.isRequired,
     tableInstruments: PropTypes.array.isRequired,
     insertAllocation: PropTypes.func.isRequired,
-    sum: PropTypes.string.isRequired
+    sum: PropTypes.string.isRequired,
+    allocation: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state =>{
     return{
         search_type: state.subAcc.search_type,
         tableInstruments: state.subAcc.tableInstruments,
-        sum: state.subAcc.sum
+        sum: state.subAcc.sum,
+        allocation: state.subAcc.tableInstruments.allocation
     }
 }
-export default connect(mapStateToProps,{searchByType,addInstrument,allocations,deleteRecord,insertAllocation}) (Page19_createBespokeModel)
+export default connect(mapStateToProps,{searchByType,addInstrument,allocations,deleteRecord,insertAllocation, allocationSum}) (Page19_createBespokeModel)
 

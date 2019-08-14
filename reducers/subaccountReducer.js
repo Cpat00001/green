@@ -1,4 +1,4 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION,ALLOCATIN_SUM} from './../actions/types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS,SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION,ALLOCATIN_SUM, SET_DATE,MODEL_NAME, RADIO_BUTTON, CREATE_SUBMODEL} from './../actions/types';
 
 const initialState = {
 
@@ -7,7 +7,11 @@ const initialState = {
     selectedInstruments:[],
     search_type: [],
     tableInstruments:[],
-    sum: ""
+    sum: "",
+    ModelDate:'',
+    ModelName:'',
+    radio:'',
+    newSubModel:[]
 };
 
 export default function(state = initialState , action){
@@ -96,6 +100,30 @@ export default function(state = initialState , action){
 
                 //}, 0 )
             }
+        case SET_DATE:
+            return{
+                ...state,
+                ModelDate: action.payload
+
+            }
+        case MODEL_NAME:
+            return{
+                ...state,
+                ModelName: action.payload
+
+            }
+        case RADIO_BUTTON:
+            return{
+                ...state,
+                radio: action.payload
+
+            }
+        case CREATE_SUBMODEL:
+            return{
+                ...state,
+                newSubModel: [action.payload]
+            }
+        
             
         
         default:

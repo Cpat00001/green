@@ -64,5 +64,9 @@ export const ADD_INSTRU = 'ADD_INSTRU'
 export const DELETE_RECORD = 'DELETE_RECORD'
 export const INSERT_ALLOCATION =  'INSERT_ALLOCATION'
 export const ALLOCATIN_SUM = 'ALLOCATIN_SUM'
+export const SET_DATE = 'SET_DATE' 
+export const MODEL_NAME = 'MODEL_NAME'
+export const RADIO_BUTTON = 'RADIO_BUTTON' 
+export const CREATE_SUBMODEL = 'CREATE_SUBMODEL' 
 
 

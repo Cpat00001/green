@@ -3,7 +3,7 @@ import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider,Input, Toolti
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import {searchByType,addInstrument, allocations,deleteRecord, insertAllocation,allocationSum} from './../../actions/SubaccountActions';
+import {searchByType,addInstrument, allocations,deleteRecord, insertAllocation,allocationSum, setDate, modelDate} from './../../actions/SubaccountActions';
 import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
 
 
@@ -23,7 +23,9 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             allocation2: [],
             narrowSearch:[],
             value:0,
-            sum:''
+            sum:'',
+            ModelName:'',
+            date:''
           };
 
           this.popUpButtonClick = this.popUpButtonClick.bind(this)
@@ -31,11 +33,25 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
           this.handleRemove = this.handleRemove.bind(this)
           this.handleAllocation = this.handleAllocation.bind(this)
           this.handleSubmit = this.handleSubmit.bind(this)
+          this.handleInputName = this.handleInputName.bind(this)
+          this.handleDatapicker = this.handleDatapicker.bind(this)
          
      }
      componentDidMount(){
         this.props.searchByType();
         console.log('Page19 mounted',this.props)
+    }
+    handleDatapicker(e, date){
+        this.setState({date: date});
+        console.log(date)
+        this.props.setDate(date)
+
+    }
+    handleInputName(event){
+        this.setState({ModelName: event.target.value});
+        //console.log(event.target.value)
+        const modelName = event.target.value
+        this.props.modelDate(modelName)
     }
      
     // searchByType handle swtich button change main views select one of models or creating BespokeModel 
@@ -106,40 +122,22 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             this.props.allocationSum()
             console.log('this.props.allocation_________',this.props.allocationSum)
 
-
         }
 
-       
-         
-        // allocation2.push(value)
-        // // let xyz = 0;
-        // // let allocation2 = xyz ? xyz : this.state.allocation;
-        // let reducer2 = ((accumulator, value) => accumulator + value);
-        // let sumAllo2 = allocation2.reduce(reducer2);
-        // console.log('sumAllo2',sumAllo2)
-
-        // if((this.state.allocation2 + value > 100) || (value > 100)){
-        // //if(this.props.sum > 100){
-        //     alert('Sorry cannot add more')
-        // }else{
-
-        //     let value = parseInt(this.state.allocation);
-        //     console.log('value', value)
-        //     let allocation2 = this.state.allocation2;
-        //     console.log('allocation2',allocation2)
-        //     //push value from allocation/input field into array allocation2
-        //     allocation2.push(value);
-
-        //     let reducer = ((accumulator, value) => accumulator + value);
-            
-        //         let sum = allocation2.reduce(reducer);
-        //         console.log('podaj sume input fields', sum)
-        //         this.props.insertAllocation(sum)
-        // }
      }
      
      
     render() {
+
+        // prevent displayin NaN value
+        // if(this.props.sum === null || this.props.sum === 'undefined'){
+
+        //     this.props.sum = 0;
+
+        // }else{
+
+        //     this.props.sum = this.props.sum;
+        // }
 
         
         //data from reducer state
@@ -164,17 +162,7 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
         const columns = [
             { title:'Sedol',dataIndex:'sedol', key:'sedol'},
             { title: 'Name', dataIndex: 'name', key: 'name' },
-            // { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => <Input size="small" defaultValue={0} placeholder="insert a number" name='allocation' onChange={this.handleAllocation(record.allocation)} style={{width:'50%'}} /> },
             
-            //######### new Solution in progress
-            //{ title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => 
-            
-            //<InputNumber defaultValue={0} min={0} max={100} onChange={this.handleAllocation} onBlur={this.handleBlur}/>
-            // 
-           //}
-        //######### end of testing new solution
-
-
             // ######### working with submit form button
             { title: 'Allocation', dataIndex: 'allocation', key: 'allocation', render: (text,record) => 
             
@@ -186,10 +174,7 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
                 </form>
            },
         // ######### end of working with submit form button
-
-
-
-            
+ 
             {
               title: 'Action',
               dataIndex: '',
@@ -215,6 +200,8 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
                     <Col span={24}>
                         <Row gutter={16}>
                             <Col span={8}><Input
+                                                onChange={this.handleInputName}
+                                                value={this.state.ModelName}
                                                 placeholder="Model Name"
                                                 prefix={<Icon type="book" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                                 suffix={
@@ -223,8 +210,9 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
                                                 </Tooltip>
                                                 }/>
                             </Col>
-                            <Col span={8}><DatePicker size={size} placeholder='current date'/></Col>
+                            <Col span={8}><DatePicker onChange={this.handleDatapicker} size={size} placeholder='current date'/></Col>
                             <Col span={8}><h5 style={{float:'left'}}><span>{this.props.sum}</span>%</h5></Col>
+                            {/* <Col span={8}><h5 style={{float:'left'}}><span>{prevent}</span>%</h5></Col> */}
                         </Row>
                     </Col>
                 </Row>
@@ -275,6 +263,8 @@ Page19_createBespokeModel.propTypes = {
     insertAllocation: PropTypes.func.isRequired,
     sum: PropTypes.number.isRequired,
     allocation: PropTypes.array.isRequired,
+    date: PropTypes.Date,
+    modelDate: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state =>{
@@ -285,5 +275,5 @@ const mapStateToProps = state =>{
         allocation: state.subAcc.tableInstruments.allocation
     }
 }
-export default connect(mapStateToProps,{searchByType,addInstrument,allocations,deleteRecord,insertAllocation, allocationSum}) (Page19_createBespokeModel)
+export default connect(mapStateToProps,{searchByType,addInstrument,allocations,deleteRecord,insertAllocation, allocationSum, setDate, modelDate}) (Page19_createBespokeModel)
 

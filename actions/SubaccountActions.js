@@ -1,4 +1,4 @@
-import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION, ALLOCATIN_SUM}  from './types';
+import {SUBACC_MODEL,MATCH_INSTRUMENT,FILTER_INSTRUMENTS, SEARCH_BYTYPE,ADD_INSTRU, ALLOCATION,DELETE_RECORD,INSERT_ALLOCATION, ALLOCATIN_SUM, SET_DATE, MODEL_NAME, RADIO_BUTTON, CREATE_SUBMODEL}  from './types';
 import axios from 'axios';
 import { relativeTimeRounding } from 'moment';
 
@@ -85,6 +85,32 @@ export const insertAllocation = (instrumentId,value) =>{
 export const allocationSum = () => {
     return{
         type:ALLOCATIN_SUM
+    }
+}
+// SET DATE FOR SUBMITED MODEL
+export const setDate = (date) =>{
+    return{
+        type: SET_DATE,
+        payload:date
+    }
+}
+// SET MODEL_NAME
+export const modelDate = (modelName) =>{
+    return{
+        type: MODEL_NAME,
+        payload: modelName
+    }
+}
+export const radioButton = (radioMessage) =>{
+    return{
+        type:RADIO_BUTTON,
+        payload: radioMessage  
+    }
+}
+export const createNewSubModel = (newSubModel) =>{
+    return{
+        type: CREATE_SUBMODEL,
+        payload: newSubModel
     }
 }
 

@@ -5,7 +5,7 @@ import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {SUBACC_MODEL} from './../../actions/types';
-import {getSubAccountModels, matchingInstrumentModel} from './../../actions/SubaccountActions';
+import {getSubAccountModels, matchingInstrumentModel, radioButton, createNewSubModel} from './../../actions/SubaccountActions';
 import Page19_selectModelTable from './Page19_selectModelTable';
 import Page19_createBespokeModel from './Page19_createBespokeModel';
 
@@ -28,12 +28,11 @@ const { Option, OptGroup } = Select;
         //  this.clickSelect = this.clickSelect.bind(this)
          this.onRadioChange = this.onRadioChange.bind(this)
          this.handleSwitchClick = this.handleSwitchClick.bind(this)
+         this.handleCreateSubModel = this.handleCreateSubModel.bind(this)
      }
-    //  componentDidMount(){
-    //      this.props.getSubAccountModels();
-    //      console.log('Page19 mounted',this.props)
-    //  }
+     // check if every input field is fulfilled and allocation is 100%. if yes create account button available if not disabled
 
+    
      handleSwitchClick(){
          this.setState({ bespokeModel:!this.state.bespokeModel})
      }
@@ -43,16 +42,51 @@ const { Option, OptGroup } = Select;
         this.setState({
           radiovalue: event.target.value  
          })
-    }
 
-    //  clickSelect(value){
-    //     console.log(`selected ${value}`);
-    //     //send an action which wysyla payload to reducer reducer as case has got match BK35 or other name, and then filter reducer state where case === match in array[objects]
-    //     this.props.matchingInstrumentModel(value)
-    //     // this.props.selectIntrument(value)
-    //  }
-     
+         let radiovalue = event.target.value;
+         console.log('radiovalue______',radiovalue)
+
+         if(radiovalue === 2){
+             let radioMessage = "Reinvest any income into the underlying model."
+             this.props.radioButton(radioMessage)
+         }else if(radiovalue === 1){
+             let radioMessage = "Use as available cash."
+             this.props.radioButton(radioMessage)
+         }
+        
+    }
+    //handle CreateSubAccount button send all required data to submit data for subAccount
+    handleCreateSubModel(){
+        const newSubModel = {
+            modelName: this.props.ModelName,
+            modelDate: this.props.ModelDate,
+            sum: this.props.sum,
+            radio: this.props.radio
+
+        }
+        this.props.createNewSubModel(newSubModel)
+    }
+ 
     render() {
+
+        //bring all required stuff from redux
+        const modelName = this.props.ModelName;
+        const modelDate = this.props.ModelDate;
+        const sum = this.props.sum;
+        const radio = this.props.radio
+
+        console.log('all required stuff____',modelName ,modelDate , sum , radio  )
+
+        let SubmitButton;
+
+        if(modelName !== "" && modelDate !== "" && sum === 100 && radio !== ""  ){
+
+            SubmitButton = <Button style={{backgroundColor:'rgb(64, 179, 104)',color:'black',width:'30%', height:'50px'}} onClick={this.handleCreateSubModel}>Create Sub-Account</Button>
+        }else{
+
+            SubmitButton = <Button disabled={true} style={{backgroundColor:'grey',color:'white',width:'30%', height:'50px'}} >Cannot Submit</Button>
+        }
+
 
         const bespokeModel = this.state.bespokeModel;
         const subaccounts = this.props.subbAccounts;
@@ -172,6 +206,15 @@ const { Option, OptGroup } = Select;
                         <Col span={12}></Col>
                     </Row>
                     <Divider />
+                    <Col span={24}>
+                        <Row>
+                            <Col span={12}></Col>
+                            <Col span={12}>
+                                {/* <Button disabled={true} style={{backgroundColor:'black',color:'white',width:'30%', height:'50px'}} size="large">Create Sub-Account</Button> */}
+                                {SubmitButton}
+                            </Col>
+                        </Row>
+                    </Col>
                 </div>
             </div>
         )
@@ -180,14 +223,20 @@ const { Option, OptGroup } = Select;
 Page19.propTypes = {
 
     subbAccounts:PropTypes.array.isRequired,
-    selectIntrument: PropTypes.func.isRequired
+    selectIntrument: PropTypes.func.isRequired,
+    radioButton: PropTypes.func.isRequired,
+    createNewSubModel: PropTypes.func.isRequired,
 
 }
 const mapStateToProps = state =>{
     return{
         subbAccounts: state.subAcc.subbAccounts,
         selectedInstruments: state.subAcc.selectedInstruments,
+        ModelName: state.subAcc.ModelName,
+        ModelDate: state.subAcc.ModelDate,
+        sum: state.subAcc.sum,
+        radio: state.subAcc.radio,
     }
 }
 
-export default connect(mapStateToProps,{getSubAccountModels,matchingInstrumentModel}) (Page19);
+export default connect(mapStateToProps,{getSubAccountModels,matchingInstrumentModel, radioButton, createNewSubModel}) (Page19);

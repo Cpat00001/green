@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Icon, Button,Switch,Select,Table, Radio,Divider,Input, Tooltip,DatePicker, Modal,Tag, Form, InputNumber} from 'antd';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
+import { Redirect, Link } from 'react-router-dom';
 import moment from 'moment';
 import {searchByType,addInstrument, allocations,deleteRecord, insertAllocation,allocationSum, setDate, modelDate} from './../../actions/SubaccountActions';
 import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
@@ -114,6 +115,7 @@ import Page19_Bespoke_Popup from './Page19_Bespoke_Popup'
             console.log('value to pass to redux___',value)
             this.props.insertAllocation(instrumentId,value)
             // ###############################################
+           
 
             //if value is submitted, then change button('CLEAR INPUT') and inputfieldReadOly or disabled
 

@@ -23,6 +23,9 @@ render() {
         console.log(financialProd)
         console.log(this.props.style)
 
+        const newSubAccount = this.props.newSubModel
+        console.log('newSubAccount______',newSubAccount)
+
         return (
             <div>
                 <Row>
@@ -89,7 +92,7 @@ render() {
                                 <Col span={1}></Col>
                                 <Col span={22} style={{minHeight:'100px',backgroundColor:'rgb(245,245,245)',marginTop:'10px',borderRadius:'5px'}}>
                                     {financialProd.map( (product,key) =>(
-                                        < Page18_Product key={key} desc={product.productDescription} cur={product.currency} symbol={product.symbol} backgroundColor={this.props.style}/>
+                                        < Page18_Product key={key} desc={product.productDescription} cur={product.currency} symbol={product.symbol} backgroundColor={this.props.style} newSubAccount={newSubAccount}/>
                                     ))}
                                     
 
@@ -118,14 +121,17 @@ render() {
 Page18.propTypes = {
 
     financialProd: PropTypes.array.isRequired,
-    style: PropTypes.object.isRequired
+    style: PropTypes.object.isRequired,
+    newSubModel: PropTypes.array.isRequired,
+    
 
 }
 
 const mapStateToProps = state =>{
     return{
         financialProd: state.financialProd.finProducts,
-        style: state.style
+        style: state.style,
+        newSubModel:state.subAcc.newSubModel
     }
 }
 

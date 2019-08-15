@@ -33,6 +33,57 @@ import {Link} from 'react-router-dom';
         //console.log(symbol)
         const backgroundColor = this.props.backgroundColor;
         //console.log(backgroundColor)
+        const newSubAccount = this.props.newSubAccount
+        console.log('newSubAccount_______from p18_Product',newSubAccount)
+
+        let divSubAcc;
+
+        if(newSubAccount.length === 0){
+
+             divSubAcc = <div><Row>
+                                <Col span={2}></Col>
+                                <Col span={20}></Col>
+                                <Col span={2}></Col>
+                            </Row></div>
+        }else{
+
+            divSubAcc = newSubAccount.map( m => (
+
+                 <div style={{backgroundColor:'powderblue', color:'#4e4e4e', margin:'10px', borderRadius:'5px'}}>
+                            <Row style={{marginTop:'5px'}}>
+                                <Col span={4}></Col>
+                                <Col span={18}><p style={{float:'left',lineHeight: '0.8'}}><b>{m.modelName}</b></p></Col>
+                                <Col span={2}></Col>
+                            </Row>
+                            <Row>
+                                <Col span={4}></Col>
+                                <Col span={18}><p style={{float:'left',lineHeight: '0.8'}}>{m.radio}</p></Col>
+                                <Col span={2}></Col>
+                            </Row>
+                            <Row>
+                                <Col span={4}></Col>
+                                <Col span={18}><p style={{float:'left', lineHeight: '0.8'}}>Advised Account | Uses a Model</p></Col>
+                                <Col span={2}></Col>
+                            </Row>
+                            <Row style={{marginBottom:'5px'}}>
+                                <Col span={4}></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="dashboard" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="code-sandbox" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="border-outer" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="table" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="snippets" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="bg-colors" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={2} className='p18p_icon'><Icon type="swap" style={{ fontSize: '20px', color: '#08c' }}/></Col>
+                                <Col span={6}></Col>
+                            </Row> 
+                </div>
+
+               
+
+
+            ) )
+            
+        }
 
 
         let matchColor;
@@ -49,6 +100,7 @@ import {Link} from 'react-router-dom';
             console.log(symbol)
 
         return (
+
             
             <div style={{border:'1px solid grey', backgroundColor:matchColor,height:'auto',minHeight:'100px',marginBottom:'10px',borderRadius:'5px',boxShadow:'3px 3px #888888'}}>
              <Row>
@@ -156,6 +208,11 @@ import {Link} from 'react-router-dom';
                  </Col>
                  <Col span={2}></Col>
              </Row>
+             <Row>
+                 <Col span={23}>
+                        {divSubAcc}
+                 </Col>
+            </Row>
          </div>
 
 
@@ -164,7 +221,7 @@ import {Link} from 'react-router-dom';
     }
 }
 Page18_Product.propTypes = {
-
+   
 }
 
 const mapStateToProps = state =>{
@@ -172,7 +229,8 @@ const mapStateToProps = state =>{
     return{
 
         financialProd: state.financialProd.finProducts,
-        style: state.style
+        style: state.style,
+        
     }  
 }
 

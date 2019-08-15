@@ -65,6 +65,8 @@ const { Option, OptGroup } = Select;
 
         }
         this.props.createNewSubModel(newSubModel)
+         // redirect investor to accounts view
+        this.props.history.push('/Loops/component/Page18')
     }
  
     render() {

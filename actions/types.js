@@ -69,4 +69,8 @@ export const MODEL_NAME = 'MODEL_NAME'
 export const RADIO_BUTTON = 'RADIO_BUTTON' 
 export const CREATE_SUBMODEL = 'CREATE_SUBMODEL' 
 
+//types for FORM
+export const INSERT_USER = 'INSERT_USER'
+export const FETCH_USERS = 'FETCH_USERS'
+
 

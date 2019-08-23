@@ -24,8 +24,18 @@ import {searchByType,addInstrument, allocations} from './../../actions/Subaccoun
          this.searchByName = this.searchByName.bind(this)
          this.handleDropDownList1 = this.handleDropDownList1.bind(this)
          this.handleDropDownList2 = this.handleDropDownList2.bind(this)
+         this.handleInput = this.handleInput.bind(this)
          this.AddInstrument = this.AddInstrument.bind(this)
+         this.clearForm = this.clearForm.bind(this)
 
+     }
+     clearForm(){
+         this.setState(state=>({value3:"", value1:'',value2:''}))
+         console.log(this)
+         console.log('clear form cliced')
+     }
+     handleInput(event){
+         this.setState({value3:event.target.value })
      }
 
      searchByName(value){
@@ -123,7 +133,7 @@ import {searchByType,addInstrument, allocations} from './../../actions/Subaccoun
                                 </Row>
                                 <Row gutter={16}>
                                     <Col span={16}>
-                                        <Select placeholder='-' style={{ width:'100%' }} onChange={this.handleDropDownList1} onClick={this.searchForType}>
+                                        <Select placeholder='-' style={{ width:'100%' }} onChange={this.handleDropDownList1} onClick={this.searchForType} value={this.state.value1}>
                                                 <OptGroup label="types...">
                                                     <Option value="#CFD" >#CFD</Option>
                                                     <Option value="Exchange Trade Fund">Exchange Trade Fund</Option>
@@ -135,7 +145,7 @@ import {searchByType,addInstrument, allocations} from './../../actions/Subaccoun
                                         </Select>
                                     </Col>
                                     <Col span={8}>
-                                        <Select  placeholder='Name' style={{ width:'100%' }} onChange={this.handleDropDownList2}>
+                                        <Select  placeholder='Name' style={{ width:'100%' }} onChange={this.handleDropDownList2} value={this.state.value2}>
                                                 <OptGroup label="Name">
                                                 <Option value="Sedol">Sedol</Option>
                                                 <Option value="name">Name</Option>
@@ -156,10 +166,12 @@ import {searchByType,addInstrument, allocations} from './../../actions/Subaccoun
                                             size="large"
                                             onSearch={this.searchByName}
                                             // error = {errors}
-                                            // value={this.state.value}
+                                            value={this.state.value3}
+                                            onChange={this.handleInput}
                                             
                                     />
                                     </Col>
+                                    <Button onClick={this.clearForm.bind(this)}>Clear form</Button>
                                 </Row>
                                 <Row>
                                     <Col span={24}>

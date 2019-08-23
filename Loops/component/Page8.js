@@ -238,9 +238,11 @@ const { Header, Footer, Sider, Content } = Layout;
                                 <Link to={`/Loops/component/Page14/${id}`}>
                                     <Col span={3}><Icon type="appstore" className='icon'/></Col>
                                 </Link>
-                                <Col span={3}><Icon type="setting" className='icon'/></Col>
+                                <Link to={'/Loops/component/Page18'}>
+                                    <Col span={3}><Icon type="setting" className='icon'/></Col>
+                                </Link>
                                 <Link to={`/Loops/component/Page13/${id}`}>
-                                <Col span={3}><Icon type="user" className='icon'/></Col>
+                                    <Col span={3}><Icon type="user" className='icon'/></Col>
                                 </Link>
                                 
 

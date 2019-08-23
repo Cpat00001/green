@@ -10,6 +10,8 @@ import prodReducer from './prodReducer';
 import dataChartReducer from './dataChartReducer';
 import financialReducer from './financialReducer';
 import subaccountReducer from './subaccountReducer';
+import formReducer from './formReducer';
+
 
 
 export default combineReducers({
@@ -23,7 +25,8 @@ export default combineReducers({
     produkt: prodReducer,
     fetchData: dataChartReducer,
     financialProd: financialReducer,
-    subAcc: subaccountReducer
+    subAcc: subaccountReducer,
+    register:formReducer 
 })
 
 

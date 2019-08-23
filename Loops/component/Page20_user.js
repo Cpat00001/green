@@ -18,6 +18,7 @@ import { Form, Input, Button, Checkbox, Row,Col,Select,Icon } from 'antd';
                             <p>Name: {this.props.name}</p>
                             <p>Email: {this.props.email}</p>
                             <p>Nationality:{this.props.nation}</p>
+                            <p>Contribution:{this.props.contribution}</p>
                         </div>
                     </Col>
                 </Row>

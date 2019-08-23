@@ -4,6 +4,7 @@ import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {insertUser,fetchUsers} from './../../actions/FormActions';
 import Page20_user from './Page20_user'
+import Page20_table from './Page20_table';
 
 //needed for ANDT select option
 const { Option } = Select;
@@ -22,10 +23,11 @@ const { Option } = Select;
             submitButton: false,
             errors:{},
             formControls:{
-                testInput: {focused: false, value:'', touched: false }
+                testInput: {focused: false, value:'', touched: false },
+                testInput2: {focused: false, value:'', touched:false}
             },
-            
-            
+            showTable: false
+                
           }
 
           this.handleCitizen = this.handleCitizen.bind(this)
@@ -34,6 +36,8 @@ const { Option } = Select;
           this.showPass = this.showPass.bind(this)
           this.handleFocus = this.handleFocus.bind(this)
           this.handleBlur = this.handleBlur.bind(this)
+          this.handleBlur2 = this.handleBlur2.bind(this)
+          this.showTable = this.showTable.bind(this)
       }
 
       componentDidMount(){
@@ -47,11 +51,30 @@ const { Option } = Select;
             // a timeout is triggered to switch it back to false and change a button to Submit
             this.dowolnaNazwaFunkcji = setTimeout(() => { 
               this.setState(() => ({submitButton: false}))
+              //clear input fields
+              this.setState({
+                  firstName:'',
+                  email:'',
+                  password:'',
+                  showPass: 'false',
+            })
+            this.setState(state =>({...this.state,formControls:{...this.state.formControls,testInput:{...this.state.formControls.testInput,value:''}}}))
+            this.setState(state =>({...this.state,formControls:{...this.state.formControls,testInput2:{...this.state.formControls.testInput2,value:''}}}))
             }, 1000);
+          }
+          //check if input field is as touched and has got some value
+          // if yes change color to neutral
+          if(this.state.formControls.testInput.value !== '' && this.state.formControls.testInput.touched === true ){
+            this.setState(state =>({...this.state,formControls:{...this.state.formControls,testInput:{...this.state.formControls.testInput,touched:false}}}))
+          }
+          if(this.state.formControls.testInput2.value !== '' && this.state.formControls.testInput2.touched === true ){
+            this.setState(state =>({...this.state,formControls:{...this.state.formControls,testInput2:{...this.state.formControls.testInput2,touched:false}}}))
           }
         }
         
       handleSubmit(event){
+
+        event.preventDefault();
           
           //form validation
         const {firstName,email,password} = this.state;
@@ -68,15 +91,24 @@ const { Option } = Select;
             this.setState({ errors: { password: "Password is required" } });
             return;
           }
+          if (this.state.formControls.testInput.value === "") {
+            this.setState({ errors: { password: "Contribution is required" } });
+            return;
+          }
 
         this.setState(state => ({submitButton:true}))  
                  console.log('submit button Clicked')
           
-          const user = { nation: this.state.value1 , fname: this.state.firstName , email: this.state.email , pass: this.state.password }
+          const user = { nation: this.state.value1 , 
+                         fname: this.state.firstName , 
+                         email: this.state.email , 
+                         pass: this.state.password, 
+                         value: this.state.formControls.testInput.value,
+                         workplace: this.state.formControls.testInput2.value}
 
           this.props.insertUser(user);
     
-          event.preventDefault();
+         
       }
      
       showPass(e){
@@ -96,18 +128,25 @@ const { Option } = Select;
       }
       // handleFocus 
       handleFocus(event){
-       const touched = this.state.formControls.testInput.touched;
-        
-        //this.setState(state => ({touched: true}));
-        // this.setState(state =>({touched: true}));
         console.log('FOCUSED')
       }
-
+    // dzilajacy handleBlur  
       handleBlur(){
-          
+        if(this.state.formControls.testInput.value === ''){
+            // in order to change state in nested object in state you need to copy every level of state using spread operator ...
             this.setState(state =>({...this.state,formControls:{...this.state.formControls,testInput:{...this.state.formControls.testInput,touched:true}}}))
              console.log('BLUR')
+        }
+       //in order to ad onBlur functionality to other fields you need to change a structure of object in state
       }
+      handleBlur2(){
+        if(this.state.formControls.testInput.value === ''){
+            // in order to change state in nested object in state you need to copy every level of state using spread operator ...
+             this.setState(state=>({...this.state,formControls:{...this.state.formControls, testInput2:{...this.state.formControls.testInput2,touched:true}}}))
+        }
+      }
+
+
       handleTestInput = (event) =>{
         const name = event.target.name;
         const value = event.target.value;
@@ -118,11 +157,15 @@ const { Option } = Select;
             [name]: {
             ...this.state.formControls[name],
             value
-          }
+             }
+            }
+          });
         }
-      });
-      }
-    
+        showTable(){
+            this.setState(state => ({showTable: !state.showTable}))
+            console.log('button table clicked')
+        }
+
      render() {
 
         const touched = this.state.formControls.testInput.touched;
@@ -144,6 +187,16 @@ const { Option } = Select;
         const {users} = this.props;
         console.log('users',users)
 
+    //display buuton to open table with users
+    let openTable;
+    if(this.props.users.length > 0){
+         openTable = <Button type="danger" onClick={this.showTable}>Open Table</Button>
+    }
+    // let table;
+    // if(this.state.showTable){
+    //     table = <Page20_table users={users}/>
+    // }
+
          return (
 
             <div>
@@ -152,7 +205,7 @@ const { Option } = Select;
                 <Col span={8}>
 
                 <div style={{width:'100%',margin:'auto',maxWidth:'800px'}}>
-                <Form style={{borderRadius:'5px',backgroundColor:'rgb(150,200,250)',width:'100%'}} onSubmit={this.handleSubmit}>
+                <Form style={{borderRadius:'5px',backgroundColor:'rgb(102,104,115)',width:'100%',padding:'50px'}} onSubmit={this.handleSubmit}>
                     <Row>
                         <Col span={2}></Col>
                             <Col span={20} >
@@ -164,7 +217,7 @@ const { Option } = Select;
                         <Col span={2}></Col>
                             <Col span={20}>
                                 <Input placeholder="your first name" id="FirstName" min={3} max={25} required={true} name='firstName' 
-                                onChange={this.handleInputChange} value={this.state.firstName}/>
+                                onChange={this.handleInputChange} value={this.state.firstName} style={{height:'50px'}}/>
                             </Col>
                         <Col span={2}></Col>
                     </Row>
@@ -179,7 +232,7 @@ const { Option } = Select;
                         <Col span={2}></Col>
                         <Col span={20}>
                             <Input placeholder="email" id="email" min={3} max={25} required={true} name='email' 
-                            onChange={this.handleInputChange} value={this.state.email}/>
+                            onChange={this.handleInputChange} value={this.state.email} style={{height:'50px'}}/>
                         </Col>
                         <Col span={2}></Col>
                     </Row>
@@ -236,14 +289,15 @@ const { Option } = Select;
                     <Row>
                         <Col span={2}></Col>
                         <Col span={20}>
+                        <label style={{float:'left', fontSize:'15px',color:'white'}}>Contribution:</label>
                         { this.state.formControls.testInput.touched? (
 
-                                <Input id="testInput" min={3} max={25} name='testInput' 
+                                <Input id="testInput" min={100}  name='testInput' type='number' 
                                 onChange={this.handleTestInput} value={this.state.formControls.testInput.value} 
                                 placeholder='touched....'  
                                 style={{backgroundColor:'pink'}}/>
                         ):(
-                                <Input id="testInput" min={3} max={25} name='testInput' 
+                                <Input id="testInput" name='testInput' type='number' 
                                 onChange={this.handleTestInput} value={this.state.formControls.testInput.value} 
                                 placeholder='tesInput....' onFocus={this.handleFocus} onBlur={this.handleBlur}
                                 />
@@ -251,6 +305,28 @@ const { Option } = Select;
 
                         </Col>
                         <Col span={2}></Col>
+                    </Row>
+                    <Row style={{marginTop:'5px'}}>
+                        <Col span={2}></Col>
+                        <Col span={20}>
+                        <label style={{float:'left', fontSize:'15px',color:'white'}}>Workplace:</label>
+                            {/* testInput2 drugi pole wejsciowe z funkcje touched */}
+                            { this.state.formControls.testInput2.touched? (
+
+                                <Input id="testInput2" min={3} max={25} name='testInput2' type='text' 
+                                    onChange={this.handleTestInput} value={this.state.formControls.testInput2.value} 
+                                    placeholder='touched....'  
+                                    style={{backgroundColor:'pink'}}/>
+                                ):(
+                                <Input id="testInput2" min={3} max={25} name='testInput2' type='text' 
+                                    onChange={this.handleTestInput} value={this.state.formControls.testInput2.value} 
+                                    placeholder='tesInput....' onFocus={this.handleFocus} onBlur={this.handleBlur2}
+                                />
+                            )}
+
+                        </Col>
+                        <Col span={2}></Col>
+                        
                     </Row>
                     {/* end of testINPUT */}
 
@@ -283,9 +359,19 @@ const { Option } = Select;
              <Row style={{marginTop:'50px'}}>
                  <Col span={8}></Col>
                  <Col span={8}>
-                     {users.map((user,index) =>(
-                          <Page20_user name={user.fname} email={user.email} nation={user.nation}  user={user} key={index}  />
-                     ))}
+                     {openTable}
+                                    
+                     {/* {users.map((user,index) =>(
+                          <Page20_user name={user.fname} email={user.email} nation={user.nation} contribution={user.value}  user={user} key={index}  />
+                     ))} */}
+
+                 </Col>
+                 <Col span={8}></Col>  
+             </Row>
+             <Row style={{marginTop:'100px'}}>
+                 <Col span={8}></Col>
+                 <Col span={8}>
+                    {this.state.showTable? (< Page20_table users={users} />):''}
                  </Col>
                  <Col span={8}></Col>
                  

@@ -1,4 +1,4 @@
-import {INSERT_USER,FETCH_USERS} from './types';
+import {INSERT_USER,FETCH_USERS, DELETE_USER} from './types';
 import axios from 'axios';
 
 // export const inserUser = () => async dispatch =>{
@@ -25,6 +25,12 @@ export const insertUser = (user) =>{
 export const fetchUsers = () =>{
     return{
         type: FETCH_USERS
+    }
+}
+export const deleteUser = (id) =>{
+    return{
+        type: DELETE_USER,
+        payload: id
     }
 }
 

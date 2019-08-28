@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {insertUser,fetchUsers} from './../../actions/FormActions';
 import Page20_user from './Page20_user'
 import Page20_table from './Page20_table';
+import uuid from 'uuid';
 
 //needed for ANDT select option
 const { Option } = Select;
@@ -70,6 +71,11 @@ const { Option } = Select;
           if(this.state.formControls.testInput2.value !== '' && this.state.formControls.testInput2.touched === true ){
             this.setState(state =>({...this.state,formControls:{...this.state.formControls,testInput2:{...this.state.formControls.testInput2,touched:false}}}))
           }
+
+          //usun tabele jesli ostatni user zostal wykasowany
+        //   if(this.props.users.length === 0){
+        //       this.setState(state => ({showTable: false}))
+        //   }
         }
         
       handleSubmit(event){
@@ -99,7 +105,8 @@ const { Option } = Select;
         this.setState(state => ({submitButton:true}))  
                  console.log('submit button Clicked')
           
-          const user = { nation: this.state.value1 , 
+          const user = { key: uuid(),
+                         nation: this.state.value1 , 
                          fname: this.state.firstName , 
                          email: this.state.email , 
                          pass: this.state.password, 
@@ -187,22 +194,23 @@ const { Option } = Select;
         const {users} = this.props;
         console.log('users',users)
 
-    //display buuton to open table with users
+    //display button to show table with users - change buttons related to state showTable
     let openTable;
     if(this.props.users.length > 0){
-         openTable = <Button type="danger" onClick={this.showTable}>Open Table</Button>
-    }
-    // let table;
-    // if(this.state.showTable){
-    //     table = <Page20_table users={users}/>
-    // }
+        if(this.state.showTable === false ){
+            openTable =  <Button type="danger" onClick={this.showTable}><Icon type="plus-circle" style={{fontSize:'20px'}} />Show Table</Button>
 
+        }else{
+            openTable =  <Button type="primary" onClick={this.showTable}><Icon type="minus-circle" style={{fontSize:'20px'}} />Hide Table</Button>
+        }
+    }
+    
          return (
 
             <div>
              <Row>
-                <Col span={8}></Col>
-                <Col span={8}>
+                <Col xs={4} sm={4} md={6} lg={8} xl={8}></Col>
+                <Col xs={16} sm={16} md={12} lg={8} xl={8}>
 
                 <div style={{width:'100%',margin:'auto',maxWidth:'800px'}}>
                 <Form style={{borderRadius:'5px',backgroundColor:'rgb(102,104,115)',width:'100%',padding:'50px'}} onSubmit={this.handleSubmit}>
@@ -354,27 +362,21 @@ const { Option } = Select;
                 </Form>
             </div>   
                 </Col>
-                <Col span={8}></Col>
+                <Col xs={4} sm={4} md={6} lg={8} xl={8}></Col>
              </Row>
              <Row style={{marginTop:'50px'}}>
                  <Col span={8}></Col>
                  <Col span={8}>
                      {openTable}
-                                    
-                     {/* {users.map((user,index) =>(
-                          <Page20_user name={user.fname} email={user.email} nation={user.nation} contribution={user.value}  user={user} key={index}  />
-                     ))} */}
-
                  </Col>
                  <Col span={8}></Col>  
              </Row>
-             <Row style={{marginTop:'100px'}}>
-                 <Col span={8}></Col>
-                 <Col span={8}>
+             <Row style={{marginTop:'100px', margin:'auto'}}>
+                 <Col xs={4} sm={4} md={6} lg={8} xl={8}></Col>
+                 <Col xs={16} sm={16} md={12} lg={8} xl={8}>
                     {this.state.showTable? (< Page20_table users={users} />):''}
                  </Col>
-                 <Col span={8}></Col>
-                 
+                 <Col xs={4} sm={4} md={6} lg={8} xl={8}></Col>  
              </Row>
         </div>
 
@@ -415,9 +417,8 @@ const { Option } = Select;
 
 Page20.propTypes = {
     insertUser: PropTypes.func.isRequired,
-    users:PropTypes.array.isRequired,
     fetchUsers: PropTypes.func.isRequired,
-    users:PropTypes.array.isRequired,
+    users:PropTypes.object.isRequired,
 } 
 const mapStateToProps = state =>{
     return{

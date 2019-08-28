@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Divider, Button } from 'antd';
+import {PropTypes} from 'prop-types';
+import {connect} from 'react-redux';
+import {deleteUser,fetchUsers} from './../../actions/FormActions'
 import './../../css/Page18.css';
+import { Form, Input, Button, Checkbox, Row,Col,Select,Icon,Table, Divider } from 'antd';
 
  class Page20_table extends Component {
      constructor(props){
@@ -8,22 +11,48 @@ import './../../css/Page18.css';
 
          this.state = {}
      }
-     editUser = () =>{
-        console.log('TABLE EDIT CLICKED___')
+     componentDidMount(){
+      this.props.fetchUsers();
+  }
+
+
+     editUser = record =>{
+        console.log('TABLE EDIT CLICKED___ID', record.key)
+        const id = record.key;
      }
-     deleteUser = () => {
-         console.log('TABLE DELETE CLICKED___')
+     deleteUser = record => {
+         console.log('TABLE DELETE CLICKED___ show ID', record.key)
+         const id = record.key
+         this.props.deleteUser(id)
      }
 
 
     render() {
 
-        console.log('users from 20table___',this.props.users)
-        console.log('this.props.users.name',this.props.fname)
+      let table;
+
+      if(this.props.users.length !== 0){
+        table = <Table rowKey="key" dataSource={dataSource} columns={columns} pagination={false} className='p19_table' scroll={{ x: 1300 }}/>
+      }else{
+        table = <h5>lipa</h5>
+      }
+
+      const users = this.props.users
+      console.log('podaj id zawodnikow', users)
+
+      const id = this.props.users.map(user => user.key)
+      console.log('ID from 20table___',id)
+        
 
         const dataSource = this.props.users;
+        console.log('dataSource',dataSource)
           
           const columns = [
+            {
+              title:'key',
+              dataIndex:'key',
+              key: 'key'
+            },
             {
               title: 'Name',
               dataIndex: 'fname',
@@ -53,18 +82,32 @@ import './../../css/Page18.css';
                 title:'Manage',
                 key:'manage',
                 width: 300,
-                render:() => (<span><Button type="danger" onClick={this.deleteUser}>Delete</Button>
+                // dzialajacy code na guzikach zostaw to skomentowane dla potrzeb innych testow
+                render:(text,record) => (<span><Button type="danger" onClick={e => this.deleteUser(record)}>Delete</Button>
                                     <Divider type="vertical" />
-                                    <Button type="primary" onClick={this.editUser}>Edit</Button>
+                                    <Button type="primary" onClick={e => this.editUser(record)}>Edit</Button>
                                     </span>)
             }
           ];
 
         return (
             <div>
-                <Table dataSource={dataSource} columns={columns} pagination={false} className='p19_table'/>
-            </div>
-        )
+              {this.props.users.length !== 0?(<Table rowKey="key" dataSource={dataSource} columns={columns} pagination={false} className='p19_table' scroll={{ x: 1300 }}/>):(null)}        
+            </div>          
+      )
     }
 }
-export default Page20_table;
+Page20_table.propTypes = {
+
+  deleteUser: PropTypes.func.isRequired,
+  users:PropTypes.object.isRequired,
+  fetchUsers: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state =>{
+  return{
+    users: state.register.users
+  }
+}
+
+export default connect(mapStateToProps, {deleteUser,fetchUsers}) (Page20_table);

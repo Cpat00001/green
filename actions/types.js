@@ -72,5 +72,6 @@ export const CREATE_SUBMODEL = 'CREATE_SUBMODEL'
 //types for FORM
 export const INSERT_USER = 'INSERT_USER'
 export const FETCH_USERS = 'FETCH_USERS'
+export const DELETE_USER = 'DELETE_USER'
 
 

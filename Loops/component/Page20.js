@@ -371,7 +371,7 @@ const { Option } = Select;
                  </Col>
                  <Col span={8}></Col>  
              </Row>
-             <Row style={{marginTop:'100px', margin:'auto'}}>
+             <Row style={{marginTop:'300px', margin:'auto'}}>
                  <Col xs={4} sm={4} md={6} lg={8} xl={8}></Col>
                  <Col xs={16} sm={16} md={12} lg={8} xl={8}>
                     {this.state.showTable? (< Page20_table users={users} />):''}

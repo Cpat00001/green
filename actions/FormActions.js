@@ -1,20 +1,5 @@
-import {INSERT_USER,FETCH_USERS, DELETE_USER} from './types';
+import {INSERT_USER,FETCH_USERS, DELETE_USER,SEARCH_RESULT} from './types';
 import axios from 'axios';
-
-// export const inserUser = () => async dispatch =>{
-
-//     try{
-
-//         const res = await axios.post('/Data/FormUsers.json');
-        
-//         dispatch({
-//             type: INSERT_USER,
-//             payload: res.data
-//         })
-//     }catch(err){
-//         console.log('sorry couldnt INSERT USER to file', err)
-//     }
-// } 
 
 export const insertUser = (user) =>{
     return{
@@ -33,4 +18,6 @@ export const deleteUser = (id) =>{
         payload: id
     }
 }
+
+
 

@@ -61,7 +61,10 @@ const { Search } = Input;
       //linia ponizej filtruje przez users List from local state podany from ParentComponent, nastepnie return ONLY these matching to this.state.search
       // ktory jest tekstem wpisanym z okna wyszukiwania
       //DZIALAJACE wyszukiwanie po IMIENIU
-      const dataSource = this.props.users.filter((user)=>{ return user.fname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1});
+      //const dataSource = this.props.users.filter((user)=>{ return user.fname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 });
+      const dataSource = this.props.users.filter((user)=>{ return user.fname.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || 
+                                                                  user.email.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || 
+                                                                  user.workplace.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 });
       console.log('dataSource',dataSource)
 
           

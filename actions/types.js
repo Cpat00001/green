@@ -74,7 +74,8 @@ export const INSERT_USER = 'INSERT_USER'
 export const FETCH_USERS = 'FETCH_USERS'
 export const DELETE_USER = 'DELETE_USER'
 
-//types for FORM Page20
+//types for FORM Page22
+export const GET_ADVISORS = 'GET_ADVISORS'
 
 
 

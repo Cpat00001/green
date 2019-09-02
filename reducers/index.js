@@ -11,6 +11,7 @@ import dataChartReducer from './dataChartReducer';
 import financialReducer from './financialReducer';
 import subaccountReducer from './subaccountReducer';
 import formReducer from './formReducer';
+import Form22Reducer from './Form22Reducer';
 
 
 
@@ -26,7 +27,8 @@ export default combineReducers({
     fetchData: dataChartReducer,
     financialProd: financialReducer,
     subAcc: subaccountReducer,
-    register:formReducer 
+    register:formReducer,
+    form22: Form22Reducer
 })
 
 

@@ -67,8 +67,10 @@ import {get_contact} from '../actions/DetailsActions';
                 <div style={{textAlign:'right'}}>
                   <Icon type="user-add" className="icon3"/>
                 </div>
-                <div style={{textAlign:'left'}}> 
-                  <span className="spanText">Create Investor</span>
+                <div style={{textAlign:'left'}}>
+                  <Link to={`/Loops/component/Page22/${id}`}>
+                    <span className="spanText">Create Investor</span>
+                  </Link>
                 </div>
                 </div>
 

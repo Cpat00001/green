@@ -1,0 +1,79 @@
+.txt1{
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    clear: both;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    font-weight: 400;
+    color: #FFF;
+    font-size: 1.5em;
+    transition: font-size 150ms linear;
+    float:left
+}
+.txt2{
+    font-size: 1.3em;
+    line-height: 1.4em;
+    font-weight: 400;
+    padding-bottom: 10px;
+    padding-top: 6px;
+    color: #2e3d4f !important;
+}
+.txt3{
+    color: #2e3d4f !important;
+    float:left;
+}
+.txt4{
+    margin-left:5px;
+    float:left;
+}
+
+/* div elements */
+.div1{
+    padding: 5px 5px 8px;
+    border-radius: 3px;
+    background-color: #FAFAFA;
+    box-shadow: inset 0px 0px 0px 1px #E9E9E9;
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
+}
+.div2{
+    position: absolute;
+    font-size: 0.9em;
+    font-style: italic;
+    /* line-height: 20px; */
+    background-color: #eff2f6 !important;
+    box-shadow: inset 0px 0px 0px 1px #cfd8e3, 1px 2px 0px 2px rgba(0, 0, 0, 0.02) !important;
+    padding: 4px 9px 3px 6px;
+    border-radius: 3px;
+    z-index: 2;
+    left: 5px;
+    color: #2e3d4f !important;
+    margin-top: -20px;
+    margin-left: -5px;
+    text-shadow: 0px 1px 0px #FFFFFF;
+    height:30px;
+    width:auto;
+    min-width:auto
+}
+.div3{
+    padding: 5px 5px 8px;
+    border-radius: 3px;
+    background-color: #FAFAFA;
+    box-shadow: inset 0px 0px 0px 1px #E9E9E9;
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
+    height:auto;
+    min-height:200px;
+
+}
+.divButtons{
+    float:right
+}
+
+/* icons */
+/* icons in small labels with text */
+.iconLabel1{
+    float:left;
+}

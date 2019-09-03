@@ -76,6 +76,9 @@ export const DELETE_USER = 'DELETE_USER'
 
 //types for FORM Page22
 export const GET_ADVISORS = 'GET_ADVISORS'
+export const GET_COUNTRY = 'GET_COUNTRY'
+export const GET_NATION = 'GET_NATION'
+export const GET_TAX = 'GET_TAX'
 
 
 

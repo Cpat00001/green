@@ -8,7 +8,7 @@
     color: #FFF;
     font-size: 1.5em;
     transition: font-size 150ms linear;
-    float:left
+    float:left;
 }
 .txt2{
     font-size: 1.3em;
@@ -17,6 +17,7 @@
     padding-bottom: 10px;
     padding-top: 6px;
     color: #2e3d4f !important;
+    width:auto
 }
 .txt3{
     color: #2e3d4f !important;
@@ -26,8 +27,22 @@
     margin-left:5px;
     float:left;
 }
+.txt5{
+    font-size: 0.9em;
+    color: #546f8f !important;
+    font-style: italic;
+}
 
 /* div elements */
+.dropdownList22{
+    width:100%;
+    border-radius:3px;
+    height:32px;
+    border:1px solid #d9d9d9;
+    color:rgba(0, 0, 0, 0.65);
+    line-height: 1.5;
+    font-size: 14px;
+}
 .div1{
     padding: 5px 5px 8px;
     border-radius: 3px;

@@ -1,8 +1,11 @@
-import { GET_ADVISORS } from '../actions/types';
+import { GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX } from '../actions/types';
 
 const initialState = {
 
-    advisors:[]
+    advisors:[],
+    country:[],
+    nation:[],
+    tax:[]
 
 }
 
@@ -13,6 +16,22 @@ export default function(state = initialState,action){
                 ...state,
                 advisors: action.payload
             }
+        case GET_COUNTRY:
+            return{
+                ...state,
+                country: action.payload
+            }
+        case GET_NATION:
+            return{
+                ...state,
+                nation: action.payload
+            }
+        case GET_TAX:
+            return{
+                ...state,
+                tax:action.payload
+            }
+        
         default:
             return state
 

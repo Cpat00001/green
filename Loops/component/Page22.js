@@ -5,7 +5,7 @@ import '../../css/Page22_style.css'
 import { Row, Col, Icon, Divider, Button, Form, Input, Select, DatePicker,Checkbox } from 'antd';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getAdvisors,getCountry,getNation,getTax} from '../../actions/Form22Actions';
+import {getAdvisors,getCountry,getNation,getTax,getTitle} from '../../actions/Form22Actions';
 import moment from 'moment';
 
 const { Option } = Select;
@@ -17,6 +17,7 @@ const { Option } = Select;
              size: 'large',
              gender:['Male','Female','Other'],
              maritalStatus:['Single','Married','Civil partnership','Divorced','Widowed'],
+             adviser:'',
              title:'',
              fName:'',
              mName:'',
@@ -37,11 +38,13 @@ const { Option } = Select;
              mobilePhone:'',
              email:'',
              natification:false,
+             spouse:false
     
 
          }
          this.handleChange = this.handleChange.bind(this);
-         this.handleChangeDate = this.handleChangeDate.bind(this)
+         this.handleChangeDate = this.handleChangeDate.bind(this);
+         //this.handleSubmit = this.handleSubmit.bind(this)
      }
 
      componentDidMount(){
@@ -49,6 +52,7 @@ const { Option } = Select;
          this.props.getCountry();
          this.props.getNation();
          this.props.getTax();
+         this.props.getTitle();
 
      }
 
@@ -58,14 +62,21 @@ const { Option } = Select;
          this.props.getCountry.abort();
          this.props.getNation.abort();
          this.props.getTax().abort();
+         this.props.getTitle().abort();
 
      }
+     onSubmit(event){
+        event.preventDefault();
+        console.log(this.state)
+         console.log('SUBMIT CLICKED')
+     }
      handleChange(event){
-        const value = event.target.value;
-        const name = event.target.name;
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
         const checked = event.target.checked
         this.setState({ [name]:value})
-        this.setState({natification: event.target.checked})
+        
      }
      handleChangeDate(date,dateString){
         this.setState({ date: date })
@@ -77,6 +88,7 @@ const { Option } = Select;
         // console.log(this.props.country)
         // console.log(this.props.nation)
         // console.log(this.props.tax)
+        //console.log(this.props)
 
         return (
             <div>
@@ -125,6 +137,18 @@ const { Option } = Select;
                             <Col span={24}>
                                 <div className='div1'>
                                     <div className='div2'><Icon type="user" className='iconLabel1'/><p className='txt4'>Adviser</p></div>
+                                <Row style={{marginTop:'5%'}}>
+                                    <Col span={8}><p className='txt5'>Select Adviser</p></Col>
+                                        <Col span={12}>
+                                            <select className='dropdownList22'  name='adviser' value={this.state.adviser} onChange={this.handleChange} >
+                                                {this.props.advisors.map((advisor,index)=>(
+                                                    <option key={index} value={advisor.advisor}>{advisor.advisor}</option>
+                                                ))}
+                                                
+                                            </select>
+                                        </Col>
+                                    <Col span={4}></Col>
+                            </Row>
                                     
                                 </div>
                             </Col>
@@ -133,6 +157,13 @@ const { Option } = Select;
                             <Col span={24}>
                                 <div className='div1'>
                                     <div className='div2'><Icon type="user" className='iconLabel1'/><p className='txt4'>Spouse/partner</p></div>
+                                    <Row style={{marginTop:'5%'}}>
+                                        <Col span={8}>Add spouse</Col>
+                                        <Col span={8}>
+                                        <Checkbox style={{float:'left'}} name='spouse' value={this.state.spouse} type="checkbox" onChange={this.handleChange}/>
+                                        </Col>
+                                        <Col span={8}></Col>                                        
+                                    </Row>
                                 </div>
                             </Col>
                         </Row>
@@ -152,8 +183,8 @@ const { Option } = Select;
                                 <Col span={6}><p className='txt5'>Title</p></Col>
                                 <Col span={12}>
                                     <select className='dropdownList22' name='title' value={this.state.title} onChange={this.handleChange} >
-                                        {this.props.advisors.map((advisor,index)=>(
-                                            <option key={index} value={advisor.advisor}>{advisor.advisor}</option>
+                                        {this.props.title.map((title,index)=>(
+                                            <option key={index} value={title.value}>{title.value}</option>
                                         ))}
                                         
                                     </select>
@@ -320,9 +351,11 @@ const { Option } = Select;
                 <Col xs={10} sm={10} md={10} xl={10}></Col>
                 <Col xs={10} sm={10} md={5} xl={5}>
                     <div className='divButtons'>
-                        <Button type="primary" size={this.state.size} style={{backgroundColor:'green'}} htmlType="submit">
+                        {/* <Button type="primary" size={this.state.size} style={{backgroundColor:'green'}} htmlType="submit"> */}
+                        {/* <Button size={this.state.size} style={{backgroundColor:'green'}} input type="submit">
                             Create
-                        </Button>
+                        </Button> */}
+                        {/* <input type="submit" value="Submit" /> */}
                         <Button type="danger" size={this.state.size} style={{backgroundColor:'red',color:'white'}}>
                             Cancel
                         </Button>
@@ -330,8 +363,6 @@ const { Option } = Select;
                 </Col>
                 <Col xs={4} sm={4} md={9} xl={9}></Col>
             </Row>
-
-            {/* koniec poprawnych do responsywnosci rows te ponizej wykasuj jak wykorzystasz */}
             </form>
             </div>
         )
@@ -343,13 +374,15 @@ Page22.propTypes = {
     getCountry:PropTypes.func.isRequired,
     getNation: PropTypes.func.isRequired,
     getTax: PropTypes.func.isRequired,
+    getTitle: PropTypes.func.isRequired,
 }
 const mapStateToProps = state => {
     return{
         advisors: state.form22.advisors,
         country: state.form22.country,
         nation: state.form22.nation,
-        tax: state.form22.tax
+        tax: state.form22.tax,
+        title: state.form22.title
     }
 }
-export default connect(mapStateToProps,{getAdvisors,getCountry,getNation,getTax}) (Page22);
+export default connect(mapStateToProps,{getAdvisors,getCountry,getNation,getTax,getTitle}) (Page22);

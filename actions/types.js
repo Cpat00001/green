@@ -79,6 +79,7 @@ export const GET_ADVISORS = 'GET_ADVISORS'
 export const GET_COUNTRY = 'GET_COUNTRY'
 export const GET_NATION = 'GET_NATION'
 export const GET_TAX = 'GET_TAX'
+export const GET_TITLE = 'GET_TITLE'
 
 
 

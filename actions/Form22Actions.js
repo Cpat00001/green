@@ -1,4 +1,4 @@
-import {GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX} from './types';
+import {GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX,GET_TITLE} from './types';
 import axios from 'axios';
 
 export const getAdvisors = () => async dispatch =>{
@@ -56,5 +56,16 @@ export const getTax = () => async dispatch =>{
         })
     } catch (error) {
         console.log('cannot fetch Taxation', error)
+    }
+}
+export const getTitle = () => async dispatch =>{
+    try {
+        const response = await axios.get('/Data/Title.json');
+        dispatch({
+            type:GET_TITLE,
+            payload:response.data
+        })
+    } catch (error) {
+        console.log('sorry but couldnt fetch titles', error)
     }
 }

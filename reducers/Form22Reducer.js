@@ -1,11 +1,12 @@
-import { GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX } from '../actions/types';
+import { GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX,GET_TITLE } from '../actions/types';
 
 const initialState = {
 
     advisors:[],
     country:[],
     nation:[],
-    tax:[]
+    tax:[],
+    title:[]
 
 }
 
@@ -30,6 +31,11 @@ export default function(state = initialState,action){
             return{
                 ...state,
                 tax:action.payload
+            }
+        case GET_TITLE:
+            return{
+                ...state,
+                title: action.payload
             }
         
         default:

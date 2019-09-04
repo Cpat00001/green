@@ -17,6 +17,7 @@ export default function(state = initialState,action){
                 ...state,
                 advisors: action.payload
             }
+            // JESLI POZOSTALE CASE ROBIA TO SAME SPROBUJ WIEC PRZYPISAC WIELE CASE DO JEDNEGO >> ZMIEN TYLKO GDZIE WYSYLASZ DATA NP country,nation,tax,title etc
         case GET_COUNTRY:
             return{
                 ...state,

@@ -61,8 +61,8 @@ const { Option } = Select;
          this.props.getAdvisors.abort();
          this.props.getCountry.abort();
          this.props.getNation.abort();
-         this.props.getTax.abort();
-         this.props.getTitle.abort();
+         this.props.getTax().abort();
+         this.props.getTitle().abort();
 
      }
      handleSubmit(event){
@@ -91,8 +91,8 @@ const { Option } = Select;
         //console.log(this.props)
 
         return (
-            
-                <form onSubmit={this.handleSubmit}>
+            <div>
+                <form>
                 <Row>
                 {/* odblokuj dwa ponizej zeby wyswietlic paski MENU na stronie  */}
                 {/* <AntTest1 />
@@ -193,17 +193,17 @@ const { Option } = Select;
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>First Name</p></Col>
-                                <Col span={12}><Input name='fName' value={this.state.fName} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='fName' value={this.state.fName} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Middle Name</p></Col>
-                                <Col span={12}><Input name='mName' value={this.state.mName} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='mName' value={this.state.mName} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Surname</p></Col>
-                                <Col span={12}><Input name='sName' value={this.state.sName} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='sName' value={this.state.sName} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                         </div>
@@ -212,33 +212,33 @@ const { Option } = Select;
                             <div className='div2'><Icon type="pushpin" className='iconLabel1'/><p className='txt4'>Adress details</p></div>
                             <Row style={{marginTop:'5%'}}>
                                 <Col span={6}><p className='txt5'>Address 1</p></Col>
-                                <Col span={12}><Input name='address1'value={this.state.address1} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='address1'value={this.state.address1} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Address 2</p></Col>
-                                <Col span={12}><Input name='address2' value={this.state.address2} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='address2' value={this.state.address2} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Town/City</p></Col>
-                                <Col span={12}><Input name='town' value={this.state.town} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='town' value={this.state.town} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>County/Region</p></Col>
-                                <Col span={12}><Input name='region' value={this.state.region} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='region' value={this.state.region} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Country</p></Col>
-                                <Col span={12}>
+                                <Col span={12}><Form.Item>
                                 <select style={{width:'100%'}} name='country' value={this.state.country} onChange={this.handleChange} className='dropdownList22'>
                                     {this.props.country.map((c,index)=>(
                                         <option key={index} value={c.Title}>{c.Title}</option>
                                     ))}
                                     </select>
-                                    </Col>
+                                    </Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                         </div>
@@ -252,60 +252,60 @@ const { Option } = Select;
                             <Row style={{marginTop:'5%'}}>
                                 <Col span={6}><p className='txt5'>Date of Birth</p></Col>
                                 {/* mozliwe ze w DatePicker tez bede musial dodac onChange + name to handle multiple inputChanges */}
-                                <Col span={12}><DatePicker style={{width:'100%'}} name='date' value={this.state.date} onChange={this.handleChangeDate}/></Col>  
-                                {/* <Col span={12}><DatePicker style={{width:'100%'}} name='date' value={this.state.date} onChange={this.handleChange}/></Col>   */}
+                                <Col span={12}><Form.Item><DatePicker style={{width:'100%'}} name='date' value={this.state.date} onChange={this.handleChangeDate}/></Form.Item></Col>  
+                                {/* <Col span={12}><Form.Item><DatePicker style={{width:'100%'}} name='date' value={this.state.date} onChange={this.handleChange}/></Form.Item></Col>   */}
 
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Nationality</p></Col>
-                                <Col span={12}>
+                                <Col span={12}><Form.Item>
                                     <select className='dropdownList22' name='nationality' value={this.state.nationality} onChange={this.handleChange}>
                                         {this.props.nation.map((nat,index)=>(
                                             <option key={index} value={nat.nationalityTitle}>{nat.nationalityTitle}</option>
                                         ))}
                                     </select>
-                                    </Col>
+                                    </Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Country of Taxation</p></Col>
-                                <Col span={12}>
+                                <Col span={12}><Form.Item>
                                     <select className='dropdownList22' name='tax' value={this.state.tax} onChange={this.handleChange}>
                                         {this.props.tax.map((tax,index)=>(
                                             <option key={index} value={tax.country}>{tax.country}</option>
                                         ))}
                                     </select>
-                                    </Col>
+                                    </Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Gender</p></Col>
                                 {/* mozliwe ze w DatePicker tez bede musial dodac onChange + name to handle multiple inputChanges */}
-                                <Col span={12}>
+                                <Col span={12}><Form.Item>
                                     <select name='gen' value={this.state.gen} onChange={this.handleChange} className='dropdownList22'>
                                         {this.state.gender.map((gen,index)=>(
                                             <option key={index}>{gen}</option>
                                          ))
                                         }
                                     </select>
-                                    </Col>  
+                                    </Form.Item></Col>  
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>NIN Number</p></Col>
-                                <Col span={12}><Input name='nin' value={this.state.nin} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='nin' value={this.state.nin} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Marital Status</p></Col>
-                                <Col span={12}>
+                                <Col span={12}><Form.Item>
                                     <select name='status' value={this.state.status} onChange={this.handleChange} className='dropdownList22'>
                                         {this.state.maritalStatus.map((marital,index)=>(
                                             <option key={index}>{marital}</option>
                                         ))}
                                     </select>
-                                    </Col>
+                                    </Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                         </div>
@@ -314,17 +314,17 @@ const { Option } = Select;
                             <div className='div2'><Icon type="phone" className='iconLabel1'/><p className='txt4'>Contact Numbers</p></div>
                             <Row style={{marginTop:'5%'}}>
                                 <Col span={6}><p className='txt5'>Contact Phone</p></Col>
-                                <Col span={12}><Input name='contactPhone' value={this.state.contactPhone} onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='contactPhone' value={this.state.contactPhone} onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Daytime Phone</p></Col>
-                                <Col span={12}><Input name='daytimePhone' value={this.state.daytimePhone}onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='daytimePhone' value={this.state.daytimePhone}onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
                                 <Col span={6}><p className='txt5'>Mobile Phone</p></Col>
-                                <Col span={12}><Input name='mobilePhone' value={this.state.mobilePhone}onChange={this.handleChange}/></Col>
+                                <Col span={12}><Form.Item><Input name='mobilePhone' value={this.state.mobilePhone}onChange={this.handleChange}/></Form.Item></Col>
                                 <Col span={6}></Col>
                             </Row>
                         </div>
@@ -333,13 +333,13 @@ const { Option } = Select;
                             <div className='div2'><Icon type="mail" className='iconLabel1'/><p className='txt4'>Email Details</p></div>
                         <Row style={{marginTop:'5%'}}>
                             <Col span={6}><p className='txt5'>Email</p></Col>
-                            <Col span={12}><Input name='email' value={this.state.email}onChange={this.handleChange}/></Col>
+                            <Col span={12}><Form.Item><Input name='email' value={this.state.email}onChange={this.handleChange}/></Form.Item></Col>
                             <Col span={6}></Col>
                         </Row>
                         <Row>
                             <Col span={6}><p className='txt5'>Notification</p></Col>
                             {/* mozliwe ze bede musial dac onChange na tym checkboxie */}
-                            <Col span={12}><Checkbox style={{float:'left'}} name='natification' value={this.state.natification} type="checkbox" onChange={this.handleChange}/></Col> 
+                            <Col span={12}><Form.Item><Checkbox style={{float:'left'}} name='natification' value={this.state.natification} type="checkbox" onChange={this.handleChange}/></Form.Item></Col> 
                             <Col span={6}></Col>
                         </Row>
                         </div>
@@ -351,9 +351,10 @@ const { Option } = Select;
                 <Col xs={10} sm={10} md={10} xl={10}></Col>
                 <Col xs={10} sm={10} md={5} xl={5}>
                     <div className='divButtons'>
-                        <Button size={this.state.size} style={{backgroundColor:'green'}} htmlType="submit">
-                            Register
-                       </Button> 
+                        {/* <Button type="primary" size={this.state.size} style={{backgroundColor:'green'}} htmlType="submit"> */}
+                        <Button size={this.state.size} style={{backgroundColor:'green'}} input type="submit" onSubmit={this.handleSubmit}>
+                            Create
+                        </Button>
                         {/* <input type="submit" value="Submit" /> */}
                         <Button type="danger" size={this.state.size} style={{backgroundColor:'red',color:'white'}}>
                             Cancel
@@ -363,7 +364,7 @@ const { Option } = Select;
                 <Col xs={4} sm={4} md={9} xl={9}></Col>
             </Row>
             </form>
-            
+            </div>
         )
     }
 }

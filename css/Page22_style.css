@@ -43,6 +43,16 @@
     line-height: 1.5;
     font-size: 14px;
 }
+.dropdownList22Req{
+    width:100%;
+    border-radius:3px;
+    height:32px;
+    border:1px solid #d9d9d9;
+    color:rgba(0, 0, 0, 0.65);
+    line-height: 1.5;
+    font-size: 14px;
+    background-color:rgb(233, 215, 182);
+}
 .div1{
     padding: 5px 5px 8px;
     border-radius: 3px;
@@ -85,6 +95,22 @@
 }
 .divButtons{
     float:right
+}
+.input1{
+    margin-top:2px;
+    margin-bottom:2px;
+}
+.input2{
+    margin-top:2px;
+    margin-bottom:2px;
+    background-color:rgb(233, 215, 182);
+    color:black;
+}
+.inputError{
+    margin-top:2px;
+    margin-bottom:2px;
+    background-color:rgb(233, 129, 111);
+    border:1px solid red
 }
 
 /* icons */

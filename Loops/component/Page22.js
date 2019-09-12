@@ -5,7 +5,7 @@ import '../../css/Page22_style.css'
 import { Row, Col, Icon, Divider, Button, Form, Input, Select, DatePicker,Checkbox } from 'antd';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getAdvisors,getCountry,getNation,getTax,getTitle} from '../../actions/Form22Actions';
+import {getAdvisors,getCountry,getNation,getTax,getTitle,user22form} from '../../actions/Form22Actions';
 import moment from 'moment';
 
 const { Option } = Select;
@@ -48,9 +48,9 @@ const { Option } = Select;
          this.handleChangeDate = this.handleChangeDate.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this)
      }
-
+     
      componentDidMount(){
-         this.props.getAdvisors();
+         var test = this.props.getAdvisors();
          this.props.getCountry();
          this.props.getNation();
          this.props.getTax();
@@ -59,18 +59,68 @@ const { Option } = Select;
      }
 
      componentWillUnmount(){
-         this.setState({gender:"",maritalStatus:""})
-         this.props.getAdvisors.abort();
-         this.props.getCountry.abort();
-         this.props.getNation.abort();
-         this.props.getTax.abort();
-         this.props.getTitle.abort();
+         //destroy all http requests
+        // test.abort();
+        //abort(test)
+        
+        //this.props.getAdvisors.abort();
+        //  this.props.getCountry.abort();
+        //  this.props.getNation.abort();
+        //  this.props.getTax.abort();
+        //  this.props.getTitle.abort();
 
      }
      handleSubmit(event){
         event.preventDefault();
         console.log(this.state)
-        const {fName,sName,email,errors} = this.state;
+        const {adviser,
+        title,
+        fName,
+        mName,
+        sName,
+        address1,
+        address2,
+        town,
+        region,
+        country,
+        date,
+        nationality,
+        tax,
+        gen,
+        nin,
+        status,
+        contactPhone,
+        daytimePhone,
+        mobilePhone,
+        email,
+        natification,
+        spouse } = this.state;
+
+        const user22 = { adviser,
+            title,
+            fName,
+            mName,
+            sName,
+            address1,
+            address2,
+            town,
+            region,
+            country,
+            date,
+            nationality,
+            tax,
+            gen,
+            nin,
+            status,
+            contactPhone,
+            daytimePhone,
+            mobilePhone,
+            email,
+            natification,
+            spouse }
+            //function which submits a user data to reduxState.
+            this.props.user22form(user22)
+            this.props.history.push('/')
         
         //additional email validation
         // this.checkEmail();
@@ -101,32 +151,33 @@ const { Option } = Select;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         const checked = event.target.checked
-        this.setState({ [name]:value})
-
-        
-        
+        this.setState({ [name]:value})  
      }
      handleChangeDate(date,dateString){
         this.setState({ date: date })
      }
-    //  handleBlur(e){
-    //     console.log(this, e.target)
-    handleBlur = (e) =>{
-        console.log(e.target.value)
-        console.log('this is',this)
+    handleBlur = (event) =>{
+        console.log(event.target)
+        //console.log('this is',this)
          
-         if(isNaN(e.target.value)){
+         if(isNaN(event.target.value)){
             this.setState({label:true})
-            console.log(this.state.label)
             setTimeout(()=>{this.setState({label:false})},2000)
         }
      }
+     //handle cancel button
+    //  if button clicked then clear all input fields - can be done componentWillUnmount - and redirect to previous page
+    handleCancelClick = () =>{
+        
+        this.props.history.push('/')
+        console.log('CANCEL CLICKED')
+    }
      
     render() {
         //display error label
         let label;
         if(this.state.label === true){
-            label = <label htmlFor="error" style={{color:'red'}}>Sorry only number allowed</label>
+            label = <label htmlFor="error" style={{color:'red'}}>Sorry only numbers allowed</label>
         }
 
         // console.log('rzuc advisors',this.props.advisors)
@@ -378,8 +429,7 @@ const { Option } = Select;
                             </Row>
                             <Row style={{marginTop:'5%'}}>
                                 <Col span={6}><p className='txt5'>Contact Phone</p></Col>
-                                <Col span={12}><Input name='contactPhone' type='text' value={this.state.contactPhone} onChange={this.handleChange} onBlur={this.handleBlur} className='input1'/>
-                                </Col>
+                                <Col span={12}><Input name='contactPhone' type='text' value={this.state.contactPhone} onChange={this.handleChange} onBlur={this.handleBlur} className='input1'/></Col>
                                 <Col span={6}></Col>
                             </Row>
                             <Row>
@@ -420,7 +470,7 @@ const { Option } = Select;
                         
                         {button}
 
-                        <Button type="danger" size={this.state.size} style={{backgroundColor:'red',color:'white'}}>
+                        <Button type="danger" size={this.state.size} style={{backgroundColor:'red',color:'white'}} onClick={this.handleCancelClick}>
                             Cancel
                         </Button>
                        
@@ -440,6 +490,8 @@ Page22.propTypes = {
     getNation: PropTypes.func.isRequired,
     getTax: PropTypes.func.isRequired,
     getTitle: PropTypes.func.isRequired,
+    user22form: PropTypes.func.isRequired
+    
 }
 const mapStateToProps = state => {
     return{
@@ -450,6 +502,6 @@ const mapStateToProps = state => {
         title: state.form22.title
     }
 }
-export default connect(mapStateToProps,{getAdvisors,getCountry,getNation,getTax,getTitle})  (Page22);
+export default connect(mapStateToProps,{getAdvisors,getCountry,getNation,getTax,getTitle,user22form})(Page22);
 
 

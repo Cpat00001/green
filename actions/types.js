@@ -80,6 +80,10 @@ export const GET_COUNTRY = 'GET_COUNTRY'
 export const GET_NATION = 'GET_NATION'
 export const GET_TAX = 'GET_TAX'
 export const GET_TITLE = 'GET_TITLE'
+export const USER22FORM = 'USER22FORM'
+
+// page 23 actions
+export const GET_COMPANIES = 'GET_COMPANIES'
 
 
 

@@ -1,4 +1,4 @@
-import {GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX,GET_TITLE} from './types';
+import {GET_ADVISORS,GET_COUNTRY,GET_NATION,GET_TAX,GET_TITLE,USER22FORM} from './types';
 import axios from 'axios';
 
 export const getAdvisors = () => async dispatch =>{
@@ -68,4 +68,12 @@ export const getTitle = () => async dispatch =>{
     } catch (error) {
         console.log('sorry but couldnt fetch titles', error)
     }
+}
+export const user22form = (user22) => {
+
+    return{
+        type: USER22FORM,
+        payload: user22
+    }
+
 }

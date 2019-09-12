@@ -1,0 +1,68 @@
+/* divs */
+.div23{
+    background-color:grey;
+    min-height:50px;
+}
+.div23_1{
+    background-color:grey;
+    min-height:50px;
+}
+.div23_2{
+    width: 260px !important;
+    border-radius: 0px !important;
+    padding: 4px 4px 4px 4px;
+    font-size: 12px;
+}
+.div23_subComponent{
+    max-width:150px;
+    height:175px;
+    margin:2px;
+    background-color: #f1f1f1;
+    border: 1px solid #afafaf;
+    float:'left'
+}
+.div23_SBLogo{
+    width:150px;
+    height:75px;
+    background-color:rgb(131, 126, 122);
+    padding:5px;
+}
+
+/* text */
+.txt23_1{
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    clear: both;
+    display: block;
+    padding-top: 10px;
+    margin: 0px;
+    font-weight: 400;
+    color: #FFF;
+    font-size: 1.5em;
+    transition: font-size 150ms linear;
+    float:left;
+}
+.txt23_2{
+    font-size: 1.3em;
+    line-height: 1.4em;
+    font-weight: 400;
+    padding-bottom: 10px;
+    padding-top: 6px;
+    color: #2e3d4f !important;
+    float:left;
+}
+.txt23_3{
+    font-size: 1.1em;
+    line-height: 1.2em;
+    font-weight: 400;
+    padding-bottom: 7px;
+    padding-top: 3px;
+    color: #2e3d4f !important;
+    float:left; 
+    margin-left:20px
+}
+
+/* icons */
+.icon23_1{
+    font-size:30px;
+    float:left
+}

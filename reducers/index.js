@@ -12,6 +12,7 @@ import financialReducer from './financialReducer';
 import subaccountReducer from './subaccountReducer';
 import formReducer from './formReducer';
 import Form22Reducer from './Form22Reducer';
+import Company23Reducer from './companies23Reducer';
 
 
 
@@ -28,7 +29,8 @@ export default combineReducers({
     financialProd: financialReducer,
     subAcc: subaccountReducer,
     register:formReducer,
-    form22: Form22Reducer
+    form22: Form22Reducer,
+    company: Company23Reducer
 })
 
 
